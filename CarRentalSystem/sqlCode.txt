@@ -1,0 +1,23 @@
+CREATE DATABASE IF NOT EXISTS car_rental_system;
+USE car_rental_system;
+
+CREATE TABLE cars (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    type ENUM('Sedan', 'SUV', 'Crossover') NOT NULL,
+    price_per_day DECIMAL(10, 2) NOT NULL,
+    status ENUM('available', 'rented') NOT NULL DEFAULT 'available',
+    image VARCHAR(255),
+    available TINYINT(1) DEFAULT 1
+);
+
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'client') NOT NULL DEFAULT 'client',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
