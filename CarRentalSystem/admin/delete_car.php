@@ -16,6 +16,6 @@ $query = "DELETE FROM cars WHERE id = $car_id";
 mysqli_query($conn, $query);
 
 // Redirect back to the admin dashboard
-header("Location: admin.php");
+header("Location: DashboardAdmin.php");
 exit;
 ?>

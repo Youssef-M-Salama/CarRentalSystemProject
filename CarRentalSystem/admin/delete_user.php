@@ -4,7 +4,7 @@ include "../includes/config.php";
 
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../login.php");
+    header("Location: ../Login-Signup-Logout/login.php");
     exit;
 }
 
@@ -16,6 +16,6 @@ $query = "DELETE FROM users WHERE id = $user_id";
 mysqli_query($conn, $query);
 
 // Redirect back to the admin dashboard
-header("Location: admin.php");
+header("Location: DashboardAdmin.php");
 exit;
 ?>
