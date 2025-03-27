@@ -4,7 +4,7 @@ include "../includes/config.php";
 
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: ../login.php");
+    header("Location: ../Login-Signup-Logout/login.php");
     exit;
 }
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_query($conn, $update_query);
 
     // Redirect back to the admin dashboard
-    header("Location: admin.php");
+    header("Location: DashboardAdmin.php");
     exit;
 }
 ?>
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Edit User</h1>
         <nav>
             <ul>
-                <li><a href="admin.php">Back to Admin Dashboard</a></li>
-                <li><a href="../logout.php">Logout</a></li>
+                <li><a href="DashboardAdmin.php">Back to Admin Dashboard</a></li>
+                <li><a href="../Login-Signup-Logout/logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
