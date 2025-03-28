@@ -1,455 +1,519 @@
 /* General Styles */
 body {
-    font-family: 'Poppins', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
 }
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #4a90e2, #3b5998);
-    color: white;
-    padding: 20px 40px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #4a90e2, #3b5998);
+  color: white;
+  padding: 20px 40px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2rem;
-    letter-spacing: 1px;
-    
-
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: background 0.3s ease, transform 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 /* Sidebar */
 aside {
-    background: #ffffff;
-    padding: 20px;
-    width: 220px;
-    position: fixed;
-    top: 120px;
-    left: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  padding: 20px;
+  width: 220px;
+  position: fixed;
+  top: 120px;
+  left: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 aside h3 {
-    margin: 0 0 15px;
-    font-size: 1.2rem;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  margin: 0 0 15px;
+  font-size: 1.2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 aside ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 aside ul li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 aside ul li a {
-    color: #4a90e2;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 aside ul li a:hover {
-    color: #3b5998;
+  color: #3b5998;
 }
 
 /* Main Content */
 main {
-    padding: 40px;
-    
+  padding: 40px;
 }
 
 h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-    text-align: left;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+  text-align: left;
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-items: center;
 }
 
 .card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    max-width: 350px;
-    text-align: center;
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center content horizontally */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally */
 }
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card img {
-    width: 100%;
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensures the image fills the container without distortion */
-    border-bottom: 1px solid #ddd;
-}   
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+  border-bottom: 1px solid #ddd;
+}
 
 .card h3,
 .card p {
-    margin: 10px 0; /* Adjust margins for better spacing */
-    text-align: center; /* Center text */
+  margin: 10px 0; /* Adjust margins for better spacing */
+  text-align: center; /* Center text */
 }
 
 .card p strong {
-    font-weight: bold; /* Bold the labels like "Type:" */
+  font-weight: bold; /* Bold the labels like "Type:" */
 }
 .available {
-    color: #28a745;
-    font-weight: bold;
+  color: #28a745;
+  font-weight: bold;
 }
 
 .not-available {
-    color: #dc3545;
-    font-weight: bold;
+  color: #dc3545;
+  font-weight: bold;
 }
 
 /* Buttons */
 .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px;
-    font-weight: 600;
-    margin-top: 15px;
-    transition: background 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-top: 15px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .btn-rent {
-    background: #4a90e2;
-    color: white;
+  background: #4a90e2;
+  color: white;
 }
 
 .btn-rent:hover {
-    background: #3b5998;
-    transform: scale(1.05);
+  background: #3b5998;
+  transform: scale(1.05);
 }
 
 .btn-disabled {
-    background: #ccc;
-    color: #666;
-    cursor: not-allowed;
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 /* Footer */
 footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 40px;
-    font-size: 0.9rem;
-    margin-top: 40px;
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 40px;
+  font-size: 0.9rem;
+  margin-top: 40px;
 }
 
 .footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    justify-items: center;
-    padding: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  padding: 20px 0;
 }
 
 .footer-section {
-    text-align: left;
+  text-align: left;
 }
 
 .footer-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .footer-section p {
-    margin: 5px 0;
-    color: #ddd;
+  margin: 5px 0;
+  color: #ddd;
 }
 
 .social-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
 }
 
 .social-links li a {
-    color: #fff;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .social-links li a:hover {
-    color: #4a90e2;
+  color: #4a90e2;
 }
 
 .footer-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-section ul li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .footer-section ul li a {
-    color: #ddd;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .footer-section form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-section input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 .footer-section button {
-    padding: 10px 20px;
-    background: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.3s ease;
+  padding: 10px 20px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
 }
 
 .footer-section button:hover {
-    background: #3b5998;
+  background: #3b5998;
 }
 
 .copyright {
-    text-align: center;
-    padding: 10px 0;
-    background: #222;
-    color: #ddd;
+  text-align: center;
+  padding: 10px 0;
+  background: #222;
+  color: #ddd;
 }
 /* Admin Dashboard Styles */
 .add-user-form {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .add-user-form h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .user-list table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .user-list th,
 .user-list td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
 }
 
 .user-list th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+  background-color: #f4f4f4;
+  font-weight: bold;
 }
 
 .user-list td button {
-    padding: 5px 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .user-list td button:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
 }
 
 /* Login Page Styles */
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .login-container h2 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .login-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .login-form button {
-    padding: 10px;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .login-form button:hover {
-    background-color: #3b5998;
+  background-color: #3b5998;
 }
 
 .error {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 10px;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
-
 .signup-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .signup-container h2 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .signup-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .signup-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 .signup-form button {
-    padding: 10px;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .signup-form button:hover {
-    background-color: #3b5998;
+  background-color: #3b5998;
 }
 
 .error-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .error-list li {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 10px;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
+/* Sort Filter Styles */
+.sort-filter {
+  margin-bottom: 80px;
+  margin-left: 80px;
+  margin-right: 100px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.sort-filter label {
+  font-weight: 600;
+  color: #4a90e2;
+  flex: 1 1 100%;
+  text-align: left;
+  padding-bottom: 10px;
+  margin: 0;
+}
+
+.sort-filter select {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid #4a90e2;
+  border-radius: 25px;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%234a90e2' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sort-filter select:hover {
+  border-color: #3b5998;
+}
+
+.sort-filter select:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.3);
+}
+
+.sort-filter button {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #4a90e2, #3b5998);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 auto;
+}
+
+.sort-filter button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(74, 144, 226, 0.3);
+}
