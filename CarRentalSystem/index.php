@@ -10,11 +10,45 @@ if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
 }
 
+// Existing search/filter code
+$search = $_GET['search'] ?? '';
+$type = $_GET['type'] ?? '';
+$sort = $_GET['sort'] ?? 'none';
+
+
+
 // Initialize a variable to store any error messages
 $error = '';
 
 // Fetch available cars from the database
-$query = "SELECT id, name, model, type, price_per_day, image, status FROM cars LIMIT 10";
+$query = "SELECT id, name, model, type, price_per_day, image, status
+ FROM cars
+ WHERE (name LIKE '%$search%' OR model LIKE '%$search%') 
+ AND (type = '$type' OR '$type' = '')";
+
+// Add sorting
+switch($sort) {
+    case 'price_asc':
+        $query .= " ORDER BY price_per_day ASC";
+        break;
+    case 'price_desc':
+        $query .= " ORDER BY price_per_day DESC";
+        break;
+    case 'year_asc':
+        $query .= " ORDER BY SUBSTRING(model, 1, 4)+0 ASC"; // Extract year from model
+        break;
+    case 'year_desc':
+        $query .= " ORDER BY SUBSTRING(model, 1, 4)+0 DESC";
+        break;
+    case 'available':
+        $query .= " ORDER BY status DESC";
+        break;
+    default:
+        // No sorting
+        break;
+}
+
+
 $result = mysqli_query($conn, $query);
 
 // Check if the query execution was successful
@@ -54,11 +88,28 @@ if (!$result) {
     <!-- Main Content -->
     <main>
         <h2>Available Cars</h2>
-
+        
+        <!-- Add this sorting dropdown above the car grid in <main> -->
+        <div class="sort-filter">
+               <form method="GET">
+                   <label for="sort">Sort By:</label>
+                   <select name="sort" id="sort">
+                       <option value="none" <?= (!isset($_GET['sort']) || $_GET['sort'] == 'none') ? 'selected' : '' ?>>None</option>
+                       <option value="price_asc" <?= isset($_GET['sort']) && $_GET['sort'] == 'price_asc' ? 'selected' : '' ?>>Price (Low to High)</option>
+                       <option value="price_desc" <?= isset($_GET['sort']) && $_GET['sort'] == 'price_desc' ? 'selected' : '' ?>>Price (High to Low)</option>
+                       <option value="year_asc" <?= isset($_GET['sort']) && $_GET['sort'] == 'year_asc' ? 'selected' : '' ?>>Model Year (Old to New)</option>
+                       <option value="year_desc" <?= isset($_GET['sort']) && $_GET['sort'] == 'year_desc' ? 'selected' : '' ?>>Model Year (New to Old)</option>
+                       <option value="available" <?= isset($_GET['sort']) && $_GET['sort'] == 'available' ? 'selected' : '' ?>>Availability</option>
+                   </select>
+                   <button type="submit">Apply</button>
+               </form>
+           </div>
+        
         <?php if (!empty($error)): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php elseif ($result && mysqli_num_rows($result) > 0): ?>
             <div class="container">
+
                 <?php while ($row = mysqli_fetch_assoc($result)) { 
                     $carName = htmlspecialchars($row['name'] ?? 'Unknown Car');
                     $model = htmlspecialchars($row['model'] ?? 'Unknown Model'); 
@@ -68,6 +119,7 @@ if (!$result) {
                     $status = $row['status'] ?? 'available';
                     $availability = ($status === 'available') ? "<span class='available'>Available</span>" : "<span class='not-available'>Not Available</span>";
                 ?>
+
                     <div class="card">
                         <img src="<?php echo $image; ?>" alt="<?php echo $carName; ?>">
                         <h3><?php echo $carName; ?> (<?php echo $model; ?>)</h3>
