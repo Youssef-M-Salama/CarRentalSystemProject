@@ -73,6 +73,7 @@ if (!$result) {
         <ul>
             <li><a href="index.php">Home</a></li>
             <?php if (isset($_SESSION['user'])): ?>
+                <li><a href="my_rental.php">My Rentals</a></li>
                 <?php if ($_SESSION['user']['role'] === 'admin'): ?>
                     <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
                 <?php endif; ?>
@@ -128,7 +129,7 @@ if (!$result) {
                         <p><strong>Status:</strong> <?php echo $availability; ?></p>
                         
                         <?php if ($status === 'available') { ?>
-                            <form method="POST" action="rent.php">
+                            <form method="GET" action="rent_request.php">
                                 <input type="hidden" name="car_id" value="<?php echo $row['id']; ?>">
                                 <button type="submit" class="btn btn-rent">Rent Now</button>
                             </form>
