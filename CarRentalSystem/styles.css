@@ -46,6 +46,18 @@ nav ul li a:hover {
   transform: scale(1.05);
 }
 
+/* Special styling for My Rentals link */
+nav ul li a[href="my_rental.php"] {
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+nav ul li a[href="my_rental.php"]:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
 /* Sidebar */
 aside {
   background: #ffffff;
