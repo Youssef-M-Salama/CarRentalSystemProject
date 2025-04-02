@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['request_id'])) {
             mysqli_query($conn, $update_query);
             
             // Update the car status to mark it as rented
-            $update_car_query = "UPDATE cars SET status = 'not available' WHERE id = $car_id";
+            $update_car_query = "UPDATE cars SET status = 'rented' WHERE id = $car_id";
             mysqli_query($conn, $update_car_query);
             
             // Commit the transaction
