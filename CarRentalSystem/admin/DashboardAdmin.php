@@ -64,6 +64,23 @@ $query = "SELECT r.*, u.username, c.name as car_name, c.model, c.image
 $rental_requests = mysqli_query($conn, $query);
 ?>
 
+<?php
+// Handle Make Available Form Submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_available'])) {
+    $car_id = intval($_POST['car_id']);
+    $query = "UPDATE cars SET status = 'available' WHERE id = $car_id";
+    mysqli_query($conn, $query);
+    header("Location: DashboardAdmin.php");
+    exit;
+}
+
+// Fetch Unavailable Cars (status = 'rented')
+$query = "SELECT * FROM cars WHERE status = 'rented'";
+$unavailable_cars = mysqli_query($conn, $query);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,6 +210,7 @@ $rental_requests = mysqli_query($conn, $query);
             <a href="#car-list" onclick="showTab('car-list')">Car List</a>
             <a href="#user-management" onclick="showTab('user-management')">User Management</a>
             <a href="#rental-requests" onclick="showTab('rental-requests')">Rental Requests</a>
+            <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">Retrieve Cars</a>
         </div>
 
         <!-- Add Car Form -->
@@ -264,6 +282,66 @@ $rental_requests = mysqli_query($conn, $query);
                 </tbody>
             </table>
         </section>
+
+
+
+
+
+
+
+          <!-- New Retrieve Cars Section -->
+        <section id="retrieve-cars" class="tab-content">
+            <h3>Retrieve Unavailable Cars</h3>
+            <?php if (mysqli_num_rows($unavailable_cars) > 0): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Model</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($car = mysqli_fetch_assoc($unavailable_cars)): ?>
+                            <tr>
+                                <td><?= $car['id'] ?></td>
+                                <td><?= htmlspecialchars($car['name']) ?></td>
+                                <td><?= htmlspecialchars($car['model']) ?></td>
+                                <td><?= htmlspecialchars($car['type']) ?></td>
+                                <td><?= htmlspecialchars($car['status']) ?></td>
+                                <td>
+                                <?php if (!empty($car['image'])): ?>
+                                    <img src="../images/<?php echo htmlspecialchars($car['image']); ?>" alt="<?php echo htmlspecialchars($car['name']); ?>" width="50">
+                                <?php else: ?>
+                                    No Image
+                                <?php endif; ?>
+                            </td>
+                                <td>
+                                    <form method="POST" action="DashboardAdmin.php">
+                                        <input type="hidden" name="car_id" value="<?= $car['id'] ?>">
+                                        <button type="submit" name="make_available" class="btn-approve">Make Available</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>No unavailable cars found.</p>
+            <?php endif; ?>
+        </section>
+
+
+
+
+
+
+
+
 
         <!-- User Management -->
         <section id="user-management" class="tab-content">
