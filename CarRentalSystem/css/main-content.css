@@ -1,0 +1,49 @@
+main {
+    padding: 40px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .card h3,
+  .card p {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .card p strong {
+    font-weight: bold;
+  }
+  
+  .available {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .not-available {
+    color: #dc3545;
+    font-weight: bold;
+  }

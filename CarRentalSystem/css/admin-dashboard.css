@@ -1,0 +1,39 @@
+.add-user-form {
+    margin-bottom: 20px;
+  }
+  
+  .add-user-form h3 {
+    margin-top: 0;
+  }
+  
+  .user-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .user-list th,
+  .user-list td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .user-list th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .user-list td button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-list td button:hover {
+    background-color: #c82333;
+  }

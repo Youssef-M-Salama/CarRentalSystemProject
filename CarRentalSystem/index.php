@@ -63,7 +63,15 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Rental</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
 </head>
 <body>
     <!-- Header Section -->
@@ -144,6 +152,7 @@ if (!$result) {
         <?php endif; ?>
     </main>
 
+    
     <!-- Footer Section -->
     <footer>
         <div class="footer-container">

@@ -1,0 +1,67 @@
+.sort-filter {
+    margin-bottom: 80px;
+    margin-left: 80px;
+    margin-right: 100px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .sort-filter label {
+    font-weight: 600;
+    color: #4a90e2;
+    flex: 1 1 100%;
+    text-align: left;
+    padding-bottom: 10px;
+    margin: 0;
+  }
+  
+  .sort-filter select {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #4a90e2;
+    border-radius: 25px;
+    background-color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%234a90e2' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sort-filter select:hover {
+    border-color: #3b5998;
+  }
+  
+  .sort-filter select:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.3);
+  }
+  
+  .sort-filter button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #4a90e2, #3b5998);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 auto;
+  }
+  
+  .sort-filter button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(74, 144, 226, 0.3);
+  }

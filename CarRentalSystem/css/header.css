@@ -1,0 +1,48 @@
+header {
+    background: linear-gradient(135deg, #4a90e2, #3b5998);
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+  }
+  
+  /* Special styling for My Rentals link */
+  nav ul li a[href="my_rental.php"] {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  nav ul li a[href="my_rental.php"]:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+  }

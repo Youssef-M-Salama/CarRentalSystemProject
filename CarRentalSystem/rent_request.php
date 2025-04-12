@@ -56,97 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Request - Car Rental Service</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .rental-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .rental-form h2 {
-            margin-top: 0;
-            color: #333;
-        }
-        
-        .rental-form .car-details {
-            display: flex;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-        
-        .rental-form .car-image {
-            width: 150px;
-            margin-right: 20px;
-        }
-        
-        .rental-form .car-image img {
-            width: 100%;
-            border-radius: 5px;
-        }
-        
-        .rental-form .car-info h3 {
-            margin-top: 0;
-        }
-        
-        .rental-form form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .rental-form .date-inputs {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .rental-form .date-inputs div {
-            flex: 1;
-        }
-        
-        .rental-form label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-        
-        .rental-form input[type="date"] {
-            width: 90%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .rental-form .price-calculation {
-            margin-top: 10px;
-            background-color: #e9f7ff;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-        
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="css/rent-request.css">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <h1>Car Rental Service</h1>
         <nav>
