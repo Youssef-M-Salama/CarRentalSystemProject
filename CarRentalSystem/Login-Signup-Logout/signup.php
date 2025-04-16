@@ -61,8 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </head>
 <body>
-    <!-- edit -->
-     <h1></h1>
+
     <main class="signup-container">
         <h2>Create an Account</h2>
 
