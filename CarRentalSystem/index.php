@@ -90,6 +90,7 @@ if (!$result) {
                 <li><a href="Login-Signup-Logout/login.php">Login</a></li>
                 <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
             <?php endif; ?>
+            <li><a href="about us.html">About Us</a></li>
         </ul>
     </nav>
 </header>
@@ -173,7 +174,7 @@ if (!$result) {
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="about us.html">About Us</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">FAQs</a></li>
