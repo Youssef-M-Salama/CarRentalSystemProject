@@ -35,12 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If no errors, insert user into the database
     if (empty($errors)) {
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        
 
         // Insert user into the database
         $query = "INSERT INTO users (username, email, password, role) 
-                  VALUES ('$username', '$email', '$hashed_password', 'client')";
+                  VALUES ('$username', '$email', '$password', 'client')";
         mysqli_query($conn, $query);
 
         // Redirect to login page

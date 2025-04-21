@@ -15,6 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
     $type = mysqli_real_escape_string($conn, $_POST['type']);
     $price_per_day = floatval($_POST['price_per_day']);
     $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $category = mysqli_real_escape_string($conn, $_POST['category']);
+
+
 
     // Handle image upload
     $image = '';
@@ -38,9 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
     }
 
     // Insert car into the database
-    $query = "INSERT INTO cars (name, model, type, price_per_day, image, status) 
-              VALUES ('$name', '$model', '$type', '$price_per_day', '$image', '$status')";
+    $query = "INSERT INTO cars (name, model, type, price_per_day, image, status , category ) 
+              VALUES ('$name', '$model', '$type', '$price_per_day', '$image', '$status' , '$category')";
     mysqli_query($conn, $query);
+
+
+
+
+
+
 
     // Redirect back to the admin dashboard
     header("Location: DashboardAdmin.php");
@@ -236,11 +245,27 @@ $unavailable_cars = mysqli_query($conn, $query);
                     <option value="available">Available</option>
                     <option value="not available">Not Available</option>
                 </select>
+
+                
+                <select name = "category" required>
+                    <!-- <option value="" >Type</option> hance it later -->
+                 <option value="free">free</option>
+                 <option value="premium">premium</option>
+                 
+                </select>
                 <!-- File Input for Image Upload -->
                 <label for="image">Upload Image:</label>
                 <input type="file" name="image" id="image" accept="image/*" required>
                 <button type="submit" name="add_car">Add Car</button>
+
+
+
+
+
             </form>
+
+
+
         </section>
 
         <!-- Car List -->
@@ -256,6 +281,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                         <th>Price Per Day</th>
                         <th>Status</th>
                         <th>Image</th>
+                        <th>category</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -275,6 +301,9 @@ $unavailable_cars = mysqli_query($conn, $query);
                                     No Image
                                 <?php endif; ?>
                             </td>
+
+                            <td> <?php echo htmlspecialchars($car['category']); ?> </td>
+
                             <td>
                                 <form method="POST" action="delete_car.php">
                                     <input type="hidden" name="car_id" value="<?php echo $car['id']; ?>">
