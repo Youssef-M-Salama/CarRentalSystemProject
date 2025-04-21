@@ -9,7 +9,8 @@ CREATE TABLE cars (
     price_per_day DECIMAL(10, 2) NOT NULL,
     status ENUM('available', 'rented') NOT NULL DEFAULT 'available',
     image VARCHAR(255),
-    available TINYINT(1) DEFAULT 1
+    available TINYINT(1) DEFAULT 1 ,
+    category ENUM('free','premium') NOT NULL DEFAULT 'free'
 );
 
 
@@ -18,7 +19,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'client') NOT NULL DEFAULT 'client',
+    role ENUM('admin', 'client','premium') NOT NULL DEFAULT 'client',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
