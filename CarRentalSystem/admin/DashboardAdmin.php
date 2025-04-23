@@ -45,12 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
               VALUES ('$name', '$model', '$type', '$price_per_day', '$image', '$status' , '$category')";
     mysqli_query($conn, $query);
 
-
-
-
-
-
-
     // Redirect back to the admin dashboard
     header("Location: DashboardAdmin.php");
     exit;
@@ -65,6 +59,7 @@ $query = "SELECT * FROM users";
 $users = mysqli_query($conn, $query);
 
 // Fetch All Rental Requests with user and car details
+
 $query = "SELECT r.*, u.username, c.name as car_name, c.model, c.image 
           FROM rental_requests r 
           JOIN users u ON r.user_id = u.id 
@@ -240,7 +235,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                  <option value="Crossover">Crossover</option>
                 </select>
 
-                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required>
+                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
                 <select name="status" required>
                     <option value="available">Available</option>
                     <option value="not available">Not Available</option>
@@ -334,6 +329,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                             <th>Model</th>
                             <th>Type</th>
                             <th>Status</th>
+                            <th>category</th>
                             <th>Image</th>
                             <th>Action</th>
                         </tr>
@@ -346,6 +342,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                                 <td><?= htmlspecialchars($car['model']) ?></td>
                                 <td><?= htmlspecialchars($car['type']) ?></td>
                                 <td><?= htmlspecialchars($car['status']) ?></td>
+                                <td> <?php echo htmlspecialchars($car['category']); ?> </td>
                                 <td>
                                 <?php if (!empty($car['image'])): ?>
                                     <img src="../images/<?php echo htmlspecialchars($car['image']); ?>" alt="<?php echo htmlspecialchars($car['name']); ?>" width="50">
@@ -414,6 +411,7 @@ $unavailable_cars = mysqli_query($conn, $query);
         <!-- Rental Requests -->
         <section id="rental-requests" class="tab-content">
             <h3>Rental Requests</h3>
+           
             <?php if ($rental_requests && mysqli_num_rows($rental_requests) > 0): ?>
                 <div class="rental-requests-container">
                     <?php while ($request = mysqli_fetch_assoc($rental_requests)): ?>
