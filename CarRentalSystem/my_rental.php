@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
 $user_id = $_SESSION['user']['id'];
 
 // Fetch the user's rental requests with car details
-$query = "SELECT r.*, c.name as car_name, c.model, c.type, c.price_per_day, c.image 
+$query = "SELECT r.*, c.name as car_name, c.model, c.type, c.price_per_day, c.image , c.category
           FROM rental_requests r 
           JOIN cars c ON r.car_id = c.id 
           WHERE r.user_id = $user_id 
@@ -95,6 +95,7 @@ $rental_requests = mysqli_query($conn, $query);
                             <div class="car-details">
                                 <h3><?php echo htmlspecialchars($request['car_name']); ?> (<?php echo htmlspecialchars($request['model']); ?>)</h3>
                                 <p><strong>Type:</strong> <?php echo htmlspecialchars($request['type']); ?></p>
+                                <p><strong>Category:</strong> <?php echo htmlspecialchars($request['category']); ?></p>
                                 <p><strong>Price per day:</strong> $<?php echo number_format($request['price_per_day'], 2); ?></p>
                                 
                                 <div class="rental-dates">
