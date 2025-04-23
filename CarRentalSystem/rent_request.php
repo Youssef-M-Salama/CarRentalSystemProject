@@ -107,6 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="car-info">
                     <h3><?php echo htmlspecialchars($car['name']); ?> (<?php echo htmlspecialchars($car['model']); ?>)</h3>
                     <p><strong>Type:</strong> <?php echo htmlspecialchars($car['type']); ?></p>
+                    <p><strong>Category:</strong> <?php echo htmlspecialchars($car['category']); ?></p>
                     <p><strong>Price:</strong> $<?php echo number_format($car['price_per_day'], 2); ?>/day</p>
                 </div>
             </div>

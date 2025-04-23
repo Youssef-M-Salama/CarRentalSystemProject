@@ -60,7 +60,7 @@ $users = mysqli_query($conn, $query);
 
 // Fetch All Rental Requests with user and car details
 
-$query = "SELECT r.*, u.username, c.name as car_name, c.model, c.image 
+$query = "SELECT r.*, u.username, c.name as car_name, c.model, c.image , c.category
           FROM rental_requests r 
           JOIN users u ON r.user_id = u.id 
           JOIN cars c ON r.car_id = c.id 
@@ -440,6 +440,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                                     <p><strong>User:</strong> <?php echo htmlspecialchars($request['username']); ?></p>
                                     <p><strong>Car:</strong> <?php echo htmlspecialchars($request['car_name']); ?> (<?php echo htmlspecialchars($request['model']); ?>)</p>
                                     <p><strong>Period:</strong> <?php echo date('M d, Y', strtotime($request['start_date'])); ?> to <?php echo date('M d, Y', strtotime($request['end_date'])); ?></p>
+                                    <p><strong>Category:</strong> <?php echo htmlspecialchars($request['category']) ; ?> </p>
                                     <p><strong>Requested on:</strong> <?php echo date('M d, Y H:i', strtotime($request['created_at'])); ?></p>
                                     
                                     <?php if ($request['status'] === 'pending'): ?>
