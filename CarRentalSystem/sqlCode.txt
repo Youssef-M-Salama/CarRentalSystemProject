@@ -35,3 +35,13 @@ CREATE TABLE rental_requests (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
 )
+
+
+CREATE TABLE IF NOT EXISTS role_change_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    requested_role ENUM('client', 'premium') NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
