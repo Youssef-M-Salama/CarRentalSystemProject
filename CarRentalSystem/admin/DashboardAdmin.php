@@ -219,6 +219,8 @@ $unavailable_cars = mysqli_query($conn, $query);
             <a href="#user-management" onclick="showTab('user-management')">User Management</a>
             <a href="#rental-requests" onclick="showTab('rental-requests')">Rental Requests</a>
             <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">Retrieve Cars</a>
+            <!-- // In admin/DashboardAdmin.php -->
+        <a href="admin_deal_with_request_to_change_role.php">Role Change Requests</a>
         </div>
 
         <!-- Add Car Form -->
