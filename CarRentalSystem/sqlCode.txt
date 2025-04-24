@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS car_rental_system;
 USE car_rental_system;
 
-CREATE TABLE cars (
+CREATE TABLE IF NOT EXISTS cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     model VARCHAR(50) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE cars (
 );
 
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
@@ -23,8 +23,8 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- New table for rental requests
-CREATE TABLE rental_requests (
+
+CREATE TABLE IF NOT EXISTS rental_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     car_id INT NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE rental_requests (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
-)
+);
 
 
 CREATE TABLE IF NOT EXISTS role_change_requests (
