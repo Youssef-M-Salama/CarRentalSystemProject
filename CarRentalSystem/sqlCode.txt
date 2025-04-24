@@ -1,8 +1,8 @@
-- Create database if not exists
+-- إنشاء قاعدة البيانات
 CREATE DATABASE IF NOT EXISTS car_rental_system;
 USE car_rental_system;
 
--- Users table
+-- جدول المستخدمين
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Cars table
+-- جدول السيارات
 CREATE TABLE IF NOT EXISTS cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS cars (
     average_rating DECIMAL(3,2) DEFAULT 0.00
 );
 
--- Offers table
+-- جدول العروض
 CREATE TABLE IF NOT EXISTS offers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE IF NOT EXISTS offers (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status ENUM('active', 'inactive') DEFAULT 'active',
     car_id INT,
-    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE SET NULL
+    CONSTRAINT fk_offer_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE SET NULL
 );
 
--- Rental requests table
+-- جدول طلبات التأجير
 CREATE TABLE IF NOT EXISTS rental_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -53,22 +53,22 @@ CREATE TABLE IF NOT EXISTS rental_requests (
     total_price DECIMAL(10, 2) NOT NULL,
     status ENUM('pending', 'approved', 'rejected', 'completed') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
-    FOREIGN KEY (offer_id) REFERENCES offers(id) ON DELETE SET NULL
+    CONSTRAINT fk_rental_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rental_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rental_offer FOREIGN KEY (offer_id) REFERENCES offers(id) ON DELETE SET NULL
 );
 
--- Role change requests table
+-- جدول طلبات تغيير الدور
 CREATE TABLE IF NOT EXISTS role_change_requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     requested_role ENUM('client', 'premium') NOT NULL,
     status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    CONSTRAINT fk_role_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Payments table
+-- جدول المدفوعات
 CREATE TABLE IF NOT EXISTS payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     rental_id INT NOT NULL,
@@ -76,10 +76,10 @@ CREATE TABLE IF NOT EXISTS payments (
     payment_method ENUM('cash', 'credit_card', 'bank_transfer') NOT NULL,
     status ENUM('pending', 'completed', 'failed') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE
+    CONSTRAINT fk_payment_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE
 );
 
--- Rating table
+-- جدول التقييمات
 CREATE TABLE IF NOT EXISTS rating (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -88,8 +88,8 @@ CREATE TABLE IF NOT EXISTS rating (
     rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
-    FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE
+    CONSTRAINT fk_rating_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rating_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rating_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE
 );
 
