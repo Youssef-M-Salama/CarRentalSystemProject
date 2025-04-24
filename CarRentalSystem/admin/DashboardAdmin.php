@@ -2,6 +2,39 @@
 session_start();
 include "../includes/config.php";
 
+
+
+
+
+
+
+// Get pending rental requests count
+$pending_rentals_sql = "SELECT COUNT(*) as count FROM rental_requests WHERE status = 'pending'";
+$pending_rentals_result = mysqli_query($conn, $pending_rentals_sql);
+$pending_rentals = mysqli_fetch_assoc($pending_rentals_result)['count'];
+
+// Get rented cars count
+$rented_cars_sql = "SELECT COUNT(*) as count FROM cars WHERE status = 'rented'";
+$rented_cars_result = mysqli_query($conn, $rented_cars_sql);
+$rented_cars = mysqli_fetch_assoc($rented_cars_result)['count'];
+
+// Get pending role change requests count
+$role_requests_sql = "SELECT COUNT(*) as count FROM role_change_requests WHERE status = 'pending'";
+$role_requests_result = mysqli_query($conn, $role_requests_sql);
+$role_requests = mysqli_fetch_assoc($role_requests_result)['count'];
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: ../Login-Signup-Logout/login.php");
@@ -189,6 +222,36 @@ $unavailable_cars = mysqli_query($conn, $query);
             border-radius: 4px;
             cursor: pointer;
         }
+
+
+        .notification-badge {
+    position: relative;
+    top: -10px;
+    left: 5px;
+    background: #dc3545;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1.2;
+    transition: transform 0.3s ease;
+}
+
+.notification-badge:hover {
+    transform: scale(1.1);
+}
+
+.tab-navigation a {
+    position: relative;
+    padding: 10px 15px;
+    /* Keep your existing styles */
+}
+
+
+
     </style>
 </head>
 <body>
@@ -213,12 +276,24 @@ $unavailable_cars = mysqli_query($conn, $query);
         <?php endif; ?>
         
         <!-- Tab Navigation -->
-        <div class="tab-navigation">
-            <a href="#add-car" onclick="showTab('add-car')">Add Car</a>
-            <a href="#car-list" onclick="showTab('car-list')">Car List</a>
-            <a href="#user-management" onclick="showTab('user-management')">User Management</a>
-            <a href="#rental-requests" onclick="showTab('rental-requests')">Rental Requests</a>
-            <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">Retrieve Cars</a>
+        
+
+            <div class="tab-navigation">
+        <a href="#add-car" onclick="showTab('add-car')">Add Car</a>
+        <a href="#car-list" onclick="showTab('car-list')">Car List</a>
+        <a href="#user-management" onclick="showTab('user-management')">User Management</a>
+        <a href="#rental-requests" onclick="showTab('rental-requests')">Rental Requests 
+            <span class="notification-badge"><?= $pending_rentals ?></span>
+        </a>
+        <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">Retrieve Cars 
+            <span class="notification-badge"><?= $rented_cars ?></span>
+        </a>
+        <a href="admin_deal_with_request_to_change_role.php">Role Change Requests 
+            <span class="notification-badge"><?= $role_requests ?></span>
+        </a>
+    </div>            
+
+
             <!-- // In admin/DashboardAdmin.php -->
         <a href="admin_deal_with_request_to_change_role.php">Role Change Requests</a>
         </div>
