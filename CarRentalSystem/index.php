@@ -432,23 +432,80 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
  * This function creates the visual representation of each car
  * with all its details and rental button
  */
-function renderCarCard($car) {
-    // Sanitize and format car data
+
+
+
+ function renderCarCard($car) {
+    global $conn;
+
+    $carId = $car['id'];
     $name = htmlspecialchars($car['name'] ?? 'Unknown');
     $model = htmlspecialchars($car['model'] ?? 'Unknown');
     $type = htmlspecialchars($car['type'] ?? 'N/A');
-    $price = isset($car['price_per_day']) ? 
-        '$' . number_format($car['price_per_day'], 2) : 
-        'N/A';
-    $image = !empty($car['image']) ? 
-        'images/' . htmlspecialchars($car['image']) : 
-        'images/default.png';
+    $price = isset($car['price_per_day']) ? '$' . number_format($car['price_per_day'], 2) : 'N/A';
+    $image = !empty($car['image']) ? 'images/' . htmlspecialchars($car['image']) : 'images/default.png';
     $status = $car['status'] ?? 'available';
     $category = htmlspecialchars($car['category'] ?? 'N/A');
-    
-    // Determine availability status styling
+
+    // Get average rating for this car
+    $avgQuery = "SELECT AVG(rating) AS avg_rating FROM rating WHERE car_id = $carId";
+    $avgResult = mysqli_query($conn, $avgQuery);
+    $avgRow = mysqli_fetch_assoc($avgResult);
+    $averageRating = round($avgRow['avg_rating'] ?? 0, 1); // example: 4.3
+
+    // Determine availability
     $availabilityClass = $status === 'available' ? 'available' : 'not-available';
     $availabilityText = $status === 'available' ? 'Available' : 'Not Available';
+
+    // Generate stars
+    $fullStars = floor($averageRating);
+    $halfStar = ($averageRating - $fullStars >= 0.5) ? 1 : 0;
+    $emptyStars = 5 - $fullStars - $halfStar;
+
+    ob_start(); ?>
+    <div class="card">
+        <img src="<?= $image ?>" alt="<?= $name ?>">
+        <h3><?= "$name ($model)" ?></h3>
+
+        <!-- Show Rating Stars -->
+        <div class="rating-stars">
+            <?php for ($i = 0; $i < $fullStars; $i++): ?>
+                <i class="fas fa-star" style="color: gold;"></i>
+            <?php endfor; ?>
+            <?php if ($halfStar): ?>
+                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+            <?php endif; ?>
+            <?php for ($i = 0; $i < $emptyStars; $i++): ?>
+                <i class="far fa-star" style="color: gold;"></i>
+            <?php endfor; ?>
+            <span style="margin-left: 5px; font-size: 0.9em; color: #666;">
+                <?= $averageRating ?>/5
+            </span>
+        </div>
+
+        <div class="car-details">
+            <p><strong>Type:</strong> <?= $type ?></p>
+            <p><strong>Price:</strong> <?= $price ?>/day</p>
+            <p><strong>Status:</strong> 
+                <span class="<?= $availabilityClass ?>"><?= $availabilityText ?></span>
+            </p>
+            <p><strong>Category:</strong> <?= $category ?></p>
+        </div>
+
+        <?php if ($status === 'available'): ?>
+            <form method="GET" action="rent_request.php">
+                <input type="hidden" name="car_id" value="<?= $carId ?>">
+                <button type="submit" class="btn-rent">Rent Now</button>
+            </form>
+        <?php else: ?>
+            <button class="btn-disabled" disabled>Not Available</button>
+        <?php endif; ?>
+    </div>
+    <?php return ob_get_clean();
+}
+
+
+
 
     ob_start(); ?>
     <div class="card">
@@ -477,5 +534,5 @@ function renderCarCard($car) {
         <?php endif; ?>
     </div>
     <?php return ob_get_clean();
-}
+
 ?>
