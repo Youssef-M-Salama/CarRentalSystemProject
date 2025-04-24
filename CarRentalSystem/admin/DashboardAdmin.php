@@ -1,12 +1,6 @@
 <?php
 session_start();
-include "../includes/config.php";
-
-
-
-
-
-
+require_once '../includes/config.php';
 
 // Get pending rental requests count
 $pending_rentals_sql = "SELECT COUNT(*) as count FROM rental_requests WHERE status = 'pending'";
@@ -23,20 +17,8 @@ $role_requests_sql = "SELECT COUNT(*) as count FROM role_change_requests WHERE s
 $role_requests_result = mysqli_query($conn, $role_requests_sql);
 $role_requests = mysqli_fetch_assoc($role_requests_result)['count'];
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Check if the user is logged in and is an admin
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+if (!isLoggedIn() || !isAdmin()) {
     header("Location: ../Login-Signup-Logout/login.php");
     exit;
 }
@@ -50,8 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
     $status = mysqli_real_escape_string($conn, $_POST['status']);
     $category = mysqli_real_escape_string($conn, $_POST['category']);
 
-
-
     // Handle image upload
     $image = '';
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -60,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
 
         // Create the directory if it doesn't exist
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true); // Create directory with write permissions
+            mkdir($uploadDir, 0755, true);
         }
 
         // Move the uploaded file to the images directory
@@ -74,11 +54,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
     }
 
     // Insert car into the database
-    $query = "INSERT INTO cars (name, model, type, price_per_day, image, status , category ) 
-              VALUES ('$name', '$model', '$type', '$price_per_day', '$image', '$status' , '$category')";
+    $query = "INSERT INTO cars (name, model, type, price_per_day, image, status, category) 
+              VALUES ('$name', '$model', '$type', '$price_per_day', '$image', '$status', '$category')";
     mysqli_query($conn, $query);
 
     // Redirect back to the admin dashboard
+    header("Location: DashboardAdmin.php");
+    exit;
+}
+
+// Handle Make Available Form Submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_available'])) {
+    $car_id = intval($_POST['car_id']);
+    $query = "UPDATE cars SET status = 'available' WHERE id = $car_id";
+    mysqli_query($conn, $query);
     header("Location: DashboardAdmin.php");
     exit;
 }
@@ -92,31 +81,17 @@ $query = "SELECT * FROM users";
 $users = mysqli_query($conn, $query);
 
 // Fetch All Rental Requests with user and car details
-
-$query = "SELECT r.*, u.username, c.name as car_name, c.model, c.image , c.category
+$query = "SELECT r.*, u.username, c.name as car_name, c.model, c.image, c.category
           FROM rental_requests r 
           JOIN users u ON r.user_id = u.id 
           JOIN cars c ON r.car_id = c.id 
           ORDER BY r.created_at DESC";
 $rental_requests = mysqli_query($conn, $query);
-?>
-
-<?php
-// Handle Make Available Form Submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['make_available'])) {
-    $car_id = intval($_POST['car_id']);
-    $query = "UPDATE cars SET status = 'available' WHERE id = $car_id";
-    mysqli_query($conn, $query);
-    header("Location: DashboardAdmin.php");
-    exit;
-}
 
 // Fetch Unavailable Cars (status = 'rented')
 $query = "SELECT * FROM cars WHERE status = 'rented'";
 $unavailable_cars = mysqli_query($conn, $query);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,6 +103,7 @@ $unavailable_cars = mysqli_query($conn, $query);
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main-content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         /* Tab Navigation Styles */
@@ -135,6 +111,7 @@ $unavailable_cars = mysqli_query($conn, $query);
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         .tab-navigation a {
             text-decoration: none;
@@ -142,15 +119,39 @@ $unavailable_cars = mysqli_query($conn, $query);
             background-color: #007bff;
             color: white;
             border-radius: 5px;
+            position: relative;
+            transition: all 0.3s ease;
         }
         .tab-navigation a:hover {
             background-color: #0056b3;
+            transform: translateY(-2px);
         }
         .tab-content {
             display: none;
+            animation: fadeIn 0.3s ease;
         }
         .tab-content.active {
             display: block;
+        }
+
+        /* Notification Badge Styles */
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+            line-height: 1.2;
+            transition: transform 0.3s ease;
+        }
+        .notification-badge:hover {
+            transform: scale(1.1);
         }
 
         /* Rental Request Styles */
@@ -160,6 +161,11 @@ $unavailable_cars = mysqli_query($conn, $query);
             padding: 15px;
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .rental-request:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .rental-request-header {
             display: flex;
@@ -176,6 +182,10 @@ $unavailable_cars = mysqli_query($conn, $query);
             height: 80px;
             object-fit: cover;
             border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+        .rental-car-image:hover {
+            transform: scale(1.05);
         }
         .rental-info {
             flex-grow: 1;
@@ -213,6 +223,11 @@ $unavailable_cars = mysqli_query($conn, $query);
             padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-approve:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
         }
         .btn-reject {
             background-color: #dc3545;
@@ -221,37 +236,76 @@ $unavailable_cars = mysqli_query($conn, $query);
             padding: 5px 10px;
             border-radius: 4px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-reject:hover {
+            background-color: #c82333;
+            transform: translateY(-1px);
         }
 
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
 
-        .notification-badge {
-    position: relative;
-    top: -10px;
-    left: 5px;
-    background: #dc3545;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 50%;
-    font-size: 0.8em;
-    font-weight: bold;
-    min-width: 20px;
-    text-align: center;
-    line-height: 1.2;
-    transition: transform 0.3s ease;
-}
+        /* Form Styles */
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
 
-.notification-badge:hover {
-    transform: scale(1.1);
-}
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.tab-navigation a {
-    position: relative;
-    padding: 10px 15px;
-    /* Keep your existing styles */
-}
-
-
-
+        /* Error Message Styles */
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -269,30 +323,46 @@ $unavailable_cars = mysqli_query($conn, $query);
     <!-- Main Content -->
     <main>
         <?php if (isset($_SESSION['error'])): ?>
-            <div class="error-message" style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 20px;">
+            <div class="error-message">
                 <?php echo $_SESSION['error']; ?>
                 <?php unset($_SESSION['error']); ?>
             </div>
         <?php endif; ?>
         
         <!-- Tab Navigation -->
-        
-
-            <div class="tab-navigation">
-        <a href="#add-car" onclick="showTab('add-car')">Add Car</a>
-        <a href="#car-list" onclick="showTab('car-list')">Car List</a>
-        <a href="#user-management" onclick="showTab('user-management')">User Management</a>
-        <a href="#rental-requests" onclick="showTab('rental-requests')">Rental Requests 
-            <span class="notification-badge"><?= $pending_rentals ?></span>
-        </a>
-        <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">Retrieve Cars 
-            <span class="notification-badge"><?= $rented_cars ?></span>
-        </a>
-        <a href="admin_deal_with_request_to_change_role.php">Role Change Requests 
-            <span class="notification-badge"><?= $role_requests ?></span>
-        </a>
-    </div>           
-    
+        <div class="tab-navigation">
+            <a href="#add-car" onclick="showTab('add-car')">Add Car</a>
+            <a href="#car-list" onclick="showTab('car-list')">Car List</a>
+            <a href="#user-management" onclick="showTab('user-management')">User Management</a>
+            <a href="#rental-requests" onclick="showTab('rental-requests')">
+                Rental Requests 
+                <?php if ($pending_rentals > 0): ?>
+                    <span class="notification-badge"><?= $pending_rentals ?></span>
+                <?php endif; ?>
+            </a>
+            <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">
+                Retrieve Cars 
+                <?php if ($rented_cars > 0): ?>
+                    <span class="notification-badge"><?= $rented_cars ?></span>
+                <?php endif; ?>
+            </a>
+            <a href="manage_offers.php" class="offers-btn">
+                Manage Premium Offers
+                <?php 
+                // Get pending offers count
+                $pending_offers_sql = "SELECT COUNT(*) as count FROM offers WHERE status = 'pending'";
+                $pending_offers_result = mysqli_query($conn, $pending_offers_sql);
+                $pending_offers = mysqli_fetch_assoc($pending_offers_result)['count'];
+                if ($pending_offers > 0): ?>
+                    <span class="notification-badge"><?= $pending_offers ?></span>
+                <?php endif; ?>
+            </a>
+            <a href="admin_deal_with_request_to_change_role.php">
+                Role Change Requests 
+                <?php if ($role_requests > 0): ?>
+                    <span class="notification-badge"><?= $role_requests ?></span>
+                <?php endif; ?>
+            </a>
         </div>
 
         <!-- Add Car Form -->
@@ -301,40 +371,24 @@ $unavailable_cars = mysqli_query($conn, $query);
             <form method="POST" action="DashboardAdmin.php" enctype="multipart/form-data">
                 <input type="text" name="name" placeholder="Car Name" required>
                 <input type="text" name="model" placeholder="Model" required>
-                <!-- <input type="text" name="type" placeholder="Type" required> convert to select from menu instead of typing  -->
-                 <select name = "type" required>
-                    <!-- <option value="" >Type</option> hance it later -->
-                 <option value="Sedan">Sedan</option>
-                 <option value="SUV">SUV</option>
-                 <option value="Crossover">Crossover</option>
+                <select name="type" required>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Crossover">Crossover</option>
                 </select>
-
                 <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
                 <select name="status" required>
                     <option value="available">Available</option>
                     <option value="not available">Not Available</option>
                 </select>
-
-                
-                <select name = "category" required>
-                    <!-- <option value="" >Type</option> hance it later -->
-                 <option value="free">free</option>
-                 <option value="premium">premium</option>
-                 
+                <select name="category" required>
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
                 </select>
-                <!-- File Input for Image Upload -->
                 <label for="image">Upload Image:</label>
                 <input type="file" name="image" id="image" accept="image/*" required>
                 <button type="submit" name="add_car">Add Car</button>
-
-
-
-
-
             </form>
-
-
-
         </section>
 
         <!-- Car List -->
@@ -350,48 +404,42 @@ $unavailable_cars = mysqli_query($conn, $query);
                         <th>Price Per Day</th>
                         <th>Status</th>
                         <th>Image</th>
-                        <th>category</th>
+                        <th>Category</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($car = mysqli_fetch_assoc($cars)) { ?>
+                    <?php while ($car = mysqli_fetch_assoc($cars)): ?>
                         <tr>
-                            <td><?php echo $car['id']; ?></td>
-                            <td><?php echo htmlspecialchars($car['name']); ?></td>
-                            <td><?php echo htmlspecialchars($car['model']); ?></td>
-                            <td><?php echo htmlspecialchars($car['type']); ?></td>
-                            <td><?php echo '$' . number_format($car['price_per_day'], 2); ?></td>
-                            <td><?php echo htmlspecialchars($car['status']); ?></td>
+                            <td><?= $car['id'] ?></td>
+                            <td><?= htmlspecialchars($car['name']) ?></td>
+                            <td><?= htmlspecialchars($car['model']) ?></td>
+                            <td><?= htmlspecialchars($car['type']) ?></td>
+                            <td>$<?= number_format($car['price_per_day'], 2) ?></td>
+                            <td><?= htmlspecialchars($car['status']) ?></td>
                             <td>
                                 <?php if (!empty($car['image'])): ?>
-                                    <img src="../images/<?php echo htmlspecialchars($car['image']); ?>" alt="<?php echo htmlspecialchars($car['name']); ?>" width="50">
+                                    <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
+                                         alt="<?= htmlspecialchars($car['name']) ?>" 
+                                         width="50">
                                 <?php else: ?>
                                     No Image
                                 <?php endif; ?>
                             </td>
-
-                            <td> <?php echo htmlspecialchars($car['category']); ?> </td>
-
+                            <td><?= htmlspecialchars($car['category']) ?></td>
                             <td>
                                 <form method="POST" action="delete_car.php">
-                                    <input type="hidden" name="car_id" value="<?php echo $car['id']; ?>">
+                                    <input type="hidden" name="car_id" value="<?= $car['id'] ?>">
                                     <button type="submit" onclick="return confirm('Are you sure you want to delete this car?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
         </section>
 
-
-
-
-
-
-
-          <!-- New Retrieve Cars Section -->
+        <!-- Retrieve Cars Section -->
         <section id="retrieve-cars" class="tab-content">
             <h3>Retrieve Unavailable Cars</h3>
             <?php if (mysqli_num_rows($unavailable_cars) > 0): ?>
@@ -403,7 +451,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                             <th>Model</th>
                             <th>Type</th>
                             <th>Status</th>
-                            <th>category</th>
+                            <th>Category</th>
                             <th>Image</th>
                             <th>Action</th>
                         </tr>
@@ -416,14 +464,16 @@ $unavailable_cars = mysqli_query($conn, $query);
                                 <td><?= htmlspecialchars($car['model']) ?></td>
                                 <td><?= htmlspecialchars($car['type']) ?></td>
                                 <td><?= htmlspecialchars($car['status']) ?></td>
-                                <td> <?php echo htmlspecialchars($car['category']); ?> </td>
+                                <td><?= htmlspecialchars($car['category']) ?></td>
                                 <td>
-                                <?php if (!empty($car['image'])): ?>
-                                    <img src="../images/<?php echo htmlspecialchars($car['image']); ?>" alt="<?php echo htmlspecialchars($car['name']); ?>" width="50">
-                                <?php else: ?>
-                                    No Image
-                                <?php endif; ?>
-                            </td>
+                                    <?php if (!empty($car['image'])): ?>
+                                        <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
+                                             alt="<?= htmlspecialchars($car['name']) ?>" 
+                                             width="50">
+                                    <?php else: ?>
+                                        No Image
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <form method="POST" action="DashboardAdmin.php">
                                         <input type="hidden" name="car_id" value="<?= $car['id'] ?>">
@@ -439,14 +489,6 @@ $unavailable_cars = mysqli_query($conn, $query);
             <?php endif; ?>
         </section>
 
-
-
-
-
-
-
-
-
         <!-- User Management -->
         <section id="user-management" class="tab-content">
             <h3>User Management</h3>
@@ -461,23 +503,21 @@ $unavailable_cars = mysqli_query($conn, $query);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($user = mysqli_fetch_assoc($users)) { ?>
+                    <?php while ($user = mysqli_fetch_assoc($users)): ?>
                         <tr>
-                            <td><?php echo $user['id']; ?></td>
-                            <td><?php echo htmlspecialchars($user['username']); ?></td>
-                            <td><?php echo htmlspecialchars($user['email']); ?></td>
-                            <td><?php echo htmlspecialchars($user['role']); ?></td>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= htmlspecialchars($user['username']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['role']) ?></td>
                             <td>
-                                <!-- Edit Button -->
-                                <a href="edit_user.php?user_id=<?php echo $user['id']; ?>" class="btn-edit">Edit</a>
-                                <!-- Delete Button -->
+                                <a href="edit_user.php?user_id=<?= $user['id'] ?>" class="btn-approve">Edit</a>
                                 <form method="POST" action="delete_user.php" style="display:inline;">
-                                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                    <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                     <button type="submit" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
-                    <?php } ?>
+                    <?php endwhile; ?>
                 </tbody>
             </table>
         </section>
@@ -485,13 +525,12 @@ $unavailable_cars = mysqli_query($conn, $query);
         <!-- Rental Requests -->
         <section id="rental-requests" class="tab-content">
             <h3>Rental Requests</h3>
-           
             <?php if ($rental_requests && mysqli_num_rows($rental_requests) > 0): ?>
                 <div class="rental-requests-container">
                     <?php while ($request = mysqli_fetch_assoc($rental_requests)): ?>
                         <div class="rental-request">
                             <div class="rental-request-header">
-                                <h4>Request #<?php echo $request['id']; ?></h4>
+                                <h4>Request #<?= $request['id'] ?></h4>
                                 <?php 
                                     $statusClass = '';
                                     switch($request['status']) {
@@ -506,25 +545,27 @@ $unavailable_cars = mysqli_query($conn, $query);
                                             break;
                                     }
                                 ?>
-                                <span class="<?php echo $statusClass; ?>"><?php echo ucfirst($request['status']); ?></span>
+                                <span class="<?= $statusClass ?>"><?= ucfirst($request['status']) ?></span>
                             </div>
                             <div class="rental-request-content">
-                                <img src="../images/<?php echo htmlspecialchars($request['image']); ?>" alt="<?php echo htmlspecialchars($request['car_name']); ?>" class="rental-car-image">
+                                <img src="../images/<?= htmlspecialchars($request['image']) ?>" 
+                                     alt="<?= htmlspecialchars($request['car_name']) ?>" 
+                                     class="rental-car-image">
                                 <div class="rental-info">
-                                    <p><strong>User:</strong> <?php echo htmlspecialchars($request['username']); ?></p>
-                                    <p><strong>Car:</strong> <?php echo htmlspecialchars($request['car_name']); ?> (<?php echo htmlspecialchars($request['model']); ?>)</p>
-                                    <p><strong>Period:</strong> <?php echo date('M d, Y', strtotime($request['start_date'])); ?> to <?php echo date('M d, Y', strtotime($request['end_date'])); ?></p>
-                                    <p><strong>Category:</strong> <?php echo htmlspecialchars($request['category']) ; ?> </p>
-                                    <p><strong>Requested on:</strong> <?php echo date('M d, Y H:i', strtotime($request['created_at'])); ?></p>
+                                    <p><strong>User:</strong> <?= htmlspecialchars($request['username']) ?></p>
+                                    <p><strong>Car:</strong> <?= htmlspecialchars($request['car_name']) ?> (<?= htmlspecialchars($request['model']) ?>)</p>
+                                    <p><strong>Period:</strong> <?= date('M d, Y', strtotime($request['start_date'])) ?> to <?= date('M d, Y', strtotime($request['end_date'])) ?></p>
+                                    <p><strong>Category:</strong> <?= htmlspecialchars($request['category']) ?></p>
+                                    <p><strong>Requested on:</strong> <?= date('M d, Y H:i', strtotime($request['created_at'])) ?></p>
                                     
                                     <?php if ($request['status'] === 'pending'): ?>
                                         <div class="rental-actions">
                                             <form method="POST" action="approve_request.php">
-                                                <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                                                <input type="hidden" name="request_id" value="<?= $request['id'] ?>">
                                                 <button type="submit" class="btn-approve">Approve</button>
                                             </form>
                                             <form method="POST" action="reject_request.php">
-                                                <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                                                <input type="hidden" name="request_id" value="<?= $request['id'] ?>">
                                                 <button type="submit" class="btn-reject">Reject</button>
                                             </form>
                                         </div>
@@ -540,7 +581,6 @@ $unavailable_cars = mysqli_query($conn, $query);
         </section>
     </main>
 
-    <!-- JavaScript for Tab Navigation -->
     <script>
         function showTab(tabId) {
             // Hide all tab contents
