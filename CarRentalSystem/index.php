@@ -84,7 +84,11 @@ if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 
         $premiumQuery .= " AND model LIKE '%$model%'";
     }
 }
+$price_range = isset($_GET['price']) ? $_GET['price'] : ''; // فلتر السعر
+$min = 0;
+$max = 100000; // قيمة افتراضية للسعر
 
+<<<<<<< Updated upstream
 // ترتيب النتائج
 switch($sort) {
     case 'price_asc':
@@ -104,6 +108,38 @@ switch($sort) {
         break;
     default:
         $orderBy = "";
+=======
+// لو فيه فلتر للسعر، نعمل split للـ price_range
+if (!empty($price_range)) {
+    list($min, $max) = explode('-', $price_range); // تقسيم الـ range
+}
+
+// استعلام جلب العربيات الـ Premium
+$premiumQuery = "SELECT * FROM cars WHERE category = 'premium'";
+
+// لو فيه فلتر نوع
+if (!empty($type)) {
+    $premiumQuery .= " AND type = '$type'";
+}
+
+// فلتر البحث بالاسم أو الموديل
+if (!empty($search)) {
+    $premiumQuery .= " AND (name LIKE '%$search%' OR model LIKE '%$search%')";
+}
+
+// لو فيه فلتر للسعر، نضيفه للـ query
+if (!empty($price_range)) {
+    $premiumQuery .= " AND price_per_day BETWEEN $min AND $max";
+}
+
+// تنفيذ الاستعلام
+$result = mysqli_query($conn, $premiumQuery);
+
+// عرض النتيجة
+while ($row = mysqli_fetch_assoc($result)) {
+    // هنا هتبدأ تعرض السيارات الـ Premium
+    echo "<div>" . $row['name'] . " - " . $row['price_per_day'] . "</div>";
+>>>>>>> Stashed changes
 }
 
 // تنفيذ الاستعلامات
