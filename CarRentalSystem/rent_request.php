@@ -31,7 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $start_date = mysqli_real_escape_string($conn, $_POST['start_date'] ?? '');
     $end_date   = mysqli_real_escape_string($conn, $_POST['end_date']   ?? '');
     $user_id    = $_SESSION['user']['id'];
-    
+
+    // ✅ Check if user exists in users table
+    $user_check = mysqli_query($conn, "SELECT id FROM users WHERE id = $user_id");
+    if (mysqli_num_rows($user_check) == 0) {
+        die("❌ Error: User ID ($user_id) does not exist in 'users' table.");
+    }
+
     // Validate dates
     $current_date = date('Y-m-d');
     if ($start_date < $current_date) {

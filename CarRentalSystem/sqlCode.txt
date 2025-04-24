@@ -91,3 +91,19 @@ CREATE TABLE IF NOT EXISTS rating (
     CONSTRAINT fk_rating_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
     CONSTRAINT fk_rating_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE
 );
+
+INSERT INTO users (username, email, password, role)
+VALUES (
+    'admin_user',
+    'admin@example.com',
+    'admin123', 256 , 
+    'admin'
+);
+
+INSERT INTO users (username, email, password, role)
+VALUES (
+    'client_user',
+    'client@example.com',
+    'client123', 256 , 
+    'client'
+);
