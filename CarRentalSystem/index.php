@@ -1,39 +1,31 @@
 <?php
-// Start the user session to remember login status
 session_start();
-
-
-
-// Connect to the database using configuration file
 include "includes/config.php";
 
-
-// Check if database connection was successful
 if (!$conn) {
-    // Stop the page and show error if connection failed
     die("Database connection failed: " . mysqli_connect_error());
 }
 
-
-// Sanitize user inputs to prevent security issues
+// Get and sanitize filters
 $search = mysqli_real_escape_string($conn, $_GET['search'] ?? '');
 $type = mysqli_real_escape_string($conn, $_GET['type'] ?? '');
 $sort = mysqli_real_escape_string($conn, $_GET['sort'] ?? 'none');
-$price_range = mysqli_real_escape_string($conn, $_GET['price_range'] ?? '');
+$min_price = mysqli_real_escape_string($conn, $_GET['min_price'] ?? '');
+$max_price = mysqli_real_escape_string($conn, $_GET['max_price'] ?? '');
 $availability = mysqli_real_escape_string($conn, $_GET['availability'] ?? '');
 $name = mysqli_real_escape_string($conn, $_GET['name'] ?? '');
 $model = mysqli_real_escape_string($conn, $_GET['model'] ?? '');
 $class = mysqli_real_escape_string($conn, $_GET['class'] ?? '');
 
-// Create base query to get regular cars
-$regularQuery = "SELECT * FROM cars 
-                WHERE (name LIKE '%$search%' OR model LIKE '%$search%')";
- if ($class == 'free') {
+// Base query
+$regularQuery = "SELECT * FROM cars WHERE (name LIKE '%$search%' OR model LIKE '%$search%')";
+
+// فلتر التصنيف
+if ($class == 'free') {
     $regularQuery .= " AND category = 'free'";
 } elseif ($class == 'premium') {
     $regularQuery .= " AND category = 'premium'";
-}              
-            
+}
 
 // فلتر النوع
 if (!empty($type)) {
@@ -41,11 +33,11 @@ if (!empty($type)) {
 }
 
 // فلتر السعر
-if ($price_range) {
-    list($min, $max) = explode('-', $price_range);
-    $regularQuery .= " AND price_per_day BETWEEN $min AND $max";
-    $premiumQuery .= " AND price_per_day BETWEEN $min AND $max";
+if ($min_price !== '' && $max_price !== '') {
+    $regularQuery .= " AND price_per_day BETWEEN $min_price AND $max_price";
 }
+
+// فلتر الاسم والموديل
 if ($name) {
     $regularQuery .= " AND name LIKE '%$name%'";
 }
@@ -54,64 +46,72 @@ if ($model) {
 }
 
 // فلتر التوفر
-
-if ($availability === 'available') {
+if ($availability === '1') {
     $regularQuery .= " AND status = 'available'";
-    $premiumQuery .= " AND status = 'available'";
-} elseif ($availability === 'not_available') {
+} elseif ($availability === '0') {
     $regularQuery .= " AND status != 'available'";
-    $premiumQuery .= " AND status != 'available'";
 }
 
-// لو مش Premium، استبعد عربيات الـ premium
-if (!isset($_SESSION['user']) || 
-    ($_SESSION['user']['role'] != 'premium' && $_SESSION['user']['role'] != 'admin')) {
+// استبعاد premium للعاديين
+if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], ['premium', 'admin'])) {
     $regularQuery .= " AND category != 'premium'";
 }
 
-// Modify query for non-premium users
-if (!isset($_SESSION['user']) || 
-    ($_SESSION['user']['role'] != 'premium' && $_SESSION['user']['role'] != 'admin')) {
-    $regularQuery .= " AND category != 'premium'";
+// إعداد استعلام premium
+$premiumQuery = '';
+if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin']) && $class != 'free') {
+    $premiumQuery = "SELECT * FROM cars WHERE category = 'premium' AND (name LIKE '%$search%' OR model LIKE '%$search%')";
+
+    if (!empty($type)) {
+        $premiumQuery .= " AND type = '$type'";
+    }
+
+    if ($min_price !== '' && $max_price !== '') {
+        $premiumQuery .= " AND price_per_day BETWEEN $min_price AND $max_price";
+    }
+
+    if ($availability === '1') {
+        $premiumQuery .= " AND status = 'available'";
+    } elseif ($availability === '0') {
+        $premiumQuery .= " AND status != 'available'";
+    }
+
+    if ($name) {
+        $premiumQuery .= " AND name LIKE '%$name%'";
+    }
+
+    if ($model) {
+        $premiumQuery .= " AND model LIKE '%$model%'";
+    }
 }
 
+// ترتيب النتائج
+switch($sort) {
+    case 'price_asc':
+        $orderBy = " ORDER BY price_per_day ASC";
+        break;
+    case 'price_desc':
+        $orderBy = " ORDER BY price_per_day DESC";
+        break;
+    case 'year_asc':
+        $orderBy = " ORDER BY CAST(SUBSTRING_INDEX(model, ' ', -1) AS UNSIGNED) ASC";
+        break;
+    case 'year_desc':
+        $orderBy = " ORDER BY CAST(SUBSTRING_INDEX(model, ' ', -1) AS UNSIGNED) DESC";
+        break;
+    case 'available':
+        $orderBy = " ORDER BY status ASC";
+        break;
+    default:
+        $orderBy = "";
+}
 
-// Create separate query for premium cars
-$premiumQuery = "SELECT * FROM cars 
-                WHERE (name LIKE '%$search%' OR model LIKE '%$search%')
-                AND (type = '$type' OR '$type' = '')
-                AND category = 'premium'";
-                if ($class == 'free') {
-                    $premiumQuery = ""; // مش هنجيب عربيات Premium
-                }
+// تنفيذ الاستعلامات
+$regularResult = mysqli_query($conn, $regularQuery . $orderBy);
+$premiumResult = $premiumQuery ? mysqli_query($conn, $premiumQuery . $orderBy) : false;
 
-
-                switch($sort) {
-                    case 'price_asc':
-                        $orderBy = " ORDER BY price_per_day ASC";
-                        break;
-                    case 'price_desc':
-                        $orderBy = " ORDER BY price_per_day DESC";
-                        break;
-                    case 'year_asc':
-                        $orderBy = " ORDER BY CAST(SUBSTRING_INDEX(model, ' ', -1) AS UNSIGNED) ASC";
-                        break;
-                    case 'year_desc':
-                        $orderBy = " ORDER BY CAST(SUBSTRING_INDEX(model, ' ', -1) AS UNSIGNED) DESC";
-                        break;
-                    case 'available':
-                        $orderBy = " ORDER BY status ASC";
-                        break;
-                    default:
-                        $orderBy = "";
-                }
-// Execute database queries
-$regularResult = !empty($regularQuery) ? mysqli_query($conn, $regularQuery . $orderBy) : false;
-$premiumResult = !empty($premiumQuery) ? mysqli_query($conn, $premiumQuery . $orderBy) : false;
-
-// Check for database errors
 $error = '';
-if (!$regularResult || !$premiumResult) {
+if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     $error = "Database error: " . mysqli_error($conn);
 }
 ?>
@@ -194,6 +194,19 @@ if (!$regularResult || !$premiumResult) {
 .apply-button:hover {
     background-color: #0056b3;
 }
+.apply-button, .reset-button {
+    background-color: #007bff; /* اللون الأزرق */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px; /* المسافة بين الأزرار */
+}
+
+.reset-button {
+    display: inline-block; /* علشان يبقى جنب الزر التاني */
+    margin-left: 10px;
+}
     </style>
 </head>
 
@@ -239,6 +252,26 @@ if (!$regularResult || !$premiumResult) {
     <!-- Main Content Section -->
     <main>
         <h2>Available Cars</h2>
+        <div class="sort-filter">
+            <form method="GET">
+                <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
+                <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
+                <label>Sort By:</label>
+                <select name="sort">
+                    <option value="none" <?= $sort == 'none' ? 'selected' : '' ?>>Default</option>
+                    <option value="price_asc" <?= $sort == 'price_asc' ? 'selected' : '' ?>>Price (Low-High)</option>
+                    <option value="price_desc" <?= $sort == 'price_desc' ? 'selected' : '' ?>>Price (High-Low)</option>
+                    <option value="year_asc" <?= $sort == 'year_asc' ? 'selected' : '' ?>>Year (Old-New)</option>
+                    <option value="year_desc" <?= $sort == 'year_desc' ? 'selected' : '' ?>>Year (New-Old)</option>
+                    <option value="available" <?= $sort == 'available' ? 'selected' : '' ?>>Availability</option>
+                </select>
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+        <form method="GET" action="index.php">
+    <a href="index.php" class="reset-button">Reset</a>
+</form>
+<br>
        <!-- زرار فتح البوكس -->
 <button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
 
