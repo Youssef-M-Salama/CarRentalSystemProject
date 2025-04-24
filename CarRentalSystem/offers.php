@@ -330,13 +330,6 @@ if ($result->num_rows == 0) {
                 <i class="fas fa-gift fa-3x mb-3" style="color: #007bff;"></i>
                 <h4>No special offers available at the moment</h4>
                 <p class="text-muted">Check back later for exclusive offers!</p>
-                <?php if ($user_role === 'client'): ?>
-                    <div class="mt-3">
-                        <a href="premium/offers.php" class="btn btn-primary">
-                            <i class="fas fa-crown"></i> View Premium Offers
-                        </a>
-                    </div>
-                <?php endif; ?>
             </div>
         <?php endif; ?>
     </div>
