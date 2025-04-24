@@ -50,34 +50,37 @@ function checkAndFixDatabase($conn) {
     $tables = [
         'users' => [
             'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
-            'name' => 'VARCHAR(100) NOT NULL',
+            'username' => 'VARCHAR(50) NOT NULL UNIQUE',
             'email' => 'VARCHAR(100) NOT NULL UNIQUE',
             'password' => 'VARCHAR(255) NOT NULL',
-            'role' => 'ENUM("admin", "premium", "client") NOT NULL DEFAULT "client"',
+            'role' => 'ENUM("admin", "client", "premium") NOT NULL DEFAULT "client"',
             'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
         ],
         'cars' => [
             'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
             'name' => 'VARCHAR(100) NOT NULL',
-            'model' => 'VARCHAR(100) NOT NULL',
-            'type' => 'VARCHAR(50) NOT NULL',
-            'price_per_day' => 'DECIMAL(10,2) NOT NULL',
-            'image' => 'VARCHAR(255)',
+            'model' => 'VARCHAR(50) NOT NULL',
+            'type' => 'ENUM("Sedan", "SUV", "Crossover") NOT NULL',
+            'price_per_day' => 'DECIMAL(10, 2) NOT NULL',
             'status' => 'ENUM("available", "rented", "maintenance") NOT NULL DEFAULT "available"',
-            'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+            'image' => 'VARCHAR(255)',
+            'category' => 'ENUM("free", "premium") NOT NULL DEFAULT "free"',
+            'description' => 'TEXT',
+            'features' => 'TEXT',
+            'average_rating' => 'DECIMAL(3,2) DEFAULT 0.00'
         ],
         'offers' => [
             'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
             'title' => 'VARCHAR(100) NOT NULL',
-            'description' => 'TEXT',
-            'car_id' => 'INT NOT NULL',
-            'discount_percentage' => 'INT NOT NULL',
+            'description' => 'TEXT NOT NULL',
+            'discount_percentage' => 'DECIMAL(5,2) NOT NULL',
+            'user_type' => 'ENUM("client", "premium", "all") NOT NULL',
             'start_date' => 'DATE NOT NULL',
             'end_date' => 'DATE NOT NULL',
-            'status' => 'ENUM("active", "inactive") NOT NULL DEFAULT "active"',
-            'user_type' => 'ENUM("client", "premium", "all") NOT NULL DEFAULT "all"',
             'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
-            'FOREIGN KEY (car_id) REFERENCES cars(id)'
+            'status' => 'ENUM("active", "inactive") DEFAULT "active"',
+            'car_id' => 'INT',
+            'CONSTRAINT fk_offer_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE SET NULL'
         ],
         'rental_requests' => [
             'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
@@ -86,12 +89,41 @@ function checkAndFixDatabase($conn) {
             'offer_id' => 'INT',
             'start_date' => 'DATE NOT NULL',
             'end_date' => 'DATE NOT NULL',
-            'total_price' => 'DECIMAL(10,2) NOT NULL',
+            'total_price' => 'DECIMAL(10, 2) NOT NULL',
             'status' => 'ENUM("pending", "approved", "rejected", "completed") NOT NULL DEFAULT "pending"',
             'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
-            'FOREIGN KEY (user_id) REFERENCES users(id)',
-            'FOREIGN KEY (car_id) REFERENCES cars(id)',
-            'FOREIGN KEY (offer_id) REFERENCES offers(id)'
+            'CONSTRAINT fk_rental_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE',
+            'CONSTRAINT fk_rental_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE',
+            'CONSTRAINT fk_rental_offer FOREIGN KEY (offer_id) REFERENCES offers(id) ON DELETE SET NULL'
+        ],
+        'role_change_requests' => [
+            'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
+            'user_id' => 'INT NOT NULL',
+            'requested_role' => 'ENUM("client", "premium") NOT NULL',
+            'status' => 'ENUM("pending", "approved", "rejected") DEFAULT "pending"',
+            'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+            'CONSTRAINT fk_role_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE'
+        ],
+        'payments' => [
+            'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
+            'rental_id' => 'INT NOT NULL',
+            'amount' => 'DECIMAL(10, 2) NOT NULL',
+            'payment_method' => 'ENUM("cash", "credit_card", "bank_transfer") NOT NULL',
+            'status' => 'ENUM("pending", "completed", "failed") NOT NULL DEFAULT "pending"',
+            'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+            'CONSTRAINT fk_payment_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE'
+        ],
+        'rating' => [
+            'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
+            'user_id' => 'INT NOT NULL',
+            'car_id' => 'INT NOT NULL',
+            'rental_id' => 'INT NOT NULL',
+            'rating' => 'INT NOT NULL CHECK (rating BETWEEN 1 AND 5)',
+            'comment' => 'TEXT',
+            'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+            'CONSTRAINT fk_rating_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE',
+            'CONSTRAINT fk_rating_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE',
+            'CONSTRAINT fk_rating_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE'
         ]
     ];
 
@@ -106,41 +138,6 @@ function checkAndFixDatabase($conn) {
             }
             $sql = rtrim($sql, ', ') . ")";
             $conn->query($sql);
-        }
-    }
-
-    // Add sample data if tables are empty
-    $sample_data = [
-        'users' => [
-            ['name' => 'Admin', 'email' => 'admin@carrental.com', 'password' => password_hash('password', PASSWORD_DEFAULT), 'role' => 'admin'],
-            ['name' => 'Premium User', 'email' => 'premium@carrental.com', 'password' => password_hash('password', PASSWORD_DEFAULT), 'role' => 'premium'],
-            ['name' => 'Regular User', 'email' => 'user@carrental.com', 'password' => password_hash('password', PASSWORD_DEFAULT), 'role' => 'client']
-        ],
-        'cars' => [
-            ['name' => 'Toyota', 'model' => 'Camry 2023', 'type' => 'Sedan', 'price_per_day' => 50.00, 'image' => 'toyota-camry.jpg', 'status' => 'available'],
-            ['name' => 'Honda', 'model' => 'Civic 2023', 'type' => 'Sedan', 'price_per_day' => 45.00, 'image' => 'honda-civic.jpg', 'status' => 'available'],
-            ['name' => 'BMW', 'model' => 'X5 2023', 'type' => 'SUV', 'price_per_day' => 100.00, 'image' => 'bmw-x5.jpg', 'status' => 'available']
-        ],
-        'offers' => [
-            ['title' => 'Summer Special', 'description' => 'Get 20% off on all sedans', 'car_id' => 1, 'discount_percentage' => 20, 'start_date' => date('Y-m-d'), 'end_date' => date('Y-m-d', strtotime('+30 days')), 'status' => 'active', 'user_type' => 'all'],
-            ['title' => 'Premium Member Offer', 'description' => 'Exclusive 30% discount for premium members', 'car_id' => 3, 'discount_percentage' => 30, 'start_date' => date('Y-m-d'), 'end_date' => date('Y-m-d', strtotime('+30 days')), 'status' => 'active', 'user_type' => 'premium']
-        ]
-    ];
-
-    foreach ($sample_data as $table => $data) {
-        $result = $conn->query("SELECT COUNT(*) as count FROM $table");
-        $count = $result->fetch_assoc()['count'];
-        
-        if ($count == 0) {
-            foreach ($data as $row) {
-                $columns = implode(', ', array_keys($row));
-                $values = implode(', ', array_map(function($value) use ($conn) {
-                    return "'" . $conn->real_escape_string($value) . "'";
-                }, $row));
-                
-                $sql = "INSERT INTO $table ($columns) VALUES ($values)";
-                $conn->query($sql);
-            }
         }
     }
 }
