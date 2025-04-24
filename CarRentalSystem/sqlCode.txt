@@ -45,3 +45,16 @@ CREATE TABLE IF NOT EXISTS role_change_requests (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+
+CREATE TABLE IF NOT EXISTS rating (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  rental_id INT NOT NULL,
+  car_id INT NOT NULL, 
+  user_id INT NOT NULL,
+  rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE,
+  FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE
+);
