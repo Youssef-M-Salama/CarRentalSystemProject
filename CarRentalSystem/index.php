@@ -1,10 +1,24 @@
 <?php
+// Start the user session to remember login status
 session_start();
-include "includes/config.php";
 
+// Connect to the database using configuration file
+require_once 'includes/config.php';
+
+// Check if database connection was successful
 if (!$conn) {
+    // Stop the page and show error if connection failed
     die("Database connection failed: " . mysqli_connect_error());
 }
+
+// Debug information
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Debug session data
+echo "<!-- Debug Info: ";
+print_r($_SESSION);
+echo " -->";
 
 // Get and sanitize filters
 $search = mysqli_real_escape_string($conn, $_GET['search'] ?? '');
@@ -20,24 +34,24 @@ $class = mysqli_real_escape_string($conn, $_GET['class'] ?? '');
 // Base query
 $regularQuery = "SELECT * FROM cars WHERE (name LIKE '%$search%' OR model LIKE '%$search%')";
 
-// فلتر التصنيف
+// Category filter
 if ($class == 'free') {
     $regularQuery .= " AND category = 'free'";
 } elseif ($class == 'premium') {
     $regularQuery .= " AND category = 'premium'";
 }
 
-// فلتر النوع
+// Type filter
 if (!empty($type)) {
     $regularQuery .= " AND type = '$type'";
 }
 
-// فلتر السعر
+// Price filter
 if ($min_price !== '' && $max_price !== '') {
     $regularQuery .= " AND price_per_day BETWEEN $min_price AND $max_price";
 }
 
-// فلتر الاسم والموديل
+// Name and model filters
 if ($name) {
     $regularQuery .= " AND name LIKE '%$name%'";
 }
@@ -45,19 +59,19 @@ if ($model) {
     $regularQuery .= " AND model LIKE '%$model%'";
 }
 
-// فلتر التوفر
+// Availability filter
 if ($availability === '1') {
     $regularQuery .= " AND status = 'available'";
 } elseif ($availability === '0') {
     $regularQuery .= " AND status != 'available'";
 }
 
-// استبعاد premium للعاديين
+// Exclude premium for regular users
 if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], ['premium', 'admin'])) {
     $regularQuery .= " AND category != 'premium'";
 }
 
-// إعداد استعلام premium
+// Prepare premium query
 $premiumQuery = '';
 if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin']) && $class != 'free') {
     $premiumQuery = "SELECT * FROM cars WHERE category = 'premium' AND (name LIKE '%$search%' OR model LIKE '%$search%')";
@@ -85,7 +99,7 @@ if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 
     }
 }
 
-// ترتيب النتائج
+// Sort results
 switch($sort) {
     case 'price_asc':
         $orderBy = " ORDER BY price_per_day ASC";
@@ -106,7 +120,7 @@ switch($sort) {
         $orderBy = "";
 }
 
-// تنفيذ الاستعلامات
+// Execute queries
 $regularResult = mysqli_query($conn, $regularQuery . $orderBy);
 $premiumResult = $premiumQuery ? mysqli_query($conn, $premiumQuery . $orderBy) : false;
 
@@ -147,6 +161,12 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             border-radius: 8px;
             padding: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         /* Space between premium and regular sections */
@@ -165,48 +185,118 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         /* Status labels */
         .available { color: #4CAF50; font-weight: bold; }
         .not-available { color: #f44336; font-weight: bold; }
+        
+        /* Filter box styling */
         .filter-box {
-    display: none;
-    padding: 15px;
-    border: 1px solid #ccc;
-    margin: 10px 0;
-    background: #f9f9f9;
-  }
-  .toggle-btn {
-    padding: 10px 20px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
-  .apply-button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.apply-button:hover {
-    background-color: #0056b3;
-}
-.apply-button, .reset-button {
-    background-color: #007bff; /* اللون الأزرق */
-    color: white;
-    padding: 5px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-left: 10px; /* المسافة بين الأزرار */
-}
-
-.reset-button {
-    display: inline-block; /* علشان يبقى جنب الزر التاني */
-    margin-left: 10px;
-}
+            display: none;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            background: #f9f9f9;
+        }
+        
+        .toggle-btn {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        
+        .apply-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .apply-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .apply-button, .reset-button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        
+        .reset-button {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        /* Rating stars styling */
+        .rating-stars {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .rating-stars i {
+            margin-right: 2px;
+        }
+        
+        /* Category badges */
+        .category-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .category-badge.free {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .category-badge.premium {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+        
+        /* Rental button styling */
+        .btn-rent {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-rent:hover {
+            background-color: #218838;
+        }
+        
+        .btn-disabled {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: not-allowed;
+        }
+        
+        /* Section headers */
+        .section-header {
+            margin: 20px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -222,6 +312,9 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <!-- Links visible only to logged-in users -->
                 <?php if (isset($_SESSION['user'])): ?>
                     <li><a href="my_rental.php">My Rentals</a></li>
+                    
+                    <!-- Special Offers for all users -->
+                    <li><a href="offers.php">Special Offers</a></li>
                     
                     <!-- Admin-only dashboard link -->
                     <?php if ($_SESSION['user']['role'] === 'admin'): ?>
@@ -265,95 +358,82 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <option value="year_desc" <?= $sort == 'year_desc' ? 'selected' : '' ?>>Year (New-Old)</option>
                     <option value="available" <?= $sort == 'available' ? 'selected' : '' ?>>Availability</option>
                 </select>
-                <button type="submit">Apply</button>
+                <button type="submit" class="apply-button">Apply</button>
             </form>
         </div>
+        
         <form method="GET" action="index.php">
-    <a href="index.php" class="reset-button">Reset</a>
-</form>
-<br>
-       <!-- زرار فتح البوكس -->
-<button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
+            <a href="index.php" class="reset-button">Reset</a>
+        </form>
+        
+        <br>
+        
+        <!-- Filter toggle button -->
+        <button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
 
-<!-- بوكس الفلترة -->
-<div class="filter-box" id="filterBox">
-  <form method="GET" action="index.php">
-    <label>Price Range:</label><br>
-    <input type="number" name="min_price" placeholder="Min Price">
-    <input type="number" name="max_price" placeholder="Max Price"><br><br>
+        <!-- Filter box -->
+        <div class="filter-box" id="filterBox">
+            <form method="GET" action="index.php">
+                <label>Price Range:</label><br>
+                <input type="number" name="min_price" placeholder="Min Price" value="<?= htmlspecialchars($min_price) ?>">
+                <input type="number" name="max_price" placeholder="Max Price" value="<?= htmlspecialchars($max_price) ?>"><br><br>
 
-    <label>Type:</label><br>
-    <select name="type">
-      <option value="">-- All Types --</option>
-      <option value="SUV">SUV</option>
-      <option value="Sedan">Sedan</option>
-      <option value="Hatchback">Hatchback</option>
-    </select><br><br>
+                <label>Type:</label><br>
+                <select name="type">
+                    <option value="">-- All Types --</option>
+                    <option value="SUV" <?= $type == 'SUV' ? 'selected' : '' ?>>SUV</option>
+                    <option value="Sedan" <?= $type == 'Sedan' ? 'selected' : '' ?>>Sedan</option>
+                    <option value="Hatchback" <?= $type == 'Hatchback' ? 'selected' : '' ?>>Hatchback</option>
+                </select><br><br>
 
-    <label>Availability:</label><br>
-    <select name="availability">
-      <option value="">-- All --</option>
-      <option value="1">Available</option>
-      <option value="0">Not Available</option>
-                </select>
-      <br><br>
-      <!-- فلتر باسم العربية (name) -->
-       <form>
-<label>Car Name:</label>
-<input type="text" name="name" placeholder="e.g. BMW" value="<?= htmlspecialchars($name) ?>">
-<br><br>
+                <label>Availability:</label><br>
+                <select name="availability">
+                    <option value="">-- All --</option>
+                    <option value="1" <?= $availability === '1' ? 'selected' : '' ?>>Available</option>
+                    <option value="0" <?= $availability === '0' ? 'selected' : '' ?>>Not Available</option>
+                </select><br><br>
 
-<!-- فلتر بسنة الموديل -->
-<label>Model Year:</label>
-<select name="model">
-    <option value="">Select Year</option>
-    <?php for ($year = 2000; $year <= date("Y"); $year++): ?>
-        <option value="<?= $year ?>" <?= $model == $year ? 'selected' : '' ?>><?= $year ?></option>
-    <?php endfor; ?>
-</select>
-    </select><br><br>
-    <label for="class">car</label>
-<select name="class" id="class">
-    <option value="">All</option>
-    <option value="free" <?= isset($_GET['class']) && $_GET['class'] == 'free' ? 'selected' : '' ?>>Free</option>
-    <option value="premium" <?= isset($_GET['class']) && $_GET['class'] == 'premium' ? 'selected' : '' ?>>Premium</option>
-</select> 
-<br>
-<br>
+                <label>Car Name:</label>
+                <input type="text" name="name" placeholder="e.g. BMW" value="<?= htmlspecialchars($name) ?>">
+                <br><br>
 
-<button type="submit" class="apply-button">Apply</button>
-  </form>
-</div>
+                <label>Model Year:</label>
+                <select name="model">
+                    <option value="">Select Year</option>
+                    <?php for ($year = 2000; $year <= date("Y"); $year++): ?>
+                        <option value="<?= $year ?>" <?= $model == $year ? 'selected' : '' ?>><?= $year ?></option>
+                    <?php endfor; ?>
+                </select><br><br>
 
+                <label for="class">Car Category:</label>
+                <select name="class" id="class">
+                    <option value="">All</option>
+                    <option value="free" <?= $class == 'free' ? 'selected' : '' ?>>Free</option>
+                    <option value="premium" <?= $class == 'premium' ? 'selected' : '' ?>>Premium</option>
+                </select><br><br>
 
-
-<!-- JavaScript لفتح البوكس -->
-<script>
-  function toggleFilter() {
-    var box = document.getElementById("filterBox");
-    box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
-  }
-</script>
-           
-
+                <button type="submit" class="apply-button">Apply</button>
+            </form>
+        </div>
 
         <!-- Show error messages if any -->
         <?php if (!empty($error)): ?>
             <p class="error"><?= $error ?></p>
         <?php endif; ?>
 
-        <!-- Premium Cars Section (visible to premium/admin users) -->
-        <?php if (isset($_SESSION['user']) && 
-                 in_array($_SESSION['user']['role'], ['premium', 'admin'])): ?>
+        <!-- Premium Cars Section -->
+        <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin'])): ?>
             <div class="premium-section">
-                <h3>Premium cars</h3>
+                <h3 class="section-header">
+                    <i class="fas fa-crown"></i> Premium Cars
+                </h3>
                 <div class="car-grid">
                     <?php if ($premiumResult && mysqli_num_rows($premiumResult) > 0): ?>
                         <?php while ($car = mysqli_fetch_assoc($premiumResult)): ?>
                             <?= renderCarCard($car) ?>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p>No premium cars available</p>
+                        <p class="no-cars">No premium cars available</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -361,16 +441,18 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
         <!-- Regular Cars Section -->
         <div class="regular-section">
-            <h3><?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium') 
-                    ? 'Standard Vehicles' 
-                    : 'Available Cars' ?></h3>
+            <h3 class="section-header">
+                <?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium') 
+                    ? '<i class="fas fa-car"></i> Standard Vehicles' 
+                    : '<i class="fas fa-car"></i> Available Cars' ?>
+            </h3>
             <div class="car-grid">
                 <?php if ($regularResult && mysqli_num_rows($regularResult) > 0): ?>
                     <?php while ($car = mysqli_fetch_assoc($regularResult)): ?>
                         <?= renderCarCard($car) ?>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <p>No cars available</p>
+                    <p class="no-cars">No cars available</p>
                 <?php endif; ?>
             </div>
         </div>
@@ -423,6 +505,13 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleFilter() {
+            var box = document.getElementById("filterBox");
+            box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+        }
+    </script>
 </body>
 </html>
 
@@ -432,28 +521,29 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
  * This function creates the visual representation of each car
  * with all its details and rental button
  */
-
-
-
- function renderCarCard($car) {
+function renderCarCard($car) {
     global $conn;
 
     $carId = $car['id'];
     $name = htmlspecialchars($car['name'] ?? 'Unknown');
     $model = htmlspecialchars($car['model'] ?? 'Unknown');
     $type = htmlspecialchars($car['type'] ?? 'N/A');
-    $price = isset($car['price_per_day']) ? '$' . number_format($car['price_per_day'], 2) : 'N/A';
-    $image = !empty($car['image']) ? 'images/' . htmlspecialchars($car['image']) : 'images/default.png';
+    $price = isset($car['price_per_day']) ? 
+        '$' . number_format($car['price_per_day'], 2) : 
+        'N/A';
+    $image = !empty($car['image']) ? 
+        'images/' . htmlspecialchars($car['image']) : 
+        'images/default.png';
     $status = $car['status'] ?? 'available';
     $category = htmlspecialchars($car['category'] ?? 'N/A');
-
+    
     // Get average rating for this car
     $avgQuery = "SELECT AVG(rating) AS avg_rating FROM rating WHERE car_id = $carId";
     $avgResult = mysqli_query($conn, $avgQuery);
     $avgRow = mysqli_fetch_assoc($avgResult);
-    $averageRating = round($avgRow['avg_rating'] ?? 0, 1); // example: 4.3
+    $averageRating = round($avgRow['avg_rating'] ?? 0, 1);
 
-    // Determine availability
+    // Determine availability status styling
     $availabilityClass = $status === 'available' ? 'available' : 'not-available';
     $availabilityText = $status === 'available' ? 'Available' : 'Not Available';
 
@@ -464,10 +554,13 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
     ob_start(); ?>
     <div class="card">
+        <!-- Car Image -->
         <img src="<?= $image ?>" alt="<?= $name ?>">
+        
+        <!-- Car Details -->
         <h3><?= "$name ($model)" ?></h3>
-
-        <!-- Show Rating Stars -->
+        
+        <!-- Rating Stars -->
         <div class="rating-stars">
             <?php for ($i = 0; $i < $fullStars; $i++): ?>
                 <i class="fas fa-star" style="color: gold;"></i>
@@ -487,11 +580,19 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
             <p><strong>Status:</strong> 
-                <span class="<?= $availabilityClass ?>"><?= $availabilityText ?></span>
+                <span class="<?= $availabilityClass ?>">
+                    <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>
+                    <?= $availabilityText ?>
+                </span>
             </p>
-            <p><strong>Category:</strong> <?= $category ?></p>
+            <p><strong>Category:</strong> 
+                <span class="category-badge <?= $category ?>">
+                    <?= ucfirst($category) ?>
+                </span>
+            </p>
         </div>
-
+        
+        <!-- Rental Button -->
         <?php if ($status === 'available'): ?>
             <form method="GET" action="rent_request.php">
                 <input type="hidden" name="car_id" value="<?= $carId ?>">
@@ -503,36 +604,4 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     </div>
     <?php return ob_get_clean();
 }
-
-
-
-
-    ob_start(); ?>
-    <div class="card">
-        <!-- Car Image -->
-        <img src="<?= $image ?>" alt="<?= $name ?>">
-        
-        <!-- Car Details -->
-        <h3><?= "$name ($model)" ?></h3>
-        <div class="car-details">
-            <p><strong>Type:</strong> <?= $type ?></p>
-            <p><strong>Price:</strong> <?= $price ?>/day</p>
-            <p><strong>Status:</strong> 
-                <span class="<?= $availabilityClass ?>"><?= $availabilityText ?></span>
-            </p>
-            <p><strong>Category:</strong> <?= $category ?></p>
-        </div>
-        
-        <!-- Rental Button -->
-        <?php if ($status === 'available'): ?>
-            <form method="GET" action="rent_request.php">
-                <input type="hidden" name="car_id" value="<?= $car['id'] ?>">
-                <button type="submit" class="btn-rent">Rent Now</button>
-            </form>
-        <?php else: ?>
-            <button class="btn-disabled" disabled>Not Available</button>
-        <?php endif; ?>
-    </div>
-    <?php return ob_get_clean();
-
 ?>
