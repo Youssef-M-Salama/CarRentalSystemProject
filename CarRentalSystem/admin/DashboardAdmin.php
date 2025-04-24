@@ -291,11 +291,8 @@ $unavailable_cars = mysqli_query($conn, $query);
         <a href="admin_deal_with_request_to_change_role.php">Role Change Requests 
             <span class="notification-badge"><?= $role_requests ?></span>
         </a>
-    </div>            
-
-
-            <!-- // In admin/DashboardAdmin.php -->
-        <a href="admin_deal_with_request_to_change_role.php">Role Change Requests</a>
+    </div>           
+    
         </div>
 
         <!-- Add Car Form -->
