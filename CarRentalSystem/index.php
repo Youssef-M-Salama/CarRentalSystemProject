@@ -375,8 +375,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <div class="filter-box" id="filterBox">
             <form method="GET" action="index.php">
                 <label>Price Range:</label><br>
-                <input type="number" name="min_price" placeholder="Min Price" value="<?= htmlspecialchars($min_price) ?>">
-                <input type="number" name="max_price" placeholder="Max Price" value="<?= htmlspecialchars($max_price) ?>"><br><br>
+                <input type="number" min="0" name="min_price" placeholder="Min Price" value="<?= htmlspecialchars($min_price) ?>">
+                <input type="number" min="0" name="max_price" placeholder="Max Price" value="<?= htmlspecialchars($max_price) ?>"><br><br>
 
                 <label>Type:</label><br>
                 <select name="type">

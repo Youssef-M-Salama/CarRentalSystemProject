@@ -104,15 +104,7 @@ function checkAndFixDatabase($conn) {
             'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'CONSTRAINT fk_role_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE'
         ],
-        'payments' => [
-            'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
-            'rental_id' => 'INT NOT NULL',
-            'amount' => 'DECIMAL(10, 2) NOT NULL',
-            'payment_method' => 'ENUM("cash", "credit_card", "bank_transfer") NOT NULL',
-            'status' => 'ENUM("pending", "completed", "failed") NOT NULL DEFAULT "pending"',
-            'created_at' => 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
-            'CONSTRAINT fk_payment_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE'
-        ],
+        
         'rating' => [
             'id' => 'INT AUTO_INCREMENT PRIMARY KEY',
             'user_id' => 'INT NOT NULL',
