@@ -274,7 +274,7 @@ $rental_requests = mysqli_query($conn, $query);
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="about us.html">About Us</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">FAQs</a></li>
