@@ -521,7 +521,11 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
  * This function creates the visual representation of each car
  * with all its details and rental button
  */
-function renderCarCard($car) {
+
+
+
+
+ function renderCarCard($car) {
     global $conn;
 
     $carId = $car['id'];
@@ -601,7 +605,69 @@ function renderCarCard($car) {
         <?php else: ?>
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
+        
+        <!-- Car Details Link -->
+        <a href="car_details.php?car_id=<?= $car['id'] ?>" class="btn-details">View Details</a>
+    
+    
     </div>
     <?php return ob_get_clean();
 }
+
+
+
+
+
+    ob_start(); ?>
+    <div class="card">
+        <!-- Car Image -->
+        <img src="<?= $image ?>" alt="<?= $name ?>">
+        
+        <!-- Car Details -->
+        <h3><?= "$name ($model)" ?></h3>
+        
+        <!-- Rating Stars -->
+        <div class="rating-stars">
+            <?php for ($i = 0; $i < $fullStars; $i++): ?>
+                <i class="fas fa-star" style="color: gold;"></i>
+            <?php endfor; ?>
+            <?php if ($halfStar): ?>
+                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+            <?php endif; ?>
+            <?php for ($i = 0; $i < $emptyStars; $i++): ?>
+                <i class="far fa-star" style="color: gold;"></i>
+            <?php endfor; ?>
+            <span style="margin-left: 5px; font-size: 0.9em; color: #666;">
+                <?= $averageRating ?>/5
+            </span>
+        </div>
+
+        <div class="car-details">
+            <p><strong>Type:</strong> <?= $type ?></p>
+            <p><strong>Price:</strong> <?= $price ?>/day</p>
+            <p><strong>Status:</strong> 
+                <span class="<?= $availabilityClass ?>">
+                    <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>
+                    <?= $availabilityText ?>
+                </span>
+            </p>
+            <p><strong>Category:</strong> 
+                <span class="category-badge <?= $category ?>">
+                    <?= ucfirst($category) ?>
+                </span>
+            </p>
+        </div>
+        
+        <!-- Rental Button -->
+        <?php if ($status === 'available'): ?>
+            <form method="GET" action="rent_request.php">
+                <input type="hidden" name="car_id" value="<?= $carId ?>">
+                <button type="submit" class="btn-rent">Rent Now</button>
+            </form>
+        <?php else: ?>
+            <button class="btn-disabled" disabled>Not Available</button>
+        <?php endif; ?>
+    </div>
+    <?php return ob_get_clean();
+
 ?>
