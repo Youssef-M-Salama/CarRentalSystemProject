@@ -100,7 +100,7 @@ if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 
 }
 
 // Sort results
-switch($sort) {
+switch ($sort) {
     case 'price_asc':
         $orderBy = " ORDER BY price_per_day ASC";
         break;
@@ -132,11 +132,12 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Rental Service</title>
-    
+
     <!-- Include CSS stylesheets -->
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/header.css">
@@ -145,7 +146,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sort-filter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
     <style>
         /* Container for car grid layout */
         .car-grid {
@@ -154,26 +155,26 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             gap: 80px;
             padding: 20px;
         }
-        
+
         /* Styling for individual car cards */
         .card {
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
+
         /* Space between premium and regular sections */
         .premium-section {
             margin-bottom: 40px;
         }
-        
+
         /* Responsive car images */
         .card img {
             width: 100%;
@@ -181,11 +182,18 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             object-fit: cover;
             border-radius: 4px;
         }
-        
+
         /* Status labels */
-        .available { color: #4CAF50; font-weight: bold; }
-        .not-available { color: #f44336; font-weight: bold; }
-        
+        .available {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .not-available {
+            color: #f44336;
+            font-weight: bold;
+        }
+
         /* Filter box styling */
         .filter-box {
             display: none;
@@ -194,7 +202,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             margin: 10px 0;
             background: #f9f9f9;
         }
-        
+
         .toggle-btn {
             padding: 10px 20px;
             background: #007BFF;
@@ -203,7 +211,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             cursor: pointer;
             margin-bottom: 10px;
         }
-        
+
         .apply-button {
             background-color: #007bff;
             color: white;
@@ -214,12 +222,13 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
+
         .apply-button:hover {
             background-color: #0056b3;
         }
-        
-        .apply-button, .reset-button {
+
+        .apply-button,
+        .reset-button {
             background-color: #007bff;
             color: white;
             padding: 5px 15px;
@@ -227,23 +236,23 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             text-decoration: none;
             margin-left: 10px;
         }
-        
+
         .reset-button {
             display: inline-block;
             margin-left: 10px;
         }
-        
+
         /* Rating stars styling */
         .rating-stars {
             margin: 10px 0;
             display: flex;
             align-items: center;
         }
-        
+
         .rating-stars i {
             margin-right: 2px;
         }
-        
+
         /* Category badges */
         .category-badge {
             padding: 3px 8px;
@@ -251,17 +260,17 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             font-size: 0.8em;
             font-weight: bold;
         }
-        
+
         .category-badge.free {
             background-color: #e3f2fd;
             color: #1976d2;
         }
-        
+
         .category-badge.premium {
             background-color: #fff3e0;
             color: #f57c00;
         }
-        
+
         /* Rental button styling */
         .btn-rent {
             background-color: #28a745;
@@ -274,11 +283,11 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             margin-top: 10px;
             transition: background-color 0.3s ease;
         }
-        
+
         .btn-rent:hover {
             background-color: #218838;
         }
-        
+
         .btn-disabled {
             background-color: #6c757d;
             color: white;
@@ -289,7 +298,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             margin-top: 10px;
             cursor: not-allowed;
         }
-        
+
         /* Section headers */
         .section-header {
             margin: 20px 0;
@@ -308,26 +317,26 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             <ul>
                 <!-- Home link visible to all users -->
                 <li><a href="index.php">Home</a></li>
-                
+
                 <!-- Links visible only to logged-in users -->
                 <?php if (isset($_SESSION['user'])): ?>
                     <li><a href="my_rental.php">My Rentals</a></li>
-                    
+
                     <!-- Special Offers for all users -->
                     <li><a href="offers.php">Special Offers</a></li>
-                    
+
                     <!-- Admin-only dashboard link -->
                     <?php if ($_SESSION['user']['role'] === 'admin'): ?>
                         <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
                     <?php endif; ?>
-                    
+
                     <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
-                    
+
                     <!-- Profile icon link -->
                     <li>
                         <a href="profile.php" class="profile-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                             </svg>
                         </a>
                     </li>
@@ -336,8 +345,11 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <li><a href="Login-Signup-Logout/login.php">Login</a></li>
                     <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
                 <?php endif; ?>
-                
+
                 <li><a href="about us.html">About Us</a></li>
+
+                <li><a href="Call_Us.php">Contact Us</a></li>
+
             </ul>
         </nav>
     </header>
@@ -361,13 +373,13 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <button type="submit" class="apply-button">Apply</button>
             </form>
         </div>
-        
+
         <form method="GET" action="index.php">
             <a href="index.php" class="reset-button">Reset</a>
         </form>
-        
+
         <br>
-        
+
         <!-- Filter toggle button -->
         <button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
 
@@ -442,8 +454,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <!-- Regular Cars Section -->
         <div class="regular-section">
             <h3 class="section-header">
-                <?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium') 
-                    ? '<i class="fas fa-car"></i> Standard Vehicles' 
+                <?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium')
+                    ? '<i class="fas fa-car"></i> Standard Vehicles'
                     : '<i class="fas fa-car"></i> Available Cars' ?>
             </h3>
             <div class="car-grid">
@@ -463,11 +475,14 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <div class="footer-container">
             <!-- Contact Information -->
             <div class="footer-section">
-                <h3>Contact Us</h3>
+                <li><a href="Call_Us.php">
+                        <h3>Contact Us</h3>
+                    </a></li>
                 <p>Email: info@carrentalservice.com</p>
                 <p>Phone: 0000000</p>
             </div>
-            
+
+
             <!-- Social Media Links -->
             <div class="footer-section">
                 <h3>Follow Us</h3>
@@ -478,7 +493,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
-            
+
             <!-- Quick Links -->
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -489,7 +504,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <li><a href="#">FAQs</a></li>
                 </ul>
             </div>
-            
+
             <!-- Newsletter Subscription -->
             <div class="footer-section">
                 <h3>Subscribe</h3>
@@ -499,7 +514,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 </form>
             </div>
         </div>
-        
+
         <!-- Copyright Notice -->
         <div class="copyright">
             <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
@@ -513,6 +528,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         }
     </script>
 </body>
+
 </html>
 
 <?php
@@ -521,22 +537,23 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
  * This function creates the visual representation of each car
  * with all its details and rental button
  */
-function renderCarCard($car) {
+function renderCarCard($car)
+{
     global $conn;
 
     $carId = $car['id'];
     $name = htmlspecialchars($car['name'] ?? 'Unknown');
     $model = htmlspecialchars($car['model'] ?? 'Unknown');
     $type = htmlspecialchars($car['type'] ?? 'N/A');
-    $price = isset($car['price_per_day']) ? 
-        '$' . number_format($car['price_per_day'], 2) : 
+    $price = isset($car['price_per_day']) ?
+        '$' . number_format($car['price_per_day'], 2) :
         'N/A';
-    $image = !empty($car['image']) ? 
-        'images/' . htmlspecialchars($car['image']) : 
+    $image = !empty($car['image']) ?
+        'images/' . htmlspecialchars($car['image']) :
         'images/default.png';
     $status = $car['status'] ?? 'available';
     $category = htmlspecialchars($car['category'] ?? 'N/A');
-    
+
     // Get average rating for this car
     $avgQuery = "SELECT AVG(rating) AS avg_rating FROM rating WHERE car_id = $carId";
     $avgResult = mysqli_query($conn, $avgQuery);
@@ -556,10 +573,10 @@ function renderCarCard($car) {
     <div class="card">
         <!-- Car Image -->
         <img src="<?= $image ?>" alt="<?= $name ?>">
-        
+
         <!-- Car Details -->
         <h3><?= "$name ($model)" ?></h3>
-        
+
         <!-- Rating Stars -->
         <div class="rating-stars">
             <?php for ($i = 0; $i < $fullStars; $i++): ?>
@@ -579,19 +596,19 @@ function renderCarCard($car) {
         <div class="car-details">
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
-            <p><strong>Status:</strong> 
+            <p><strong>Status:</strong>
                 <span class="<?= $availabilityClass ?>">
                     <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>
                     <?= $availabilityText ?>
                 </span>
             </p>
-            <p><strong>Category:</strong> 
+            <p><strong>Category:</strong>
                 <span class="category-badge <?= $category ?>">
                     <?= ucfirst($category) ?>
                 </span>
             </p>
         </div>
-        
+
         <!-- Rental Button -->
         <?php if ($status === 'available'): ?>
             <form method="GET" action="rent_request.php">
@@ -602,6 +619,6 @@ function renderCarCard($car) {
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
     </div>
-    <?php return ob_get_clean();
+<?php return ob_get_clean();
 }
 ?>

@@ -49,7 +49,9 @@ CREATE TABLE IF NOT EXISTS rental_requests (
     offer_id INT,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    total_price DECIMAL(10, 2) NOT NULL,
+    total_price DECIMAL(10, 2) AS (DATEDIFF(end_date, start_date) + 1) * (
+        SELECT price_per_day FROM cars WHERE cars.id = car_id
+    ) STORED,
     status ENUM('pending', 'approved', 'rejected', 'completed') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_rental_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -96,4 +98,13 @@ VALUES (
     'client@example.com',
     'client123' , 
     'client'
+);
+
+CREATE TABLE IF NOT EXISTS contact_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    phone VARCHAR(20),
+    message TEXT,
+    status ENUM('unread', 'read') DEFAULT 'unread',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
