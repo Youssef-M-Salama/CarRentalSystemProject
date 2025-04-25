@@ -96,7 +96,7 @@ INSERT INTO users (username, email, password, role)
 VALUES (
     'admin_user',
     'admin@example.com',
-    'admin123', 256 , 
+    'admin123' , 
     'admin'
 );
 
@@ -104,6 +104,6 @@ INSERT INTO users (username, email, password, role)
 VALUES (
     'client_user',
     'client@example.com',
-    'client123', 256 , 
+    'client123' , 
     'client'
 );
