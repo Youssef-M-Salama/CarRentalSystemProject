@@ -39,10 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("iiss", $user_id, $car_id, $start_date, $end_date);
 
     if ($stmt->execute()) {
-        // Update car status
-        $update_car = $conn->prepare("UPDATE cars SET status = 'rented' WHERE id = ?");
-        $update_car->bind_param("i", $car_id);
-        $update_car->execute();
 
         $_SESSION['success'] = "Rental request submitted successfully!";
         header('Location: my_rental.php');
