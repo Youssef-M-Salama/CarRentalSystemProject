@@ -216,15 +216,22 @@ $result = $conn->query($sql);
                     <input type="date" id="end_date" name="end_date" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="car_id">Select Car (Optional)</label>
+                
+
+                  <div class="form-group">
+                    <label for="car_id">Select a Car </label>
                     <select id="car_id" name="car_id">
-                        <option value="">-- All Cars --</option>
+                        <!-- Disabled placeholder option (outside optgroup) -->
+                        <option disabled selected>Select a car</option>
+                        
+                        <!-- Grouped options -->
+                        <optgroup label="All cars">
                         <?php while ($car = $cars_result->fetch_assoc()): ?>
                             <option value="<?php echo $car['id']; ?>">
-                                <?php echo htmlspecialchars($car['name'] . ' ' . $car['model']); ?>
+                            <?php echo htmlspecialchars($car['name'] . ' ' . $car['model']); ?>
                             </option>
                         <?php endwhile; ?>
+                        </optgroup>
                     </select>
                 </div>
 
