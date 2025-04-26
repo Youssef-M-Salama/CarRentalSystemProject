@@ -146,3 +146,6 @@ INSERT INTO users (username, email, password, role)
 VALUES 
 ('admin_user', 'admin@example.com', 'admin123', 'admin'),
 ('client_user', 'client@example.com', 'client123', 'client');
+
+
+ALTER TABLE users DROP INDEX username; -- Remove unique constraint from username
