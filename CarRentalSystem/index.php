@@ -596,13 +596,13 @@ function renderCarCard($car)
         <div class="car-details">
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
-            <p><strong>Status:</strong>
+            <p><strong>Status:</strong> 
                 <span class="<?= $availabilityClass ?>">
                     <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>
                     <?= $availabilityText ?>
                 </span>
             </p>
-            <p><strong>Category:</strong>
+            <p><strong>Category:</strong> 
                 <span class="category-badge <?= $category ?>">
                     <?= ucfirst($category) ?>
                 </span>
@@ -618,7 +618,11 @@ function renderCarCard($car)
         <?php else: ?>
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
+
+        <!-- Car Details Link -->
+        <a href="car_details.php?car_id=<?= $car['id'] ?>" class="btn-details">View Details</a>
+
     </div>
-<?php return ob_get_clean();
+    <?php return ob_get_clean();
 }
-?>
+    ?>
