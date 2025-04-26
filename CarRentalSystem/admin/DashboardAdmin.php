@@ -556,6 +556,35 @@ $unavailable_cars = mysqli_query($conn, $query);
                                     <p><strong>Car:</strong> <?= htmlspecialchars($request['car_name']) ?> (<?= htmlspecialchars($request['model']) ?>)</p>
                                     <p><strong>Period:</strong> <?= date('M d, Y', strtotime($request['start_date'])) ?> to <?= date('M d, Y', strtotime($request['end_date'])) ?></p>
                                     <p><strong>Category:</strong> <?= htmlspecialchars($request['category']) ?></p>
+                                    <p><strong>With Driver:</strong> <?= htmlspecialchars($request['with_driver']) ?></p>
+                                    <p><strong>Tota Price:</strong> <?= htmlspecialchars($request['total_price']) ?></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     <p><strong>Requested on:</strong> <?= date('M d, Y H:i', strtotime($request['created_at'])) ?></p>
                                     
                                     <?php if ($request['status'] === 'pending'): ?>

@@ -9,7 +9,7 @@
 
 .rental-form h2 {
     margin-top: 0;
-    color: #333;
+    color: #333; /* اللون الأسود الداكن */
 }
 
 .rental-form .car-details {
@@ -30,6 +30,7 @@
 
 .rental-form .car-info h3 {
     margin-top: 0;
+    color: #333; /* اللون الأسود الداكن */
 }
 
 .rental-form form {
@@ -50,6 +51,7 @@
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
+    color: #444; /* لون النص للـ label */
 }
 
 .rental-form input[type="date"] {
@@ -58,6 +60,7 @@
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 16px; /* تكبير الخط */
 }
 
 .rental-form .price-calculation {
@@ -66,6 +69,7 @@
     padding: 10px;
     border-radius: 4px;
     font-weight: bold;
+    color: #333; /* لون النص داخل السعر */
 }
 
 .success-message {
@@ -82,4 +86,89 @@
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
+}
+
+.rental-form .driver-option {
+    margin-bottom: 20px;
+}
+
+.rental-form .driver-option label.title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333; /* لون النص في العنوان */
+}
+
+.rental-form .driver-option .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.rental-form .driver-option .option input[type="radio"] {
+    margin: 0;
+    vertical-align: middle;
+}
+
+.rental-form .driver-option .option label {
+    margin: 0;
+    font-weight: normal;
+    display: inline-block;
+    color: #333; /* اللون العادي للنص */
+}
+
+.rental-form .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.rental-form .btn:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #d1d1d1;
+}
+
+footer .social-links {
+    list-style: none;
+    padding: 0;
+}
+
+footer .social-links li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+footer .social-links a {
+    color: white;
+    font-size: 24px;
+}
+
+footer .social-links a:hover {
+    color: #ddd;
+}
+
+footer .copyright {
+    margin-top: 20px;
+    font-size: 14px;
 }
