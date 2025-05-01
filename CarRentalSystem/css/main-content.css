@@ -3,7 +3,8 @@ main {
   }
   
   .card {
-    background: white;
+    background:hsl(0, 5%, 96%);
+    color: #000;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -39,11 +40,11 @@ main {
   }
   
   .available {
-    color: #28a745;
+    color: hsl(0, 99%, 23%);
     font-weight: bold;
   }
   
   .not-available {
-    color: #dc3545;
+    color:#6c757d;
     font-weight: bold;
   }

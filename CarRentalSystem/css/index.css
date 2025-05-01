@@ -1,0 +1,153 @@
+
+ /* Container for car grid layout */
+ .car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 80px;
+    padding: 20px;
+}
+
+/* Styling for individual car cards */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Space between premium and regular sections */
+.premium-section {
+    margin-bottom: 40px;
+}
+
+/* Responsive car images */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Status labels */
+.available { color: #4CAF50; font-weight: bold; }
+.not-available { color: #f44336; font-weight: bold; }
+
+/* Filter box styling */
+.filter-box {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    background-color: #950101;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.apply-button {
+    background-color: hsl(0, 99%, 23%);
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #000;
+}
+
+.apply-button, .reset-button {
+    background-color:hsl(0, 99%, 23%);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.reset-button {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+/* Rating stars styling */
+.rating-stars {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.rating-stars i {
+    margin-right: 2px;
+}
+
+/* Category badges */
+.category-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.category-badge.free {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.category-badge.premium {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+/* Rental button styling */
+.btn-rent {
+    background-color:hsl(0, 99%, 23%);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-rent:hover {
+    background-color: #000;
+}
+
+.btn-disabled {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: not-allowed;
+}
+
+/* Section headers */
+.section-header {
+    margin: 20px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}

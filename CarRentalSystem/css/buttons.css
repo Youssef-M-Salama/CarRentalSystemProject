@@ -11,17 +11,17 @@
   }
   
   .btn-rent {
-    background: #4a90e2;
+    background-color: #000;
     color: white;
   }
   
   .btn-rent:hover {
-    background: #3b5998;
+    background-color: #950101;
     transform: scale(1.05);
   }
   
   .btn-disabled {
-    background: #ccc;
+    background-color: #ccc;
     color: #666;
     cursor: not-allowed;
   }

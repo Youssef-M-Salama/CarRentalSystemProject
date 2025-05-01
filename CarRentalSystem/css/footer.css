@@ -1,6 +1,6 @@
 footer {
-    background: #333;
-    color: white;
+  background: linear-gradient(135deg, hsl(0, 99%, 29%),hsl(0, 99%, 23%));
+  color: white;
     text-align: center;
     padding: 20px 40px;
     font-size: 0.9rem;
@@ -44,6 +44,5 @@ footer {
   .copyright {
     text-align: center;
     padding: 10px 0;
-    background: #222;
     color: #ddd;
   }
