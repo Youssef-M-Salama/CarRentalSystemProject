@@ -1,6 +1,6 @@
 footer {
-  background: linear-gradient(135deg, hsl(0, 99%, 29%),hsl(0, 99%, 23%));
-  color: white;
+    background-color:#9AA6B2;
+    color: white;
     text-align: center;
     padding: 20px 40px;
     font-size: 0.9rem;

@@ -156,8 +156,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 </head>
 
 <body>
-    <!-- bootstrap js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    
     <!-- Website Header Section -->
     <header>
         <h1>Car Rental Service</h1>
@@ -353,6 +352,9 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
         }
     </script>
+    
+    <!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>
 

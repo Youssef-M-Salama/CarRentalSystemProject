@@ -1,6 +1,6 @@
 header {
     font-family: "League Spartan", sans-serif ;
-    background: linear-gradient(135deg, hsl(0, 99%, 29%),hsl(0, 99%, 23%));
+    background-color:#9AA6B2;
     color: white;
     padding: 20px 40px;
     text-align: center;
@@ -10,6 +10,7 @@ header {
     justify-content: space-between;
   }
   
+
   header h1 {
     margin: 0;
     font-size: 2rem;

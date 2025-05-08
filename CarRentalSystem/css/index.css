@@ -17,7 +17,7 @@
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
@@ -51,7 +51,8 @@
 
 .toggle-btn {
     padding: 10px 20px;
-    background-color: #950101;
+    background-color:#9AA6B2;
+    border-radius: 5px;
     color: white;
     border: none;
     cursor: pointer;
@@ -59,7 +60,7 @@
 }
 
 .apply-button {
-    background-color: hsl(0, 99%, 23%);
+    background-color:#9AA6B2;
     color: white;
     padding: 12px 24px;
     font-size: 16px;
@@ -70,11 +71,11 @@
 }
 
 .apply-button:hover {
-    background-color: #000;
+    background-color: #BCCCDC;
 }
 
 .apply-button, .reset-button {
-    background-color:hsl(0, 99%, 23%);
+    background-color:#9AA6B2;
     color: white;
     padding: 5px 15px;
     border-radius: 5px;
@@ -118,7 +119,7 @@
 
 /* Rental button styling */
 .btn-rent {
-    background-color:hsl(0, 99%, 23%);
+    background-color:#9AA6B2;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -130,7 +131,7 @@
 }
 
 .btn-rent:hover {
-    background-color: #000;
+    background-color:#BCCCDC;
 }
 
 .btn-disabled {
@@ -146,8 +147,9 @@
 
 /* Section headers */
 .section-header {
+    background-color: #f8f9fa;
+    text-align: center;
     margin: 20px 0;
     padding: 10px;
-    background: #f8f9fa;
     border-radius: 5px;
 }

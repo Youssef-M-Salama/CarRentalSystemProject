@@ -420,8 +420,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                             <td>
                                 <?php if (!empty($car['image'])): ?>
                                     <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
-                                         alt="<?= htmlspecialchars($car['name']) ?>" 
-                                         width="50">
+                                        alt="<?= htmlspecialchars($car['name']) ?>" 
+                                        width="50">
                                 <?php else: ?>
                                     No Image
                                 <?php endif; ?>
@@ -468,8 +468,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                                 <td>
                                     <?php if (!empty($car['image'])): ?>
                                         <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
-                                             alt="<?= htmlspecialchars($car['name']) ?>" 
-                                             width="50">
+                                            alt="<?= htmlspecialchars($car['name']) ?>" 
+                                            width="50">
                                     <?php else: ?>
                                         No Image
                                     <?php endif; ?>
@@ -549,8 +549,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                             </div>
                             <div class="rental-request-content">
                                 <img src="../images/<?= htmlspecialchars($request['image']) ?>" 
-                                     alt="<?= htmlspecialchars($request['car_name']) ?>" 
-                                     class="rental-car-image">
+                                    alt="<?= htmlspecialchars($request['car_name']) ?>" 
+                                    class="rental-car-image">
                                 <div class="rental-info">
                                     <p><strong>User:</strong> <?= htmlspecialchars($request['username']) ?></p>
                                     <p><strong>Car:</strong> <?= htmlspecialchars($request['car_name']) ?> (<?= htmlspecialchars($request['model']) ?>)</p>

@@ -11,12 +11,12 @@
   }
   
   .btn-rent {
-    background-color: #000;
+    background-color:#9AA6B2;
     color: white;
   }
   
   .btn-rent:hover {
-    background-color: #950101;
+    background-color:#BCCCDC;
     transform: scale(1.05);
   }
   
