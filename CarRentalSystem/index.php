@@ -152,6 +152,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sort-filter.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="offers.css">
+
     
 </head>
 
@@ -396,6 +398,9 @@ function renderCarCard($car) {
     $emptyStars = 5 - $fullStars - $halfStar;
 
     ob_start(); ?>
+
+  
+
     <div class="card">
         <!-- Car Image -->
         <img src="<?= $image ?>" alt="<?= $name ?>">
@@ -434,7 +439,6 @@ function renderCarCard($car) {
                 </span>
             </p>
         </div>
-        
         <!-- Rental Button -->
         <?php if ($status === 'available'): ?>
             <form method="GET" action="rent_request.php">
@@ -448,3 +452,7 @@ function renderCarCard($car) {
     <?php return ob_get_clean();
 }
 ?>
+
+
+
+

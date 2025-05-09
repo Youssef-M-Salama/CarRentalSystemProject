@@ -68,208 +68,65 @@ if ($result->num_rows == 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Special Offers - Car Rental System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .offer-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            background: white;
-            overflow: hidden;
-        }
-        .offer-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        .offer-header {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            padding: 20px;
-            position: relative;
-        }
-        .offer-header::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 20px;
-            background: white;
-            border-radius: 0 0 15px 15px;
-        }
-        .discount-badge {
-            background: #28a745;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 10px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .car-info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border: 1px solid #e9ecef;
-        }
-        .validity {
-            color: #6c757d;
-            font-size: 0.9rem;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-        .section-title {
-            color: #007bff;
-            margin-bottom: 30px;
-            font-weight: bold;
-            text-align: center;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #007bff, #0056b3);
-        }
-        .no-offers {
-            text-align: center;
-            padding: 50px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .car-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease;
-        }
-        .car-image:hover {
-            transform: scale(1.05);
-        }
-        .price-info {
-            background: #e9ecef;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-        .original-price {
-            text-decoration: line-through;
-            color: #dc3545;
-        }
-        .discounted-price {
-            color: #28a745;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        .rent-button {
-            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-            border: none;
-            padding: 12px 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .rent-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-        }
-        .user-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .user-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #007bff;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .user-name {
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-        .user-role {
-            font-size: 0.7rem;
-            opacity: 0.8;
-        }
-    </style>
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="offers.css">
+    
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.php">Car Rental System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="my_rental.php">My Rentals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="offers.php">Special Offers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about us.html">About Us</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <div class="user-profile">
-                            <div class="user-avatar">
-                                <?php echo strtoupper(substr($user_name, 0, 1)); ?>
-                            </div>
-                            <div class="user-info">
-                                <span class="user-name"><?php echo htmlspecialchars($user_name); ?></span>
-                                <span class="user-role"><?php echo ucfirst($user_role); ?></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header>
+        <h1>Car Rental Service</h1>
+        <nav>
+            <ul>
+                <!-- Home link visible to all users -->
+                <li><a href="index.php">Home</a></li>
+                
+                <!-- Links visible only to logged-in users -->
+                <?php if (isset($_SESSION['user'])): ?>
+                    <li><a href="my_rental.php">My Rentals</a></li>
+                    
+                    <!-- Special Offers for all users -->
+                    <li><a href="offers.php">Special Offers</a></li>
+                    
+                    <!-- Admin-only dashboard link -->
+                    <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+                        <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
+                    <?php endif; ?>
+                    
+                    <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
+                    
+                    <?php else: ?>
+                        <!-- Links for non-logged-in users -->
+                        <li><a href="Login-Signup-Logout/login.php">Login</a></li>
+                        <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+                        <?php endif; ?>
+                        
+                        <li><a href="about us.html">About Us</a></li>
+                        <!-- Profile icon link -->
+                        <li>
+                            <a href="profile.php" class="profile-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </a>
+                        </li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="container mt-5 mb-5">
         <h2 class="text-center section-title">Special Offers</h2>
@@ -333,7 +190,53 @@ if ($result->num_rows == 0) {
             </div>
         <?php endif; ?>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<footer>
+        <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@carrentalservice.com</p>
+                <p>Phone: 0000000</p>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about us.html">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="footer-section">
+                <h3>Subscribe</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html> 

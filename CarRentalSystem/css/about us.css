@@ -1,86 +1,107 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f9f9f9;
-  color: #333;
-}
 
-.container {
-  width: 90%;
-  max-width: 1000px;
+.about-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
   margin: 40px auto;
   padding: 40px 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.about-container h1 {
+  width: 300px;
+  margin: auto;
+  border-bottom: 2px solid #9AA6B2;
   text-align: center;
+  margin-bottom: 50px;
+  padding: 15px;
+  color:#9AA6B2;
+}
+
+.about-section-container{
+  display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.about-section {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 40%;
+  border-bottom:2px solid#9AA6B2;
   margin-bottom: 30px;
-  color: #1e88e5;
+  gap: 25px;
+  padding: 25px;
 }
 
-h2 {
-  color: #1e88e5;
-}
-
-.section {
-  margin-bottom: 40px;
-}
-
-.section h2 {
-  border-left: 5px solid #1e88e5;
+.about-section h2 {
+  color:#9AA6B2;
+  border-left: 5px solid#9AA6B2;
   padding-left: 10px;
 }
 
-.section p {
+.about-section p {
   margin-bottom: 20px;
 }
-
-.features-table {
-  width: 90%;
-  border-collapse: collapse;
-  margin: 20px auto;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-top: 3px solid #1e88e5;
-}
-
-.features-table tr:nth-child(odd) {
-  background-color: #f4f4f4;
-}
-
-.features-table td {
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #ddd;
-  vertical-align: middle;
-}
-
-/* تخصيص الأعمدة الخاصة بالصور */
-.features-table td:first-child,
-.features-table td:last-child {
-  width: 25%;
-  height: 250px;
-}
-
-/* تنسيق الصور داخل الجدول */
-.features-table td img {
+.features-container{
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: auto;
+  margin: 40px auto;
+  padding: 40px 20px;
+  background-color: #fff;
 }
 
-/* تخصيص عمود النص */
-.features-table td:nth-child(2) {
-  text-align: left;
-  font-size: 16px;
-  line-height: 1.6;
+.features-row-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+  }
+
+.features-container h1{
+  width: 300px;
+  margin: auto;
+  border-bottom: 2px solid #9AA6B2;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 15px;
+  color:#9AA6B2;
+
+}
+.features-container .row{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding: 25px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.features-row-container p{
+  width: 70%;
+}
+/* تنسيق الصور داخل الجدول */
+ .features-img {
+    width: 30%;
+    object-fit: contain;
+    border-radius: 8px;
+    padding: 0;
+}
+.features-img img {
+  width: 300px;
+  height: auto;
+  padding: 0;
 }
 
-.features-table td:nth-child(2) p {
-  margin: 10px 0;
-}
