@@ -25,44 +25,31 @@
 </head>
 <body>
       <header>
-        <h1>Car Rental Service</h1>
-        <nav>
-            <ul>
-                <!-- Home link visible to all users -->
-                <li><a href="index.php">Home</a></li>
-                
-                <!-- Links visible only to logged-in users -->
-                <?php if (isset($_SESSION['user'])): ?>
-                    <li><a href="my_rental.php">My Rentals</a></li>
-                    
-                    <!-- Special Offers for all users -->
-                    <li><a href="offers.php">Special Offers</a></li>
-                    
-                    <!-- Admin-only dashboard link -->
-                    <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                        <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
-                    <?php endif; ?>
-                    
-                    <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
-                    
-                    <?php else: ?>
-                        <!-- Links for non-logged-in users -->
-                        <li><a href="Login-Signup-Logout/login.php">Login</a></li>
-                        <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
-                        <?php endif; ?>
-                        
-                        <li><a href="about us.html">About Us</a></li>
-                        <!-- Profile icon link -->
-                        <li>
-                            <a href="profile.php" class="profile-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                                </svg>
-                            </a>
-                        </li>
-            </ul>
-        </nav>
-    </header>
+    <h1>Car Rental Service</h1>
+    <nav>
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        
+        <?php if (isset($_SESSION['user'])): ?>
+          <li><a href="my_rental.php">My Rentals</a></li>
+          <li><a href="offers.php">Special Offers</a></li>
+        <?php else: ?>
+          <li><a href="Login-Signup-Logout/login.php">Login</a></li>
+          <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+        <?php endif; ?>
+        
+        <li><a href="about us.html" class="active">About Us</a></li>
+        
+        <li>
+          <a href="profile.php" class="profile-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
     <!-- Main Content Section -->
   <main>
   <div class="about-container">
@@ -112,9 +99,9 @@
         <p><b>1- Your Trusted Car Rental Partner:</b> We don't just provide vehicles — we provide peace of mind. From the moment you land on our website or step into one of our offices, we are committed to giving you a rental experience that is seamless, trustworthy, and reliable. We understand how important it is to feel secure and supported when you're renting a vehicle, especially in unfamiliar places or during important trips. That's why our team goes the extra mile to ensure transparency, flexibility, and top-tier customer service at every stage.</p>
       </div>
       <div class="row">
+        <p><b>2- Rent With or Without a Driver:</b> We believe in giving you full control over your travel experience. That's why we offer both self-drive and chauffeur-driven rental options. If you prefer the freedom to explore at your own pace and make spontaneous stops, our self-drive option is perfect for you. With easy pick-up and return processes, minimal paperwork, and well-maintained vehicles, you'll be on the road in no time. On the other hand, if you'd rather relax and focus on your meetings, sightseeing, or family time, you can book one of our experienced and professional drivers.</p>
         <div class="features-img">
         <img src="../CarRentalSystem/images/WhatsApp Image 2025-04-16 at 6.14.22 PM.jpeg" alt="Driver and without Driver" /></div>
-        <p><b>2- Rent With or Without a Driver:</b> We believe in giving you full control over your travel experience. That's why we offer both self-drive and chauffeur-driven rental options. If you prefer the freedom to explore at your own pace and make spontaneous stops, our self-drive option is perfect for you. With easy pick-up and return processes, minimal paperwork, and well-maintained vehicles, you'll be on the road in no time. On the other hand, if you'd rather relax and focus on your meetings, sightseeing, or family time, you can book one of our experienced and professional drivers.</p>
       </div>
       <div class="row">
         <div class="features-img">
@@ -122,9 +109,9 @@
         <p><b>3- Affordable Prices, Premium Quality:</b> Our pricing philosophy is simple: offer top-quality service at competitive, transparent rates. We understand that customers want value without compromising on comfort or safety, and that's exactly what we deliver. Whether you need an economy car for a quick city ride or a premium SUV for a long road trip, we've got options for every budget. Unlike many competitors, we don't believe in hidden fees or last-minute surprises. Our pricing is clear, upfront, and tailored to suit your rental duration and needs. We also offer discounts on long-term rentals, corporate packages, and loyalty rewards for our returning customers.</p>
       </div>
       <div class="row">        
+        <p><b>4- Wide Range of Vehicles for Every Need:</b> No two trips are alike, and that's why we offer a diverse fleet of vehicles to meet every customer's needs. Whether you're a solo traveler, a couple on a romantic getaway, a family on vacation, or a company in need of transportation for employees, we have the right car for you. Choose from compact hatchbacks for easy city driving, sleek sedans for comfort, powerful SUVs for adventure, or luxury models for a stylish ride. Each vehicle comes equipped with the latest safety and comfort features, including air conditioning, Bluetooth connectivity, GPS navigation (optional), and ample luggage space.</p>
         <div class="features-img">
         <img src="../CarRentalSystem/images/wide range.jpg" alt="Wide Range of Vehicles for Every Need" /></div>
-        <p><b>4- Wide Range of Vehicles for Every Need:</b> No two trips are alike, and that's why we offer a diverse fleet of vehicles to meet every customer's needs. Whether you're a solo traveler, a couple on a romantic getaway, a family on vacation, or a company in need of transportation for employees, we have the right car for you. Choose from compact hatchbacks for easy city driving, sleek sedans for comfort, powerful SUVs for adventure, or luxury models for a stylish ride. Each vehicle comes equipped with the latest safety and comfort features, including air conditioning, Bluetooth connectivity, GPS navigation (optional), and ample luggage space.</p>
       </div>
       </div>
     </div>

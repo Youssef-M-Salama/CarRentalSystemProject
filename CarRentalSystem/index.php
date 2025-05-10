@@ -160,45 +160,33 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 <body>
     
     <!-- Website Header Section -->
-    <header>
-        <h1>Car Rental Service</h1>
-        <nav>
-            <ul>
-                <!-- Home link visible to all users -->
-                <li><a href="index.php">Home</a></li>
-                
-                <!-- Links visible only to logged-in users -->
-                <?php if (isset($_SESSION['user'])): ?>
-                    <li><a href="my_rental.php">My Rentals</a></li>
-                    
-                    <!-- Special Offers for all users -->
-                    <li><a href="offers.php">Special Offers</a></li>
-                    
-                    <!-- Admin-only dashboard link -->
-                    <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                        <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
-                    <?php endif; ?>
-                    
-                    <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
-                    
-                    <?php else: ?>
-                        <!-- Links for non-logged-in users -->
-                        <li><a href="Login-Signup-Logout/login.php">Login</a></li>
-                        <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
-                        <?php endif; ?>
-                        
-                        <li><a href="about us.html">About Us</a></li>
-                        <!-- Profile icon link -->
-                        <li>
-                            <a href="profile.php" class="profile-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                                </svg>
-                            </a>
-                        </li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <h1>Car Rental Service</h1>
+    <nav>
+      <ul>
+        <li><a href="index.php" class="active">Home</a></li>
+        
+        <?php if (isset($_SESSION['user'])): ?>
+          <li><a href="my_rental.php">My Rentals</a></li>
+          <li><a href="offers.php">Special Offers</a></li>
+          <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
+        <?php else: ?>
+          <li><a href="Login-Signup-Logout/login.php">Login</a></li>
+          <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+        <?php endif; ?>
+        
+        <li><a href="about us.html">About Us</a></li>
+        
+        <li>
+          <a href="profile.php" class="profile-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
     <!-- Main Content Section -->
     <main>

@@ -100,7 +100,7 @@ if ($result->num_rows == 0) {
                     <li><a href="my_rental.php">My Rentals</a></li>
                     
                     <!-- Special Offers for all users -->
-                    <li><a href="offers.php">Special Offers</a></li>
+                    <li><a href="offers.php" class="active" >Special Offers</a></li>
                     
                     <!-- Admin-only dashboard link -->
                     <?php if ($_SESSION['user']['role'] === 'admin'): ?>

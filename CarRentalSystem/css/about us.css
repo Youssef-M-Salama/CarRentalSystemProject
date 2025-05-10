@@ -1,4 +1,49 @@
-
+header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+    }
+    
+    header nav ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 5px 10px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    /* تنسيق العنصر النشط */
+    header nav ul li a.active {
+      font-weight: bold;
+      transform: scale(1.1);
+    }
+    
+    header nav ul li a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 2px;
+      background-color: white;
+    }
+    
+    /* تأثير hover */
+     header nav ul li a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 2px;
+      background-color: white;
+    }
+    /* أيقونة البروفايل */
+    header nav ul li a.profile-link.active svg path {
+      fill: #0d6efd;
+    }
+    
 .about-container {
   display: flex;
   flex-direction: column;
@@ -88,9 +133,13 @@
     padding: 25px;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: center;
+    border-bottom: 3px solid#9AA6B2;
+  
+
 }
 .features-row-container p{
-  width: 70%;
+  width: 40%;
 }
 /* تنسيق الصور داخل الجدول */
  .features-img {

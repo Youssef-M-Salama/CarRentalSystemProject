@@ -10,7 +10,51 @@ header {
     justify-content: space-between;
   }
   
-
+header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+    }
+    
+    header nav ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 5px 10px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    /* تنسيق العنصر النشط */
+    header nav ul li a.active {
+      font-weight: bold;
+      transform: scale(1.1);
+    }
+    
+    header nav ul li a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 2px;
+      background-color: white;
+    }
+    
+    /* تأثير hover */
+     header nav ul li a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 2px;
+      background-color: white;
+    }
+    /* أيقونة البروفايل */
+    header nav ul li a.profile-link.active svg path {
+      fill: #0d6efd;
+    }
   header h1 {
     margin: 0;
     font-size: 2rem;
@@ -35,19 +79,6 @@ header {
     transition: background 0.3s ease, transform 0.3s ease;
   }
   
-  nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-  }
+
   
-  /* Special styling for My Rentals link */
-  nav ul li a[href="my_rental.php"] {
-    background: rgba(255, 255, 255, 0.3);
-    font-weight: bold;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-  }
   
-  nav ul li a[href="my_rental.php"]:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.1);
-  }

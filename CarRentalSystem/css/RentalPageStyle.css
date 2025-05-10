@@ -1,3 +1,99 @@
+        .rental-request {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .rental-request:hover {
+            transform: translateY(-5px);
+        }
+        .rental-status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status-approved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .car-image {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .rental-info {
+            display: flex;
+            align-items: flex-start;
+        }
+        .car-details {
+            flex-grow: 1;
+        }
+        .rating-form {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .rating-form select, .rating-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .rating-form button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .rating-form button:hover {
+            background: #218838;
+        }
+        .star-rating {
+            color: #ffc107;
+            font-size: 1.2em;
+        }
+        .rental-dates {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .no-rentals {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .no-rentals a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .no-rentals a:hover {
+            text-decoration: underline;
+        }
+
+
+
+        
 .my-rentals {
     max-width: 1000px;
     margin: 0 auto;
