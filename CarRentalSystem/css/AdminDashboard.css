@@ -1,0 +1,221 @@
+/* Tab Navigation Styles */
+.tab-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    font-family: "League Spartan", sans-serif;
+}
+
+.tab-navigation a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #9AA6B2;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.tab-navigation a:hover {
+    background-color: #BCCCDC;
+    transform: translateY(-2px);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Notification Badge Styles */
+.notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #f44336;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1.2;
+    transition: transform 0.3s ease;
+}
+.notification-badge:hover {
+    transform: scale(1.1);
+}
+
+/* Rental Request Styles */
+.rental-request {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    font-family: "League Spartan", sans-serif;
+}
+.rental-request:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rental-request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rental-request-content {
+    display: flex;
+    gap: 20px;
+}
+
+.rental-car-image {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+.rental-car-image:hover {
+    transform: scale(1.05);
+}
+
+.rental-info {
+    flex-grow: 1;
+}
+
+.rental-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.status-pending {
+    color: #7a5d00;
+    background-color: #fffbe4;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.status-approved {
+    color: #1e7e34;
+    background-color: #ecffe8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: #99151b;
+    background-color: #ffe6e7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.btn-approve, .btn-reject {
+    background-color: #9AA6B2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-approve:hover,
+.btn-reject:hover {
+    background-color: #BCCCDC;
+    transform: translateY(-1px);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #9AA6B2;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Form Styles */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "League Spartan", sans-serif;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+button[type="submit"] {
+    background-color: #9AA6B2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+button[type="submit"]:hover {
+    background-color: #BCCCDC;
+    transform: translateY(-1px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Error Message Styles */
+.error-message {
+    background-color: #ffe6e7;
+    color: #99151b;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.3s ease;
+    font-family: "League Spartan", sans-serif;
+}
