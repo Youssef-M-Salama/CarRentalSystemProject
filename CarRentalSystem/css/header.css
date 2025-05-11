@@ -1,23 +1,28 @@
-header {
+.bg-body-tertiary {
     font-family: "League Spartan", sans-serif ;
-    background-color:#9AA6B2;
-    color: white;
+    background-color:#9AA6B2 !important; 
+    color: white !important;
     padding: 20px 40px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    border-radius: 0 0 40px 40px;
+    width: fit-content;
+    margin: auto;
+    transition: .4s ease-in-out;
+    text-align: center;
+    gap: 30px;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
   }
   
-header nav ul {
+.navbar-expand-lg .navbar-nav {
       list-style: none;
       display: flex;
       gap: 20px;
       padding: 0;
     }
     
-    header nav ul li a {
+    .navbar-expand-lg .navbar-nav .nav-link {
       text-decoration: none;
       color: white;
       padding: 5px 10px;
@@ -26,12 +31,12 @@ header nav ul {
     }
     
     /* تنسيق العنصر النشط */
-    header nav ul li a.active {
+    .navbar-expand-lg .navbar-nav .nav-link.active {
       font-weight: bold;
       transform: scale(1.1);
     }
     
-    header nav ul li a.active::after {
+    .navbar-expand-lg .navbar-nav .nav-link.active::after {
       content: '';
       position: absolute;
       bottom: -5px;
@@ -42,7 +47,7 @@ header nav ul {
     }
     
     /* تأثير hover */
-     header nav ul li a:hover::after {
+    .navbar-expand-lg .navbar-nav .nav-link:hover::after {
       content: '';
       position: absolute;
       bottom: -5px;
@@ -52,25 +57,32 @@ header nav ul {
       background-color: white;
     }
     /* أيقونة البروفايل */
-    header nav ul li a.profile-link.active svg path {
-      fill: #0d6efd;
+    .nav-link .profile-link svg path{
+      fill: #fff;
     }
-  header h1 {
-    margin: 0;
+    .profile-link.active svg path {
+      fill: #fff;
+    }
+    
+  .navbar-brand {
+    margin-bottom: 0;
     font-size: 2rem;
     letter-spacing: 1px;
+    color: #fff;
+  }
+  .navbar-brand:hover {
+  color: inherit !important; 
   }
   
-  nav ul {
+  .navbar-expand-lg .navbar-nav {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
     display: flex;
     justify-content: center;
     gap: 20px;
   }
   
-  nav ul li a {
+  .navbar-expand-lg .navbar-nav .nav-link {
     color: white;
     text-decoration: none;
     font-weight: 500;
