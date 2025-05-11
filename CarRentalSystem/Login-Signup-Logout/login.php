@@ -74,39 +74,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../css/RentalPageStyle.css">
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../css/forms.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- Website Header Section -->
-<header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
-    <nav class="container-fluid d-flex justify-content-center align-items-center">
-    <h1 class="navbar-brand">Car Rental Service</h1>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a href="index.php" class="nav-link" >Home</a></li>
+    <header>
+    <h1>Car Rental Service</h1>
+    <nav>
+      <ul>
+        <li class="nav-item"><a href="../index.php" class="nav-link">Home</a></li>
         
         <?php if (isset($_SESSION['user'])): ?>
-          <li class="nav-item"><a class="nav-link" href="./my_rental.php">My Rentals</a></li>
+          <li class="nav-item"><a class="nav-link"  href="my_rental.php">My Rentals</a></li>
           <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
         <?php else: ?>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="Login-Signup-Logout/login.php">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+          <li class="nav-item"><a href="login.php" class=" nav-link active" aria-current="page">Login</a></li>
+          <li class="nav-item" ><a href="signup.php" class="nav-link">Sign Up</a></li>
         <?php endif; ?>
         
-        <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+        <li class="nav-item"><a href="../about us.html" class="nav-link" >About Us</a></li>
         
         <li class="nav-item">
-            <a href="profile.php" class=" nav-link profile-link">
+          <a href="../profile.php" class="profile-link nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
             </svg>
-            </a>
+          </a>
         </li>
       </ul>
-      </div>
     </nav>
   </header>
-
     <main class="login-container">
         <h2>Login</h2>
 

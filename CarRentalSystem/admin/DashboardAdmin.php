@@ -99,224 +99,24 @@ $unavailable_cars = mysqli_query($conn, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main-content.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <style>
-        /* Tab Navigation Styles */
-        .tab-navigation {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .tab-navigation a {
-            text-decoration: none;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .tab-navigation a:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Notification Badge Styles */
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #dc3545;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 50%;
-            font-size: 0.8em;
-            font-weight: bold;
-            min-width: 20px;
-            text-align: center;
-            line-height: 1.2;
-            transition: transform 0.3s ease;
-        }
-        .notification-badge:hover {
-            transform: scale(1.1);
-        }
-
-        /* Rental Request Styles */
-        .rental-request {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .rental-request:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .rental-request-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .rental-request-content {
-            display: flex;
-            gap: 20px;
-        }
-        .rental-car-image {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 4px;
-            transition: transform 0.3s ease;
-        }
-        .rental-car-image:hover {
-            transform: scale(1.05);
-        }
-        .rental-info {
-            flex-grow: 1;
-        }
-        .rental-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .status-pending {
-            color: #856404;
-            background-color: #fff3cd;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .status-approved {
-            color: #155724;
-            background-color: #d4edda;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .status-rejected {
-            color: #721c24;
-            background-color: #f8d7da;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .btn-approve {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-approve:hover {
-            background-color: #218838;
-            transform: translateY(-1px);
-        }
-        .btn-reject {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-reject:hover {
-            background-color: #c82333;
-            transform: translateY(-1px);
-        }
-
-        /* Table Styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        /* Form Styles */
-        form {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        button[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-            transform: translateY(-1px);
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Error Message Styles */
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-    </style>
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <h1>Admin Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Back to Home</a></li>
-                <li><a href="../Login-Signup-Logout/logout.php">Logout</a></li>
+    <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+        <nav class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h1 class="navbar-brand">Admin Dashboard</h1>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a  class="nav-link" href="../index.php">Back to Home</a></li>
+                <li class="nav-item"><a  class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
             </ul>
+            </div>
         </nav>
     </header>
 
