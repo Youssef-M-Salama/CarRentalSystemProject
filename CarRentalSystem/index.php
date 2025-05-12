@@ -283,7 +283,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     ? '<i class="fas fa-car"></i> Standard Vehicles' 
                     : '<i class="fas fa-car"></i> Available Cars' ?>
             </h3>
-            <div class="car-grid">
+            <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
+                <div class="row">
                 <?php if ($regularResult && mysqli_num_rows($regularResult) > 0): ?>
                     <?php while ($car = mysqli_fetch_assoc($regularResult)): ?>
                         <?= renderCarCard($car) ?>
@@ -291,6 +292,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <?php else: ?>
                     <p class="no-cars">No cars available</p>
                 <?php endif; ?>
+                </div>
             </div>
         </div>
     </main>
@@ -396,10 +398,10 @@ function renderCarCard($car) {
 
     <div class="card">
         <!-- Car Image -->
-        <img src="<?= $image ?>" alt="<?= $name ?>">
-        
+        <img src="<?= $image ?>" class="card-img-top alt="<?= $name ?>">
+        <div class="card-body">
         <!-- Car Details -->
-        <h3><?= "$name ($model)" ?></h3>
+        <h3 class="card-title"><?= "$name ($model)" ?></h3>
         
         <!-- Rating Stars -->
         <div class="rating-stars">
@@ -415,9 +417,9 @@ function renderCarCard($car) {
             <span style="margin-left: 5px; font-size: 0.9em; color: #666;">
                 <?= $averageRating ?>/5
             </span>
-        </div>
+            </div>
 
-        <div class="car-details">
+        <div class="car-details card-text">
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
             <p><strong>Status:</strong> 
@@ -441,6 +443,7 @@ function renderCarCard($car) {
         <?php else: ?>
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
+        </div>
     </div>
     <?php return ob_get_clean();
 }
