@@ -176,9 +176,10 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                         <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
                         <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
                         <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
-                    <?php else: ?>
-                        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+                        <?php else: ?>
+                            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
                     <?php endif; ?>
                     
                     <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>

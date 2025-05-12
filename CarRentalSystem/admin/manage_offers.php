@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssdssssi", $title, $description, $discount_percentage, $user_type, $start_date, $end_date, $status, $car_id);
-    
+
     if ($stmt->execute()) {
         $success_message = "Offer created successfully!";
     } else {
@@ -49,57 +49,35 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Premium Offers - Admin Panel</title>
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css ">
+    <link rel="stylesheet" href="../css/AdminDashboard.css">
+    <link rel="stylesheet" href="../css/header.css">
+
     <style>
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        main {
+            padding: 40px;
         }
-        .admin-nav {
-            margin-bottom: 20px;
-        }
-        .admin-nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            background: #f0f0f0;
-            transition: background 0.3s;
-        }
-        .admin-nav a:hover {
-            background: #e0e0e0;
-        }
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-        }
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-        }
+
         .form-section {
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -108,190 +86,260 @@ $result = $conn->query($sql);
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         .btn {
-            background: #28a745;
+            background-color: #9AA6B2;
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
+
         .btn:hover {
-            background: #218838;
+            background-color: #BCCCDC;
+            transform: translateY(-1px);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: "League Spartan", sans-serif;
+            font-size: 0.95rem;
         }
+
         th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         th {
-            background: #f8f9fa;
+            background-color: #9AA6B2;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
             font-weight: bold;
         }
-        .badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
+
         .type-client {
-            background: #6c757d;
-            color: white;
+            background: #fff3e0;
+            color: #f57c00;
         }
+
         .type-premium {
-            background: #ffc107;
-            color: black;
+            background: #e3f2fd;
+            color: #1976d2;
         }
+
         .type-all {
-            background: #17a2b8;
-            color: white;
+            background: #f1f1f1;
+            color: #333;
         }
+
         .status-active {
-            background: #28a745;
-            color: white;
+            background: #ecffe8;
+            color: #1e7e34;
         }
+
         .status-inactive {
-            background: #dc3545;
+            background: #ffe6e7;
+            color: #99151b;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background: #ecffe8;
+            color: #1e7e34;
+        }
+
+        .alert-error {
+            background: #ffe6e7;
+            color: #99151b;
+        }
+
+        .tab-navigation {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-family: "League Spartan", sans-serif;
+        }
+
+        .tab-navigation a {
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #9AA6B2;
             color: white;
+            border-radius: 5px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-navigation a:hover {
+            background-color: #BCCCDC;
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Manage Premium Offers</h1>
-        
-        <div class="admin-nav">
-            <a href="DashboardAdmin.php"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
-            <a href="../index.php"><i class="fas fa-home"></i> Back to Home</a>
-            <a href="../Login-Signup-Logout/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+<!-- Header Section -->
+<header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+    <nav class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h1 class="navbar-brand">Manage Premium Offers</h1>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="DashboardAdmin.php">Back to Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.php">Back to Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
+            </ul>
         </div>
-        
-        <?php if (isset($success_message)): ?>
-            <div class="alert alert-success"><?php echo htmlspecialchars($success_message); ?></div>
-        <?php endif; ?>
-        
-        <?php if (isset($error_message)): ?>
-            <div class="alert alert-error"><?php echo htmlspecialchars($error_message); ?></div>
-        <?php endif; ?>
+    </nav>
+</header>
 
-        <div class="form-section">
-            <h2>Create New Offer</h2>
-            <form method="POST">
-                <div class="form-group">
-                    <label for="title">Offer Title</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
+<main>
+    <?php if (isset($success_message)): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success_message) ?></div>
+    <?php elseif (isset($error_message)): ?>
+        <div class="alert alert-error"><?= htmlspecialchars($error_message) ?></div>
+    <?php endif; ?>
 
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" required></textarea>
-                </div>
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <a href="#create-offer" onclick="showTab('create-offer')">Create Offer</a>
+        <a href="#offers-list" onclick="showTab('offers-list')">Current Offers</a>
+    </div>
 
-                <div class="form-group">
-                    <label for="discount_percentage">Discount Percentage</label>
-                    <input type="number" id="discount_percentage" name="discount_percentage" min="0" max="100" step="0.01" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="user_type">User Type</label>
-                    <select id="user_type" name="user_type" required>
-                        <option value="client">Regular Users</option>
-                        <option value="premium">Premium Users</option>
-                        <option value="all">All Users</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="start_date">Start Date</label>
-                    <input type="date" id="start_date" name="start_date" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="end_date">End Date</label>
-                    <input type="date" id="end_date" name="end_date" required>
-                </div>
-
-                
-
-                  <div class="form-group">
-                    <label for="car_id">Select a Car </label>
-                    <select id="car_id" name="car_id">
-                        <!-- Disabled placeholder option (outside optgroup) -->
-                        <option disabled selected>Select a car</option>
-                        
-                        <!-- Grouped options -->
-                        <optgroup label="All cars">
+    <!-- Create Offer Form -->
+    <section id="create-offer" class="tab-content active">
+        <h3>Create New Offer</h3>
+        <form method="POST">
+            <div class="form-group">
+                <label for="title">Offer Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="discount_percentage">Discount Percentage</label>
+                <input type="number" id="discount_percentage" name="discount_percentage" min="0" max="100" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="user_type">User Type</label>
+                <select id="user_type" name="user_type" required>
+                    <option value="client">Regular Users</option>
+                    <option value="premium">Premium Users</option>
+                    <option value="all">All Users</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+            <div class="form-group">
+                <label for="car_id">Select a Car</label>
+                <select id="car_id" name="car_id">
+                    <option disabled selected>Select a car</option>
+                    <optgroup label="All cars">
                         <?php while ($car = $cars_result->fetch_assoc()): ?>
-                            <option value="<?php echo $car['id']; ?>">
-                            <?php echo htmlspecialchars($car['name'] . ' ' . $car['model']); ?>
+                            <option value="<?= $car['id'] ?>">
+                                <?= htmlspecialchars($car['name'] . ' ' . $car['model']) ?>
                             </option>
                         <?php endwhile; ?>
-                        </optgroup>
-                    </select>
-                </div>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Create Offer</button>
+        </form>
+    </section>
 
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" required>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn">Create Offer</button>
-            </form>
-        </div>
-
-        <div class="offers-list">
-            <h2>Current Offers</h2>
-            <table>
-                <thead>
+    <!-- Current Offers Table -->
+    <section id="offers-list" class="tab-content">
+        <h3>Current Offers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Discount</th>
+                    <th>User Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Car</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($offer = $result->fetch_assoc()): ?>
                     <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Discount</th>
-                        <th>User Type</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Car</th>
-                        <th>Status</th>
+                        <td><?= htmlspecialchars($offer['title']) ?></td>
+                        <td><?= htmlspecialchars($offer['description']) ?></td>
+                        <td><?= $offer['discount_percentage'] ?>%</td>
+                        <td><span class="badge type-<?= $offer['user_type'] ?>"><?= ucfirst($offer['user_type']) ?></span></td>
+                        <td><?= $offer['start_date'] ?></td>
+                        <td><?= $offer['end_date'] ?></td>
+                        <td><?= $offer['car_name'] ? htmlspecialchars($offer['car_name'] . ' ' . $offer['car_model']) : 'All Cars' ?></td>
+                        <td><span class="badge status-<?= $offer['status'] ?>"><?= ucfirst($offer['status']) ?></span></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php while ($offer = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($offer['title']); ?></td>
-                        <td><?php echo htmlspecialchars($offer['description']); ?></td>
-                        <td><?php echo $offer['discount_percentage']; ?>%</td>
-                        <td>
-                            <span class="badge type-<?php echo $offer['user_type']; ?>">
-                                <?php echo ucfirst($offer['user_type']); ?>
-                            </span>
-                        </td>
-                        <td><?php echo $offer['start_date']; ?></td>
-                        <td><?php echo $offer['end_date']; ?></td>
-                        <td>
-                            <?php if ($offer['car_id']): ?>
-                                <?php echo htmlspecialchars($offer['car_name'] . ' ' . $offer['car_model']); ?>
-                            <?php else: ?>
-                                All Cars
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <span class="badge status-<?php echo $offer['status']; ?>">
-                                <?php echo ucfirst($offer['status']); ?>
-                            </span>
-                        </td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
 </body>
-</html> 
+</html>
