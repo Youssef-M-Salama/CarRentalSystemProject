@@ -166,7 +166,10 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
-        
+         <!-- Admin-only dashboard link -->
+                    <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+                        <li class="nav-item"><a class="nav-link" href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
+                    <?php endif; ?>
         <?php if (isset($_SESSION['user'])): ?>
           <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
           <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
