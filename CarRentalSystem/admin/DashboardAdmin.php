@@ -100,13 +100,13 @@ $unavailable_cars = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/AdminDashboard.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main-content.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <style>
+    <!-- <style>
         /* Tab Navigation Styles */
         .tab-navigation {
             display: flex;
@@ -307,7 +307,7 @@ $unavailable_cars = mysqli_query($conn, $query);
             margin-bottom: 20px;
             animation: fadeIn 0.3s ease;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <!-- Header Section -->

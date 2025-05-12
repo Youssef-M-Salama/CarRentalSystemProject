@@ -67,13 +67,15 @@ if ($availability === '1') {
 }
 
 // Exclude premium for regular users
-if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], ['premium', 'admin'])) {
+if (!isset($_SESSION['user'])) {
+    $regularQuery .= " AND category != 'premium'";
+} elseif (isset($_SESSION['user']) && !in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin'])) {
     $regularQuery .= " AND category != 'premium'";
 }
 
 // Prepare premium query
 $premiumQuery = '';
-if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin']) && $class != 'free') {
+if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin']) && $class != 'free') {
     $premiumQuery = "SELECT * FROM cars WHERE category = 'premium' AND (name LIKE '%$search%' OR model LIKE '%$search%')";
 
     if (!empty($type)) {
@@ -153,45 +155,45 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="css/sort-filter.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="offers.css">
-
-    
 </head>
 
 <body>
-    
     <!-- Website Header Section -->
-<header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
-    <nav class="container-fluid d-flex justify-content-center align-items-center">
-    <h1 class="navbar-brand">Car Rental Service</h1>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
-         <!-- Admin-only dashboard link -->
-                    <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+    <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+        <nav class="container-fluid d-flex justify-content-center align-items-center">
+            <h1 class="navbar-brand">Car Rental Service</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
+                    <!-- Admin-only dashboard link -->
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
                         <li class="nav-item"><a class="nav-link" href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
                     <?php endif; ?>
-        <?php if (isset($_SESSION['user'])): ?>
-          <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
-          <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
-        <?php else: ?>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
-        <?php endif; ?>
-        
-        <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
-        
-        <li class="nav-item">
-            <a href="profile.php" class=" nav-link profile-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
-            </a>
-        </li>
-      </ul>
-      </div>
-    </nav>
-  </header>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+                    <?php endif; ?>
+                    
+                    <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                    
+                    <li class="nav-item">
+                        <a href="profile.php" class="nav-link profile-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content Section -->
     <main>
@@ -257,7 +259,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <?php endif; ?>
 
         <!-- Premium Cars Section -->
-        <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin'])): ?>
+        <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin'])): ?>
             <div class="premium-section">
                 <h3 class="section-header">
                     <i class="fas fa-crown"></i> Premium Cars
@@ -277,7 +279,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <!-- Regular Cars Section -->
         <div class="regular-section">
             <h3 class="section-header">
-                <?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium') 
+                <?= (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'premium') 
                     ? '<i class="fas fa-car"></i> Standard Vehicles' 
                     : '<i class="fas fa-car"></i> Available Cars' ?>
             </h3>
@@ -349,7 +351,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     </script>
     
     <!-- bootstrap js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>
 
@@ -391,8 +393,6 @@ function renderCarCard($car) {
     $emptyStars = 5 - $fullStars - $halfStar;
 
     ob_start(); ?>
-
-  
 
     <div class="card">
         <!-- Car Image -->
@@ -445,7 +445,3 @@ function renderCarCard($car) {
     <?php return ob_get_clean();
 }
 ?>
-
-
-
-
