@@ -185,32 +185,28 @@ $rental_requests = mysqli_query($conn, $query);
             <?php endif; ?>
         </div>
     </main>
-
+    <!-- Footer Section -->
     <footer>
         <div class="footer-container">
+            <!-- Contact Information -->
             <div class="footer-section">
                 <h3>Contact Us</h3>
-                <p>Email: info@carrentalservice.com</p>
-                <p>Phone: +1 123-456-7890</p>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
             </div>
+            
+            <!-- Social Media Links -->
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <ul class="social-links">
                     <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
                     <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                     <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="about us.html">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
+            
+            <!-- Newsletter Subscription -->
             <div class="footer-section">
                 <h3>Subscribe</h3>
                 <form>
@@ -219,6 +215,8 @@ $rental_requests = mysqli_query($conn, $query);
                 </form>
             </div>
         </div>
+        
+        <!-- Copyright Notice -->
         <div class="copyright">
             <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
         </div>

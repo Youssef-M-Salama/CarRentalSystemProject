@@ -49,168 +49,27 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Premium Offers - Admin Panel</title>
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css ">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="../css/manage-offers.css">
     <link rel="stylesheet" href="../css/AdminDashboard.css">
+    <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
-
+    <link rel="stylesheet" href="../css/main-content.css">
+    <link rel="stylesheet" href="../css/sort-filter.css">
+    <link rel="stylesheet" href="../css/offers.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
     <style>
-        main {
-            padding: 40px;
-        }
-
-        .form-section {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .btn {
-            background-color: #9AA6B2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background-color: #BCCCDC;
-            transform: translateY(-1px);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-family: "League Spartan", sans-serif;
-            font-size: 0.95rem;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #9AA6B2;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        .type-client {
-            background: #fff3e0;
-            color: #f57c00;
-        }
-
-        .type-premium {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .type-all {
-            background: #f1f1f1;
-            color: #333;
-        }
-
-        .status-active {
-            background: #ecffe8;
-            color: #1e7e34;
-        }
-
-        .status-inactive {
-            background: #ffe6e7;
-            color: #99151b;
-        }
-
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        .alert-success {
-            background: #ecffe8;
-            color: #1e7e34;
-        }
-
-        .alert-error {
-            background: #ffe6e7;
-            color: #99151b;
-        }
-
-        .tab-navigation {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            font-family: "League Spartan", sans-serif;
-        }
-
-        .tab-navigation a {
-            text-decoration: none;
-            padding: 10px 15px;
-            background-color: #9AA6B2;
-            color: white;
-            border-radius: 5px;
-            position: relative;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .tab-navigation a:hover {
-            background-color: #BCCCDC;
-            transform: translateY(-2px);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    
     </style>
 </head>
 <body>
@@ -243,9 +102,9 @@ $result = $conn->query($sql);
     </div>
 
     <!-- Create Offer Form -->
-    <section id="create-offer" class="tab-content active">
-        <h3>Create New Offer</h3>
+    <section id="create-offer" class="tab-content active ">
         <form method="POST">
+            <h3>Create New Offer</h3>
             <div class="form-group">
                 <label for="title">Offer Title</label>
                 <input type="text" id="title" name="title" required>
@@ -331,7 +190,42 @@ $result = $conn->query($sql);
         </table>
     </section>
 </main>
-
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="footer-section">
+                <h3>Subscribe</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+        </div>
+    </footer>
 <script>
     function showTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(function(tab) {
@@ -340,6 +234,7 @@ $result = $conn->query($sql);
         document.getElementById(tabId).classList.add('active');
     }
 </script>
-
+<!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

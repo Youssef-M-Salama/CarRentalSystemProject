@@ -1,18 +1,24 @@
+body{
+    font-family: "League Spartan", sans-serif !important;
+}
+main{
+    padding: 20px !important;
+}
 /* Tab Navigation Styles */
 .tab-navigation {
     display: flex;
-    gap: 10px;
     margin-bottom: 20px;
     flex-wrap: wrap;
-    font-family: "League Spartan", sans-serif;
+    justify-content: space-around;
 }
+
 
 .tab-navigation a {
     text-decoration: none;
     padding: 10px 15px;
     background-color: #9AA6B2;
     color: white;
-    border-radius: 5px;
+    border-radius: 40px;
     position: relative;
     transition: all 0.3s ease;
     font-weight: 500;
@@ -20,7 +26,7 @@
 
 .tab-navigation a:hover {
     background-color: #BCCCDC;
-    transform: translateY(-2px);
+    transform: scale(1.05);
 }
 
 .tab-content {
@@ -146,8 +152,10 @@
 
 /* Table Styles */
 table {
-    width: 100%;
+    margin: 0 auto;
+    width: 60%;
     border-collapse: collapse;
+    border-radius: 40px;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: "League Spartan", sans-serif;
@@ -156,7 +164,7 @@ table {
 
 th, td {
     padding: 12px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
@@ -169,16 +177,25 @@ tr:hover {
     background-color: #f5f5f5;
 }
 
+
 /* Form Styles */
-form {
+.tab-content h3{
+ text-align: center;
+}
+.tab-content form {
+    display: flex;
+    width: 60%;
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: "League Spartan", sans-serif;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
-
-input, select {
+.tab-content input, 
+.tab-content select {
     width: 100%;
     padding: 8px;
     margin: 5px 0;
@@ -190,17 +207,16 @@ input, select {
 button[type="submit"] {
     background-color: #9AA6B2;
     color: white;
-    padding: 10px 20px;
+    padding:  10px 20px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 40px;
     transition: all 0.3s ease;
     font-weight: 500;
+    margin-top: 10px;
 }
 
 button[type="submit"]:hover {
-    background-color: #BCCCDC;
-    transform: translateY(-1px);
+    transform: scale(1.05);
 }
 
 /* Animation */
@@ -219,3 +235,20 @@ button[type="submit"]:hover {
     animation: fadeIn 0.3s ease;
     font-family: "League Spartan", sans-serif;
 }
+
+/* delete form */
+.delete-form{
+    display: flex;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+/* #retrieve-cars table tbody form  {
+    width: 0;
+    margin: 0;
+    background: none;
+} */
+
