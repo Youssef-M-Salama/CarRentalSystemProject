@@ -1,3 +1,6 @@
+body{
+    font-family: "League Spartan", sans-serif !important;
+}        
         .rental-request {
             background: white;
             border-radius: 10px;
@@ -95,7 +98,7 @@
 
         
 .my-rentals {
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 20px;
 }

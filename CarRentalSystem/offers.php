@@ -77,14 +77,16 @@ if ($result->num_rows == 0) {
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Include CSS stylesheets -->
+<link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/offers.css">
+    <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="offers.css">
     
 </head>
 <body>
@@ -175,7 +177,6 @@ if ($result->num_rows == 0) {
             </div>
         <?php else: ?>
             <div class="no-offers">
-                <i class="fas fa-gift fa-3x mb-3" style="color: #007bff;"></i>
                 <h4>No special offers available at the moment</h4>
                 <p class="text-muted">Check back later for exclusive offers!</p>
             </div>

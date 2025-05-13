@@ -67,34 +67,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Rental Request - Car Rental Service</title>
-  <link rel="stylesheet" href="css/general.css">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/main-content.css">
-  <link rel="stylesheet" href="css/buttons.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/forms.css">
-  <link rel="stylesheet" href="css/sort-filter.css">
-  <link rel="stylesheet" href="css/admin-dashboard.css">
-  <link rel="stylesheet" href="css/rent-request.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="css/rent-request.css">
+    <link rel="stylesheet" href="css/AdminDashboard.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/offers.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <header>
-    <h1>Car Rental Service</h1>
-    <nav>
-      <ul>
-        <li><a href="index.php">Home</a></li>
+  <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+    <nav class="container-fluid d-flex justify-content-center align-items-center">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <h1 class="navbar-brand">Car Rental Service</h1>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
         <?php if (isset($_SESSION['user'])): ?>
-          <li><a href="my_rental.php">My Rentals</a></li>
+          <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
           <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-            <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
           <?php endif; ?>
-          <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
-        <?php else: ?>
-          <li><a href="Login-Signup-Logout/login.php">Login</a></li>
-          <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
         <?php endif; ?>
       </ul>
+      </div>
     </nav>
   </header>
 

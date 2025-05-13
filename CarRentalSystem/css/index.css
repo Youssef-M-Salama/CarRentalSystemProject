@@ -1,7 +1,6 @@
 
  /* Container for car grid layout */
  .car-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 80px;
     padding: 20px;
@@ -11,7 +10,9 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Styling for individual car cards */
@@ -20,7 +21,8 @@
     color: #000;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 350px;
+    width: 500px;
+    height: 225px;
     text-align: center;
     align-items: center;
     padding: 0;
@@ -29,10 +31,11 @@
   
 
   .card img {
-    width: 100%;
-    height: 200px;
+    width: 60%;
+    height: 100%;
     object-fit: cover;
-    border-bottom: 1px solid #ddd;
+    padding: 0;
+    margin: 0;
   }
   
   .card h3,
@@ -40,7 +43,12 @@
     text-transform: capitalize;
     margin: 0;
   }
-  
+  .card h3{
+    font-size: 20px;
+  }
+  .card p{
+    font-size: 14px;
+  }
   .card p strong {
     font-weight: bold;
   }
@@ -50,34 +58,131 @@
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+.car-details{
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-body{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.car-name-rate{
+    display: flex;
+    flex-direction: column;
+}
+.card-text{
+    display: flex;
+    flex-direction: column;
+    
+}
+/* buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+ 
+  .btn-rent:hover {
+    background-color:#BCCCDC;
+    transform: scale(1.05);
+  }
+  
+  .btn-disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+/* Rental button styling */
+.btn-rent {
+    background-color:#9AA6B2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-disabled {
+    background-color:#6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    width: 70%;
+    margin-top: 10px;
+    cursor: not-allowed;
+}
+
+
 
 /* Space between premium and regular sections */
 .premium-section {
     margin-bottom: 40px;
 }
 
-/* Responsive car images */
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
+.no-cars{
+    text-align: center;
 }
 
+/* reset-filter */
+.reset-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
+/* filter */
+.filter-car-model{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.filter-car-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 /* Filter box styling */
+.filter-box { 
+    display: none;
+}
+.filter-box.active {
+    display:flex;
+}
 .filter-box {
     display: flex;
     flex-direction: row;
-    width: fit-content;
-    /* gap: 10px; */
+    width: 80%;
     padding: 15px;
     border: 1px solid #ccc;
-    /* margin: 10px 0; */
     background-color: #f9f9f9;
     border-radius: 40px;
     justify-content: center;
     flex-wrap: wrap;
+    margin: 10px auto;
 }
 
 .toggle-btn {
@@ -86,18 +191,16 @@
     border-radius: 40px;
     color: white;
     border: none;
-    cursor: pointer;
-    margin-bottom: 10px;
 }
 
 .apply-button {
+    justify-content: center;
     background-color:#9AA6B2;
     color: white;
     padding: 12px 24px;
     font-size: 16px;
     border: none;
     border-radius: 40px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
@@ -116,7 +219,8 @@
 
 .reset-button {
     display: inline-block;
-    margin-left: 10px;
+    padding: 10px 20px;
+
 }
 
 /* Rating stars styling */
@@ -148,33 +252,6 @@
     color: #f57c00;
 }
 
-/* Rental button styling */
-.btn-rent {
-    background-color:#9AA6B2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-rent:hover {
-    background-color:#BCCCDC;
-}
-
-.btn-disabled {
-    background-color:#6c757d;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 40px;
-    width: 100%;
-    margin-top: 10px;
-    cursor: not-allowed;
-}
 
 /* Section headers */
 .section-header {
@@ -184,8 +261,6 @@
     padding: 10px;
     border-radius: 5px;
 }
-
-
 
 
 main {
@@ -203,3 +278,35 @@ main {
     color:#6c757d;
     font-weight: bold;
   }
+
+  /* تنسيق عام لعناصر الإدخال */
+.filter-box input[type="text"],
+.filter-box input[type="number"],
+.filter-box select {
+    width: 100%;
+    padding: 10px 15px;
+    /* margin: 5px 0; */
+    border: 1px solid #ddd;
+    border-radius: 40px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* تأثير عند التركيز على الإدخال */
+.filter-box input:focus,
+.filter-box select:focus {
+    border-color: #9AA6B2;
+    box-shadow: 0 0 0 2px #6c757d;
+    outline: none;
+}
+
+/* option[value="free"] { color: #28a745; }
+option[value="premium"] { color: #ffc107; font-weight: bold; } */
+
+@media (max-width: 768px) {
+    .filter-box input, .filter-box select {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+}

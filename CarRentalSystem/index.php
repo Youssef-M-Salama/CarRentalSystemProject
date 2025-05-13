@@ -198,20 +198,18 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
     <!-- Main Content Section -->
     <main>
-        <h2>Available Cars</h2>
-        
+        <div class="reset-filter">
         <form method="GET" action="index.php">
             <a href="index.php" class="reset-button">Reset</a>
         </form>
-        
         <br>
-        
         <!-- Filter toggle button -->
         <button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
-
+        </div>
         <!-- Filter box -->
         <div class="filter-box" id="filterBox">
             <form method="GET" action="index.php">
+                <div class="filter-car-details">
                 <label>Price Range:</label><br>
                 <input type="number" min="0" name="min_price" placeholder="Min Price" value="<?= htmlspecialchars($min_price) ?>">
                 <input type="number" min="0" name="max_price" placeholder="Max Price" value="<?= htmlspecialchars($max_price) ?>"><br><br>
@@ -230,7 +228,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <option value="1" <?= $availability === '1' ? 'selected' : '' ?>>Available</option>
                     <option value="0" <?= $availability === '0' ? 'selected' : '' ?>>Not Available</option>
                 </select><br><br>
-
+                </div>
+                <div class="filter-car-model">
                 <label>Car Name:</label>
                 <input type="text" name="name" placeholder="e.g. BMW" value="<?= htmlspecialchars($name) ?>">
                 <br><br>
@@ -249,7 +248,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <option value="free" <?= $class == 'free' ? 'selected' : '' ?>>Free</option>
                     <option value="premium" <?= $class == 'premium' ? 'selected' : '' ?>>Premium</option>
                 </select><br><br>
-
+                </div>
                 <button type="submit" class="apply-button">Apply</button>
             </form>
         </div>
@@ -265,7 +264,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <h3 class="section-header">
                     <i class="fas fa-crown"></i> Premium Cars
                 </h3>
-                <div class="car-grid">
+                <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
+                    <div class="row">
                     <?php if ($premiumResult && mysqli_num_rows($premiumResult) > 0): ?>
                         <?php while ($car = mysqli_fetch_assoc($premiumResult)): ?>
                             <?= renderCarCard($car) ?>
@@ -273,6 +273,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <?php else: ?>
                         <p class="no-cars">No premium cars available</p>
                     <?php endif; ?>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
@@ -336,11 +337,22 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     </footer>
 
     <script>
-        function toggleFilter() {
-            var box = document.getElementById("filterBox");
-            box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+    // تحديد الحالة الأولية للفلتر (مخفي عند تحميل الصفحة)
+    document.addEventListener('DOMContentLoaded', function() {
+        var box = document.getElementById("filterBox");
+        box.style.display = "none";
+    });
+
+    // وظيفة تبديل إظهار/إخفاء الفلتر
+    function toggleFilter() {
+        var box = document.getElementById("filterBox");
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "flex";
+        } else {
+            box.style.display = "none";
         }
-    </script>
+    }
+</script>
     
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
@@ -387,12 +399,12 @@ function renderCarCard($car) {
     ob_start(); ?>
 
     <div class="card">
+        <div class="card-body">
         <!-- Car Image -->
         <img src="<?= $image ?>" class="card-img-top alt="<?= $name ?>">
-        <div class="card-body">
         <!-- Car Details -->
+        <div class="car-details">
         <h3 class="card-title"><?= "$name ($model)" ?></h3>
-        
         <!-- Rating Stars -->
         <div class="rating-stars">
             <?php for ($i = 0; $i < $fullStars; $i++): ?>
@@ -408,8 +420,7 @@ function renderCarCard($car) {
                 <?= $averageRating ?>/5
             </span>
             </div>
-
-        <div class="car-details card-text">
+        <div class=" card-text">
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
             <p><strong>Status:</strong> 
@@ -433,6 +444,7 @@ function renderCarCard($car) {
         <?php else: ?>
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
+        </div>
         </div>
     </div>
     <?php return ob_get_clean();
