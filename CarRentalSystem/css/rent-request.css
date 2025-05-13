@@ -9,7 +9,7 @@
 
 .rental-form h2 {
     margin-top: 0;
-    color: #9AA6B2;
+    color: #9ACBD0;
 }
 
 .rental-form .car-details {
@@ -21,7 +21,8 @@
     width: 100%;
     gap: 10px;
 }
-    .car-info {
+
+.car-info {
     display: flex;
     background: #f8f9fa;
     padding: 15px;
@@ -31,14 +32,15 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
-        }
-        .car-image {
-            width: 45%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
+}
+
+.car-image {
+    width: 45%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
 
 .rental-form .car-image img {
     width: 100%;
@@ -81,14 +83,15 @@
 
 .rental-form .price-calculation {
     margin-top: 10px;
-    background-color: #e9f7ff;
+    background-color: #e0f7fa;
     padding: 10px;
     border-radius: 4px;
     font-weight: bold;
+    color: #006A71;
 }
 
 .success-message {
-    background-color: #d4edda;
+    background-color: #E8F5E9;
     color: #155724;
     padding: 10px;
     border-radius: 4px;
@@ -96,10 +99,9 @@
 }
 
 .error-message {
-    background-color: #f8d7da;
+    background-color: #FFE7E7;
     color: #721c24;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
 }
-    

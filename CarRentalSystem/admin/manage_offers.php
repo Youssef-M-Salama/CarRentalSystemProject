@@ -42,35 +42,26 @@ $sql = "SELECT o.*, c.name as car_name, c.model as car_model
         ORDER BY o.id DESC";
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Premium Offers - Admin Panel</title>
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    <!-- font awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <!-- Include CSS stylesheets -->
-    <link rel="stylesheet" href="../css/manage-offers.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com ">
+    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan :wght@100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css ">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="../css/AdminDashboard.css">
-    <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/main-content.css">
-    <link rel="stylesheet" href="../css/sort-filter.css">
-    <link rel="stylesheet" href="../css/offers.css">
-    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <style>
-    
-    </style>
+    <link rel="stylesheet" href="../css/manage_offers.css">
+    <!-- <link rel="stylesheet" href="../css/forms.css"> -->
 </head>
 <body>
 
@@ -102,7 +93,7 @@ $result = $conn->query($sql);
     </div>
 
     <!-- Create Offer Form -->
-    <section id="create-offer" class="tab-content active ">
+    <section id="create-offer" class="tab-content active">
         <form method="POST">
             <h3>Create New Offer</h3>
             <div class="form-group">
@@ -190,42 +181,41 @@ $result = $conn->query($sql);
         </table>
     </section>
 </main>
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-container">
-            <!-- Contact Information -->
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
-                <a href="01234567890" >Phone: 01234567890</a>
-            </div>
-            
-            <!-- Social Media Links -->
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <ul class="social-links">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-            
-            <!-- Newsletter Subscription -->
-            <div class="footer-section">
-                <h3>Subscribe</h3>
-                <form>
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
+
+<!-- Footer Section -->
+<footer>
+    <div class="footer-container">
+        <!-- Contact Information -->
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <a href="mailto:info@carrentalservice.com">Email: info@carrentalservice.com</a>
+            <a href="tel:01234567890">Phone: 01234567890</a>
         </div>
-        
-        <!-- Copyright Notice -->
-        <div class="copyright">
-            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+        <!-- Social Media Links -->
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject "><i class="fa-brands fa-github"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
         </div>
-    </footer>
+        <!-- Newsletter Subscription -->
+        <div class="footer-section">
+            <h3>Subscribe</h3>
+            <form>
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <!-- Copyright Notice -->
+    <div class="copyright">
+        <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+    </div>
+</footer>
+
 <script>
     function showTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(function(tab) {
@@ -234,7 +224,8 @@ $result = $conn->query($sql);
         document.getElementById(tabId).classList.add('active');
     }
 </script>
-<!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

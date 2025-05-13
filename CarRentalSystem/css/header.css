@@ -1,6 +1,6 @@
 .bg-body-tertiary {
-    font-family: "League Spartan", sans-serif ;
-    background-color:#9AA6B2 !important; 
+    font-family: "League Spartan", sans-serif;
+    background-color: #006A71 !important;
     color: white !important;
     padding: 20px 40px;
     text-align: center;
@@ -13,84 +13,83 @@
     text-align: center;
     gap: 30px;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
-  }
-  
+}
+
 .navbar-expand-lg .navbar-nav {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      padding: 0;
-    }
-    
-    .navbar-expand-lg .navbar-nav .nav-link {
-      text-decoration: none;
-      color: white;
-      padding: 5px 10px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-    
-    /* تنسيق العنصر النشط */
-    .navbar-expand-lg .navbar-nav .nav-link.active {
-      font-weight: bold;
-      transform: scale(1.1);
-    }
-    
-    .navbar-expand-lg .navbar-nav .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 10px;
-      width: calc(100% - 20px);
-      height: 2px;
-      background-color: white;
-    }
-    
-    /* تأثير hover */
-    .navbar-expand-lg .navbar-nav .nav-link:hover::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 10px;
-      width: calc(100% - 20px);
-      height: 2px;
-      background-color: white;
-    }
-    /* أيقونة البروفايل */
-    .nav-link .profile-link svg path{
-      fill: #fff;
-    }
-    .profile-link.active svg path {
-      fill: #fff;
-    }
-    
-  .navbar-brand {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* تنسيق العنصر النشط */
+.navbar-expand-lg .navbar-nav .nav-link.active {
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 2px;
+    background-color: white;
+}
+
+/* Hover effect */
+.navbar-expand-lg .navbar-nav .nav-link:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 2px;
+    background-color: #48A6A7;
+}
+
+/* Profile icon */
+.nav-link .profile-link svg path {
+    fill: #fff;
+}
+
+.profile-link.active svg path {
+    fill: #fff;
+}
+
+.navbar-brand {
     margin-bottom: 0;
     font-size: 2rem;
     letter-spacing: 1px;
     color: #fff;
-  }
-  .navbar-brand:hover {
-  color: inherit !important; 
-  }
-  
-  .navbar-expand-lg .navbar-nav {
+}
+
+.navbar-brand:hover {
+    color: inherit !important;
+}
+
+.navbar-expand-lg .navbar-nav {
     list-style: none;
     padding: 0;
     display: flex;
     justify-content: center;
     gap: 20px;
-  }
-  
-  .navbar-expand-lg .navbar-nav .nav-link {
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
     color: white;
     text-decoration: none;
     font-weight: 500;
     padding: 8px 16px;
     border-radius: 20px;
     transition: background 0.3s ease, transform 0.3s ease;
-  }
-  
-
-  
-  
+}

@@ -59,20 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Include CSS stylesheets -->
-    <link rel="stylesheet" href="../css/forms.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/main-content.css">
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/sort-filter.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/offers.css">
-    <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/admin-dashboard.css">
-    <link rel="stylesheet" href="../css/RentalPageStyle.css">
-    <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../css/forms.css">
 </head>
 <body>

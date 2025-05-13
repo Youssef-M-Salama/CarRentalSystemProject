@@ -1,5 +1,5 @@
-body{
-    font-family: "League Spartan", sans-serif ;
+body {
+    font-family: "League Spartan", sans-serif;
 }
 
 .login-container,
@@ -20,23 +20,26 @@ body{
 .login-container:hover,
 .signup-container:hover {
   transform: translateX(-0.5em) translateY(-0.5em);
-  border: 1px solid #9AA6B2;
-  box-shadow: 10px 10px 0px #9AA6B2;
+  border: 1px solid #006A71;
+  box-shadow: 10px 10px 0px #006A71;
 }
 
 .login-container h2,
 .signup-container h2 {
-  color:#9AA6B2;
+  color: #006A71;
   text-align: center;
   font-weight: bold;
 }
-.signup-container p{
+
+.signup-container p {
   margin: 15px;
 }
-.signup-container p:hover{
-  color:#9AA6B2;
+
+.signup-container p:hover {
+  color: #006A71;
   cursor: pointer;
 }
+
 .error {
   color: red;
   font-size: 0.9rem;
@@ -46,7 +49,7 @@ body{
 .login-form input,
 .signup-form input {
   border-radius: 10px;
-  border: 1px solid #BCCCDC;
+  border: 1px solid #9ACBD0;
   background-color: #F8FAFC;
   width: 100%;
   margin: 10px 0;
@@ -58,14 +61,14 @@ body{
 
 .login-form input:hover,
 .signup-form input:hover {
-  box-shadow: 6px 6px 0px #9AA6B2,
+  box-shadow: 6px 6px 0px #006A71,
              -3px -3px 10px #ffffff;
 }
 
 .login-form input:focus,
 .signup-form input:focus {
   background: #ffffff;
-  box-shadow:  2px 5px 10px rgba(0,0,0,0.3);
+  box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
 }
 
 .login-form button,
@@ -78,7 +81,7 @@ body{
   padding-right: 1em;
   border-radius: 10px;
   border: none;
-  background-color:#9AA6B2;
+  background-color: #006A71;
   color: white;
   transition: .4s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
@@ -86,10 +89,9 @@ body{
 
 .login-form button:hover,
 .signup-form button:hover {
-  box-shadow: 6px 6px 0px #9AA6B2,
+  box-shadow: 6px 6px 0px #006A71,
               -3px -3px 10px #ffffff;
-    border: 1px solid #BCCCDC;
-
+  border: 1px solid #9ACBD0;
 }
 
 .login-form button:active,

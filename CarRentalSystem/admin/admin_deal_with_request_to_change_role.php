@@ -75,103 +75,10 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css ">
     <link rel="stylesheet" href="../css/AdminDashboard.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/foter.css">
+    
+    <link rel="stylesheet" href="../css/request_to_change_role.css">
 
-    <style>
-        main {
-            padding: 40px;
-        }
-
-        .table-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: "League Spartan", sans-serif;
-            font-size: 0.95rem;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #9AA6B2;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            background-color: #9AA6B2;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background-color: #BCCCDC;
-            transform: translateY(-1px);
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
-
-        .notification {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .notification.success {
-            background: #ecffe8;
-            color: #1e7e34;
-        }
-
-        .notification.warning {
-            background: #fffbe4;
-            color: #7a5d00;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header-actions h2 {
-            margin: 0;
-        }
-    </style>
 </head>
 <body>
 

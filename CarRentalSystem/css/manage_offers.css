@@ -1,118 +1,124 @@
-        main {
-            padding: 40px;
-        }
+main {
+    padding: 40px;
+}
 
-        .form-section {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
+/* Form Section */
+.form-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
-        .btn {
-            background-color: #9AA6B2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
+/* Button Styles */
+.btn {
+    background-color: #006A71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
 
-        .btn:hover {
-            background-color: #BCCCDC;
-            transform: translateY(-1px);
-        }
+.btn:hover {
+    background-color: #48A6A7;
+    transform: translateY(-1px);
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-family: "League Spartan", sans-serif;
-            font-size: 0.95rem;
-        }
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.95rem;
+}
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
-        th {
-            background-color: #9AA6B2;
-            color: white;
-        }
+th {
+    background-color: #006A71;
+    color: white;
+}
 
-        tr:hover {
-            background-color: #f5f5f5;
-        }
+tr:hover {
+    background-color: #F2F8FA;
+}
 
-        .badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
+/* Status Badges */
+.badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
 
-        .type-client {
-            background: #fff3e0;
-            color: #f57c00;
-        }
+.type-client {
+    background: #fff3e0;
+    color: #ef6c00;
+}
 
-        .type-premium {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
+.type-premium {
+    background: #e0f7fa;
+    color: #00796b;
+}
 
-        .type-all {
-            background: #f1f1f1;
-            color: #333;
-        }
+.type-all {
+    background: #f1f1f1;
+    color: #333;
+}
 
-        .status-active {
-            background: #ecffe8;
-            color: #1e7e34;
-        }
+.status-active {
+    background: #E8F5E9;
+    color: #1e7e34;
+}
 
-        .status-inactive {
-            background: #ffe6e7;
-            color: #99151b;
-        }
+.status-inactive {
+    background: #FFE7E7;
+    color: #99151b;
+}
 
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
+/* Alerts */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
 
-        .alert-success {
-            background: #ecffe8;
-            color: #1e7e34;
-        }
+.alert-success {
+    background: #E8F5E9;
+    color: #1e7e34;
+}
 
-        .alert-error {
-            background: #ffe6e7;
-            color: #99151b;
-        }
+.alert-error {
+    background: #FFE7E7;
+    color: #99151b;
+}

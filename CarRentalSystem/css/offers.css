@@ -1,140 +1,159 @@
 body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .offer-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            background: white;
-            overflow: hidden;
-        }
-        .offer-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        .offer-header {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            padding: 20px;
-            position: relative;
-        }
-        .offer-header::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 20px;
-            background: white;
-            border-radius: 0 0 15px 15px;
-        }
-        .discount-badge {
-            background: #28a745;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 10px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        .validity {
-            color: #6c757d;
-            font-size: 0.9rem;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-        .section-title {
-            color: #007bff;
-            margin-bottom: 30px;
-            font-weight: bold;
-            text-align: center;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #007bff, #0056b3);
-        }
-        .no-offers {
-            text-align: center;
-            padding: 50px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .price-info {
-            background: #e9ecef;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-        .original-price {
-            text-decoration: line-through;
-            color: #dc3545;
-        }
-        .discounted-price {
-            color: #28a745;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        .rent-button {
-            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-            border: none;
-            padding: 12px 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .rent-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-        }
-        .user-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .user-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #007bff;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-        .user-name {
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-        .user-role {
-            font-size: 0.7rem;
-            opacity: 0.8;
-        }
+.offer-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.offer-header {
+    background: linear-gradient(135deg, #006A71 0%, #004B50 100%);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.offer-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: white;
+    border-radius: 0 0 15px 15px;
+}
+
+.discount-badge {
+    background: #48A6A7;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.validity {
+    color: #6c757d;
+    font-size: 0.9rem;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.section-title {
+    color: #006A71;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #006A71, #004B50);
+}
+
+.no-offers {
+    text-align: center;
+    padding: 50px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.price-info {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #99151b;
+}
+
+.discounted-price {
+    color: #1e7e34;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.rent-button {
+    background: linear-gradient(135deg, #006A71 0%, #004B50 100%);
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.rent-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 106, 113, 0.4);
+}
+
+.user-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #006A71;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.user-role {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}

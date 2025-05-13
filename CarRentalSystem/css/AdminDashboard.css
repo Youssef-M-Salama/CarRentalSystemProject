@@ -1,9 +1,11 @@
-body{
+body {
     font-family: "League Spartan", sans-serif !important;
 }
-main{
+
+main {
     padding: 20px !important;
 }
+
 /* Tab Navigation Styles */
 .tab-navigation {
     display: flex;
@@ -12,11 +14,10 @@ main{
     justify-content: space-around;
 }
 
-
 .tab-navigation a {
     text-decoration: none;
     padding: 10px 15px;
-    background-color: #9AA6B2;
+    background-color: #006A71;
     color: white;
     border-radius: 40px;
     position: relative;
@@ -25,7 +26,7 @@ main{
 }
 
 .tab-navigation a:hover {
-    background-color: #BCCCDC;
+    background-color: #48A6A7;
     transform: scale(1.05);
 }
 
@@ -54,13 +55,14 @@ main{
     line-height: 1.2;
     transition: transform 0.3s ease;
 }
+
 .notification-badge:hover {
     transform: scale(1.1);
 }
 
 /* Rental Request Styles */
 .rental-request {
-    background-color: #f9f9f9;
+    background-color: #F2EFE7;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
@@ -68,6 +70,7 @@ main{
     transition: transform 0.3s ease;
     font-family: "League Spartan", sans-serif;
 }
+
 .rental-request:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -92,6 +95,7 @@ main{
     border-radius: 4px;
     transition: transform 0.3s ease;
 }
+
 .rental-car-image:hover {
     transform: scale(1.05);
 }
@@ -108,7 +112,7 @@ main{
 
 .status-pending {
     color: #7a5d00;
-    background-color: #fffbe4;
+    background-color: #FFFDE7;
     padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.9em;
@@ -117,7 +121,7 @@ main{
 
 .status-approved {
     color: #1e7e34;
-    background-color: #ecffe8;
+    background-color: #E8F5E9;
     padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.9em;
@@ -126,15 +130,16 @@ main{
 
 .status-rejected {
     color: #99151b;
-    background-color: #ffe6e7;
+    background-color: #FFE7E7;
     padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.9em;
     font-weight: bold;
 }
 
-.btn-approve, .btn-reject {
-    background-color: #9AA6B2;
+.btn-approve,
+.btn-reject {
+    background-color: #006A71;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -146,7 +151,7 @@ main{
 
 .btn-approve:hover,
 .btn-reject:hover {
-    background-color: #BCCCDC;
+    background-color: #48A6A7;
     transform: translateY(-1px);
 }
 
@@ -162,26 +167,27 @@ table {
     font-size: 0.95rem;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #9AA6B2;
+    background-color: #006A71;
     color: white;
 }
 
 tr:hover {
-    background-color: #f5f5f5;
+    background-color: #F2F8FA;
 }
-
 
 /* Form Styles */
-.tab-content h3{
- text-align: center;
+.tab-content h3 {
+    text-align: center;
 }
+
 .tab-content form {
     display: flex;
     width: 60%;
@@ -194,7 +200,8 @@ tr:hover {
     align-items: center;
     margin: 0 auto;
 }
-.tab-content input, 
+
+.tab-content input,
 .tab-content select {
     width: 100%;
     padding: 8px;
@@ -205,9 +212,9 @@ tr:hover {
 }
 
 button[type="submit"] {
-    background-color: #9AA6B2;
+    background-color: #006A71;
     color: white;
-    padding:  10px 20px;
+    padding: 10px 20px;
     border: none;
     border-radius: 40px;
     transition: all 0.3s ease;
@@ -221,13 +228,19 @@ button[type="submit"]:hover {
 
 /* Animation */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Error Message Styles */
 .error-message {
-    background-color: #ffe6e7;
+    background-color: #FFE7E7;
     color: #99151b;
     padding: 10px;
     border-radius: 4px;
@@ -236,8 +249,8 @@ button[type="submit"]:hover {
     font-family: "League Spartan", sans-serif;
 }
 
-/* delete form */
-.delete-form{
+/* Delete Form */
+.delete-form {
     display: flex;
     padding: 20px;
     border-radius: 40px;
@@ -246,9 +259,3 @@ button[type="submit"]:hover {
     justify-content: center;
     align-items: center;
 }
-/* #retrieve-cars table tbody form  {
-    width: 0;
-    margin: 0;
-    background: none;
-} */
-
