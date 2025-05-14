@@ -97,13 +97,15 @@
 
 /* Profile container styling */
 .profile-container {
-    margin: 50px auto;
+    color: #006A71;
+    margin: 0 auto;
     text-align: center;
-    max-width: 800px;
+    width: 55%;
     padding: 30px;
     background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 3px 13px;
+
 }
 
 .profile-header {
@@ -118,18 +120,34 @@
 .profile-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
+    gap: 15px;
 }
 
 .profile-form input {
+    color: #006A71;
     width: 100%;
-    padding: 15px;
-    border: 2px solid #bdc3c7;
-    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #006A71;
+    border-radius: 40px;
     font-size: 16px;
     transition: border-color 0.3s ease;
 }
+.profile-form input:focus{
+    border: 3px solid #006A71;
+    outline: none;
+}
+.profile-form div{
+    text-align: left;
+}
+.full-width {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
 
+}
 .btn {
     padding: 15px 30px;
     border: none;
@@ -140,16 +158,32 @@
 }
 
 .btn-primary {
-    background: #006A71;
+    border-radius: 40px;
+    background-color: #006A71;
     color: white;
 }
-
+.btn-primary:hover{
+    background-color: #48A6A7;
+}
 .btn-cancel {
-    background: #99151b;
+    border-radius: 40px;
+    background-color: #343a40;
     color: white;
     margin-left: 15px;
 }
-
+.btn-cancel:hover{
+    background-color: #495057;
+    color: white;
+}
+.btn-warning{
+    background-color: #006A71;
+    border-radius: 40px;
+    color: white;
+}
+.btn-warning:hover{
+    background-color: #495057;
+    color: white;
+}
 .error-list {
     list-style: none;
     padding: 20px;
@@ -160,8 +194,8 @@
 
 .success {
     padding: 20px;
-    background: #E8F5E9;
-    color: #1e7e34;
+    background: #006A71;
+    color: #000;
     border-radius: 6px;
     margin-bottom: 25px;
 }

@@ -48,20 +48,25 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Premium Offers - Admin Panel</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com ">
-    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan :wght@100..900&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css ">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="../css/AdminDashboard.css">
+    <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/main-content.css">
+    <link rel="stylesheet" href="../css/sort-filter.css">
+    <link rel="stylesheet" href="../css/offers.css">
+    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/manage_offers.css">
-    <!-- <link rel="stylesheet" href="../css/forms.css"> -->
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 
@@ -71,7 +76,7 @@ $result = $conn->query($sql);
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <h1 class="navbar-brand">Manage Premium Offers</h1>
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="DashboardAdmin.php">Back to Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="DashboardAdmin.php">Back to Admin Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="../index.php">Back to Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
             </ul>
@@ -93,29 +98,25 @@ $result = $conn->query($sql);
     </div>
 
     <!-- Create Offer Form -->
+    <div class="new-offer">
     <section id="create-offer" class="tab-content active">
         <form method="POST">
             <h3>Create New Offer</h3>
+            <div class="offer-sec1">
             <div class="form-group">
                 <label for="title">Offer Title</label>
                 <input type="text" id="title" name="title" required>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" required></textarea>
-            </div>
-            <div class="form-group">
                 <label for="discount_percentage">Discount Percentage</label>
                 <input type="number" id="discount_percentage" name="discount_percentage" min="0" max="100" step="0.01" required>
-            </div>
+            </div></div>
+            <div class="offer-sec2">
             <div class="form-group">
-                <label for="user_type">User Type</label>
-                <select id="user_type" name="user_type" required>
-                    <option value="client">Regular Users</option>
-                    <option value="premium">Premium Users</option>
-                    <option value="all">All Users</option>
-                </select>
-            </div>
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="2" rows="2" required></textarea>
+            </div></div>
+            <div class="offer-sec3">
             <div class="form-group">
                 <label for="start_date">Start Date</label>
                 <input type="date" id="start_date" name="start_date" required>
@@ -123,6 +124,15 @@ $result = $conn->query($sql);
             <div class="form-group">
                 <label for="end_date">End Date</label>
                 <input type="date" id="end_date" name="end_date" required>
+            </div></div>
+            <div class="offer-sec4">
+            <div class="form-group">
+                <label for="user_type">User Type</label>
+                <select id="user_type" name="user_type" required>
+                    <option value="client">Regular Users</option>
+                    <option value="premium">Premium Users</option>
+                    <option value="all">All Users</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="car_id">Select a Car</label>
@@ -143,11 +153,11 @@ $result = $conn->query($sql);
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
-            </div>
+            </div></div>
             <button type="submit" class="btn">Create Offer</button>
         </form>
     </section>
-
+    </div>
     <!-- Current Offers Table -->
     <section id="offers-list" class="tab-content">
         <h3>Current Offers</h3>
@@ -182,47 +192,73 @@ $result = $conn->query($sql);
     </section>
 </main>
 
-<!-- Footer Section -->
-<footer>
-    <div class="footer-container">
-        <!-- Contact Information -->
-        <div class="footer-section">
-            <h3>Contact Us</h3>
-            <a href="mailto:info@carrentalservice.com">Email: info@carrentalservice.com</a>
-            <a href="tel:01234567890">Phone: 01234567890</a>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="footer-section">
+                <h3>Subscribe</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
-        <!-- Social Media Links -->
-        <div class="footer-section">
-            <h3>Follow Us</h3>
-            <ul class="social-links">
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject "><i class="fa-brands fa-github"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            </ul>
+        
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
         </div>
-        <!-- Newsletter Subscription -->
-        <div class="footer-section">
-            <h3>Subscribe</h3>
-            <form>
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </div>
-    <!-- Copyright Notice -->
-    <div class="copyright">
-        <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
 
 <script>
-    function showTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(function(tab) {
-            tab.classList.remove('active');
-        });
-        document.getElementById(tabId).classList.add('active');
+function showTab(tabId) {
+    // تحديث حالة التبويبات النشطة
+    document.querySelectorAll('.tab-navigation a').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelector(`.tab-navigation a[href="#${tabId}"]`).classList.add('active');
+    
+    // إخفاء جميع المحتويات
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // التحكم في عرض div.new-offer
+    const newOfferDiv = document.querySelector('.new-offer');
+    newOfferDiv.style.display = 'none';
+    
+    // إظهار المحتوى المحدد
+    if (tabId === 'create-offer') {
+        newOfferDiv.style.display = 'flex';
+        document.getElementById('create-offer').classList.add('active');
+    } else {
+        document.getElementById('offers-list').classList.add('active');
     }
+}
+
+// عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    showTab('create-offer');
+});
 </script>
 
 <!-- Bootstrap JS -->

@@ -41,126 +41,77 @@ $discounted_price = $has_offer ?
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rent Car - Car Rental System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .rental-form {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 30px;
-            margin-top: 30px;
-        }
-        .car-info {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .car-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        .price-info {
-            background: #e9ecef;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-        }
-        .original-price {
-            text-decoration: line-through;
-            color: #dc3545;
-        }
-        .discounted-price {
-            color: #28a745;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        .offer-badge {
-            background: #28a745;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 10px 0;
-        }
-        .date-picker {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 8px;
-            width: 100%;
-        }
-        .submit-button {
-            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-            border: none;
-            padding: 12px 25px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-        }
-    </style>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="css/rent_car.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/offers.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.php">Car Rental System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="my_rental.php">My Rentals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="offers.php">Special Offers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about us.html">About Us</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<!-- Website Header Section -->
+<header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+    <nav class="container-fluid d-flex justify-content-center align-items-center">
+    <h1 class="navbar-brand">Car Rental Service</h1>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+        <li class="nav-item"><a href="index.php" class="nav-link" >Home</a></li>
+        
+        <?php if (isset($_SESSION['user'])): ?>
+        <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
+        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
+        <?php else: ?>
+            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
+        <?php endif; ?>
+        
+        <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+        
+        <li class="nav-item">
+            <a href="profile.php" class=" nav-link profile-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            </a>
+        </li>
+    </ul>
+    </div>
     </nav>
+</header>
 
     <div class="container mt-5 mb-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="rental-form">
-                    <h2 class="text-center mb-4">Rent <?php echo htmlspecialchars($car['name'] . ' ' . $car['model']); ?></h2>
-                    
+        <h2 class="text-center">Confirm Rent Requests</h2>
+        <div class="row">
+            <div class="col mb-4">
+                <div class="rental-form">  
                     <div class="car-info">
                         <img src="images/<?php echo htmlspecialchars($car['image']); ?>" 
-                             alt="<?php echo htmlspecialchars($car['name']); ?>" 
-                             class="car-image">
+                            alt="<?php echo htmlspecialchars($ca['name']); ?>" 
+                            class="car-image">
                         
                         <h4><?php echo htmlspecialchars($car['name'] . ' ' . $car['model']); ?></h4>
                         <p><strong>Type:</strong> <?php echo htmlspecialchars($car['type']); ?></p>
-                        
+                    </div>
+                        <div class="car-info-price">   
                         <?php if ($has_offer): ?>
-                            <div class="offer-badge">
-                                <i class="fas fa-percentage"></i> <?php echo $car['discount_percentage']; ?>% OFF
-                                <small class="d-block"><?php echo htmlspecialchars($car['offer_title']); ?></small>
-                            </div>
+                            <small class="d-block">
+                                <?php echo htmlspecialchars($car['offer_title']); ?></small>
+                                <div class="offer-badge">
+                                    <?php echo $car['discount_percentage']; ?>% OFF
+                                </div>
                         <?php endif; ?>
                         
                         <div class="price-info">
@@ -174,9 +125,8 @@ $discounted_price = $has_offer ?
                                     <span class="discounted-price">$<?php echo number_format($car['price_per_day'], 2); ?>/day</span>
                                 </p>
                             <?php endif; ?>
-                        </div>
-                    </div>
-
+                        </div></div>
+                    <div class="car-info2">
                     <form action="process_rental.php" method="POST">
                         <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
                         <input type="hidden" name="offer_id" value="<?php echo $offer_id; ?>">
@@ -192,12 +142,12 @@ $discounted_price = $has_offer ?
                             <input type="date" class="form-control date-picker" id="end_date" name="end_date" 
                                    min="<?php echo date('Y-m-d'); ?>" required>
                         </div>
+                    </div>
                         
                         <div class="mb-3">
                             <label for="total_price" class="form-label">Estimated Total Price</label>
                             <input type="text" class="form-control" id="total_price" readonly>
                         </div>
-                        
                         <div class="text-center">
                             <button type="submit" class="btn btn-success submit-button">
                                 <i class="fas fa-check"></i> Confirm Rental
@@ -244,7 +194,6 @@ $discounted_price = $has_offer ?
             <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Calculate total price when dates change
         document.getElementById('start_date').addEventListener('change', calculateTotal);
@@ -265,5 +214,7 @@ $discounted_price = $has_offer ?
             }
         }
     </script>
+    <!-- bootstrap js --> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html> 

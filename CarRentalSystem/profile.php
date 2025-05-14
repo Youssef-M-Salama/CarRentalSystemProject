@@ -77,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Include CSS stylesheets -->
@@ -179,21 +179,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <?php if (in_array($current_role, ['client', 'premium'])): ?>
-            <div class="full-width" style="margin-top: 30px;">
+            <div class="full-width">
                 <form action="request_to_change_role.php" method="POST">
                     <input type="hidden" name="request_type" 
                         value="<?= $current_role == 'client' ? 'premium' : 'client' ?>">
-                    <button type="submit" class="btn <?= $current_role == 'client' ? 'btn-success' : 'btn-warning' ?>">
+                    <button type="submit" class="btn btn-warning <?= $current_role == 'client' ? 'btn-success' : 'btn-warning' ?>">
                         <?= $current_role == 'client' ? 'Upgrade to Premium' : 'Downgrade to Client' ?>
                     </button>
                 </form>
             </div>
         <?php endif; ?>
-
-        <div class="full-width" style="margin-top: 20px;">
-            <a href="index.php" class="btn btn-secondary">Back to Home</a>
-        </div>
-        </div>
     </main>
     <!-- Footer Section -->
     <footer>

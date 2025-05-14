@@ -104,7 +104,7 @@ $unavailable_cars = mysqli_query($conn, $query);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
     <!-- font awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Include CSS stylesheets -->
@@ -179,17 +179,21 @@ $unavailable_cars = mysqli_query($conn, $query);
         </div>
 
         <!-- Add Car Form -->
+        <div class="add-car">
         <section id="add-car" class="tab-content active">
             <form method="POST" action="DashboardAdmin.php" enctype="multipart/form-data">
                 <h3>Add New Car</h3>
+                <div class="car-input">
                 <input type="text" name="name" placeholder="Car Name" required>
                 <input type="text" name="model" placeholder="Model" required>
+                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
+                </div>
+                <div class="car-select">
                 <select name="type" required>
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
                     <option value="Crossover">Crossover</option>
                 </select>
-                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
                 <select name="status" required>
                     <option value="available">Available</option>
                     <option value="not available">Not Available</option>
@@ -198,11 +202,13 @@ $unavailable_cars = mysqli_query($conn, $query);
                     <option value="free">Free</option>
                     <option value="premium">Premium</option>
                 </select>
-                <label for="image">Upload Image:</label>
-                <input type="file" name="image" id="image" accept="image/*" required>
+                </div>
+                <label for="image"class="custom-file-upload"><i class="fas fa-cloud-upload-alt"></i> Upload Image:</label>
+                <input type="file" name="image" id="image" accept="image/*" required><span class="file-name"> No file chosen</span>
                 <button type="submit" name="add_car">Add Car</button>
             </form>
         </section>
+    </div>
 
         <!-- Car List -->
         <section id="car-list" class="tab-content">
@@ -431,14 +437,31 @@ $unavailable_cars = mysqli_query($conn, $query);
     </footer>
     <script>
         function showTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(function(tab) {
-                tab.classList.remove('active');
-            });
-
-            // Show the selected tab content
-            document.getElementById(tabId).classList.add('active');
-        }
+    // hide content of all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // hide div.add-car 
+    document.querySelector('.add-car').style.display = 'none';
+    
+    // show content of the selected tab
+    document.getElementById(tabId).classList.add('active');
+    
+    // show add-car div if the selected tab is 'add-car'
+    if (tabId === 'add-car') {
+        document.querySelector('.add-car').style.display = 'block';
+    }
+}
+// Show the default tab on page load
+window.onload = function() {
+    showTab('add-car'); 
+};
+// Handle file input change event
+document.getElementById('image').addEventListener('change', function(e) {
+    const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+    document.querySelector('.file-name').textContent = fileName;
+});
     </script>
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>

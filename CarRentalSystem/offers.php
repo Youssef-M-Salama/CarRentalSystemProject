@@ -72,8 +72,8 @@ if ($result->num_rows == 0) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+ <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Include CSS stylesheets -->
@@ -90,21 +90,21 @@ if ($result->num_rows == 0) {
     
 </head>
 <body>
-        <!-- Website Header Section -->
+<!-- Website Header Section -->
 <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
     <nav class="container-fluid d-flex justify-content-center align-items-center">
     <h1 class="navbar-brand">Car Rental Service</h1>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
+    <ul class="navbar-nav">
         <li class="nav-item"><a href="index.php" class="nav-link" >Home</a></li>
         
         <?php if (isset($_SESSION['user'])): ?>
-          <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="offers.php">Special Offers</a></li>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
+        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="offers.php">Special Offers</a></li>
         <?php else: ?>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
         <?php endif; ?>
         
         <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
@@ -116,29 +116,27 @@ if ($result->num_rows == 0) {
             </svg>
             </a>
         </li>
-      </ul>
-      </div>
+    </ul>
+    </div>
     </nav>
-  </header>
+</header>
 
     <div class="container mt-5 mb-5">
-        <h2 class="text-center section-title">Special Offers</h2>
-        
+        <div class="row">
         <?php if ($result->num_rows > 0): ?>
-            <div class="row">
                 <?php while ($offer = $result->fetch_assoc()): ?>
                     <div class="col-md-4 mb-4">
-                        <div class="card offer-card h-100">
+                        <div class="offer-card">
                             <div class="offer-header">
                                 <span class="user-badge">
                                     <i class="fas fa-users"></i> <?php echo ucfirst($offer['user_type']); ?>
                                 </span>
                                 <h4 class="card-title mb-0"><?php echo htmlspecialchars($offer['title']); ?></h4>
                             </div>
-                            <div class="card-body">
+                            <div class="offer-card-body">
                                 <img src="images/<?php echo htmlspecialchars($offer['car_image']); ?>" 
-                                     alt="<?php echo htmlspecialchars($offer['car_name']); ?>" 
-                                     class="car-image">
+                                    alt="<?php echo htmlspecialchars($offer['car_name']); ?>" 
+                                    class="car-image">
                                 
                                 <div class="car-info">
                                     <h5><?php echo htmlspecialchars($offer['car_name'] . ' ' . $offer['car_model']); ?></h5>
@@ -153,7 +151,7 @@ if ($result->num_rows == 0) {
                                 </div>
                                 
                                 <div class="discount-badge">
-                                    <i class="fas fa-percentage"></i> <?php echo $offer['discount_percentage']; ?>% OFF
+                                <?php echo $offer['discount_percentage']; ?>% OFF
                                 </div>
                                 
                                 <p class="card-text"><?php echo htmlspecialchars($offer['description']); ?></p>
@@ -166,21 +164,21 @@ if ($result->num_rows == 0) {
                                 
                                 <div class="mt-3">
                                     <a href="rent_car.php?car_id=<?php echo $offer['car_id']; ?>&offer_id=<?php echo $offer['id']; ?>" 
-                                       class="btn btn-success rent-button w-100">
-                                        <i class="fas fa-car"></i> Rent Now
+                                    class="btn btn-success rent-button w-100">
+                                    Rent Now
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 <?php endwhile; ?>
-            </div>
         <?php else: ?>
             <div class="no-offers">
                 <h4>No special offers available at the moment</h4>
                 <p class="text-muted">Check back later for exclusive offers!</p>
             </div>
         <?php endif; ?>
+        </div>
     </div>
     <!-- Footer Section -->
     <footer>

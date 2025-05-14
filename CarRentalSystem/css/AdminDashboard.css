@@ -5,7 +5,26 @@ body {
 main {
     padding: 20px !important;
 }
+/* add car */
+.add-car{
+    display: flex;
+    flex-direction:row;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 0 2px 13px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #fff;
+}
+/* إخفاء div.add-car افتراضيًا */
+.add-car {
+    display: none;
+}
 
+/* عندما يكون section#add-car.active (مفعل) */
+#add-car.active {
+    display: block; /* أو أي استايل آخر تريدينه */
+}
 /* Tab Navigation Styles */
 .tab-navigation {
     display: flex;
@@ -44,7 +63,7 @@ main {
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #f44336;
+    background: #48A6A7;
     color: white;
     padding: 3px 8px;
     border-radius: 50%;
@@ -61,26 +80,37 @@ main {
 }
 
 /* Rental Request Styles */
+.rental-requests-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .rental-request {
-    background-color: #F2EFE7;
-    border-radius: 8px;
+    font-family: "League Spartan", sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 40px;
     padding: 15px;
     margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    font-family: "League Spartan", sans-serif;
 }
 
 .rental-request:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 15px ;
+    transform: scale(1.02);
 }
 
 .rental-request-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 10px 20px;
+    color:  #006A71;
+
 }
 
 .rental-request-content {
@@ -89,10 +119,10 @@ main {
 }
 
 .rental-car-image {
-    width: 120px;
-    height: 80px;
+    width: 40%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 40px;
     transition: transform 0.3s ease;
 }
 
@@ -103,6 +133,10 @@ main {
 .rental-info {
     flex-grow: 1;
 }
+.rental-info p ,
+.rental-info strong {
+    color: #006A71;
+}
 
 .rental-actions {
     display: flex;
@@ -111,7 +145,7 @@ main {
 }
 
 .status-pending {
-    color: #7a5d00;
+    color: rental-info;
     background-color: #FFFDE7;
     padding: 3px 8px;
     border-radius: 4px;
@@ -158,7 +192,7 @@ main {
 /* Table Styles */
 table {
     margin: 0 auto;
-    width: 60%;
+    width: 70%;
     border-collapse: collapse;
     border-radius: 40px;
     margin-bottom: 20px;
@@ -169,11 +203,16 @@ table {
 
 th,
 td {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #006A71;
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
-
+td img{
+    width: 50%;
+}
 th {
     background-color: #006A71;
     color: white;
@@ -186,31 +225,80 @@ tr:hover {
 /* Form Styles */
 .tab-content h3 {
     text-align: center;
+    color:  #006A71;
 }
 
 .tab-content form {
     display: flex;
-    width: 60%;
-    background: white;
-    padding: 20px;
     border-radius: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    gap: 10px;
+    align-items: center;
 }
 
 .tab-content input,
 .tab-content select {
-    width: 100%;
+    font-family: "League Spartan", sans-serif;
+    width: 30%;
     padding: 8px;
     margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: inherit;
+    border: 1px solid #006A71;
+    border-radius: 40px;
+    color: #006A71;
+}
+.tab-content input:focus,
+.tab-content select:focus {
+    border: 2px solid #006A71;
+    outline: none;
+} 
+.car-input{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+}
+.car-select{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
 }
 
+/* إخفاء زر الاختيار الافتراضي */
+.add-car input[type="file"] {
+    display: none;
+}
+/* تنسيق التسمية المخصصة للزر */
+.add-car .custom-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #006A71;
+    color: white;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    margin: 10px 0;
+    border: none;
+}
+
+.add-car .custom-file-upload:hover {
+    background-color: #48A6A7;
+    transform: scale(1.02);
+}
+
+/* تنسيق نص "No file chosen" */
+.add-car .file-name {
+    display: block;
+    margin: 8px;
+    color: #006A71;
+    font-size: 15px;
+}
 button[type="submit"] {
     background-color: #006A71;
     color: white;
@@ -219,7 +307,6 @@ button[type="submit"] {
     border-radius: 40px;
     transition: all 0.3s ease;
     font-weight: 500;
-    margin-top: 10px;
 }
 
 button[type="submit"]:hover {
@@ -254,7 +341,6 @@ button[type="submit"]:hover {
     display: flex;
     padding: 20px;
     border-radius: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
