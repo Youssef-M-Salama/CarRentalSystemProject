@@ -102,7 +102,7 @@ if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['prem
 }
 
 // Sort results
-switch ($sort) {
+switch($sort) {
     case 'price_asc':
         $orderBy = " ORDER BY price_per_day ASC";
         break;
@@ -134,14 +134,10 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Rental Service</title>
-<<<<<<< HEAD
-
-=======
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,7 +146,6 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
->>>>>>> anwaar/main
     <!-- Include CSS stylesheets -->
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/header.css">
@@ -158,193 +153,12 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sort-filter.css">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <style>
-        /* Container for car grid layout */
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 80px;
-            padding: 20px;
-        }
-
-        /* Styling for individual car cards */
-        .card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Space between premium and regular sections */
-        .premium-section {
-            margin-bottom: 40px;
-        }
-
-        /* Responsive car images */
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        /* Status labels */
-        .available {
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        .not-available {
-            color: #f44336;
-            font-weight: bold;
-        }
-
-        /* Filter box styling */
-        .filter-box {
-            display: none;
-            padding: 15px;
-            border: 1px solid #ccc;
-            margin: 10px 0;
-            background: #f9f9f9;
-        }
-
-        .toggle-btn {
-            padding: 10px 20px;
-            background: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        .apply-button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .apply-button:hover {
-            background-color: #0056b3;
-        }
-
-        .apply-button,
-        .reset-button {
-            background-color: #007bff;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-left: 10px;
-        }
-
-        .reset-button {
-            display: inline-block;
-            margin-left: 10px;
-        }
-
-        /* Rating stars styling */
-        .rating-stars {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .rating-stars i {
-            margin-right: 2px;
-        }
-
-        /* Category badges */
-        .category-badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        .category-badge.free {
-            background-color: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .category-badge.premium {
-            background-color: #fff3e0;
-            color: #f57c00;
-        }
-
-        /* Rental button styling */
-        .btn-rent {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-rent:hover {
-            background-color: #218838;
-        }
-
-        .btn-disabled {
-            background-color: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            width: 100%;
-            margin-top: 10px;
-            cursor: not-allowed;
-        }
-
-        /* Section headers */
-        .section-header {
-            margin: 20px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 5px;
-        }
-    </style>
-=======
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="offers.css">
->>>>>>> anwaar/main
 </head>
 
 <body>
     <!-- Website Header Section -->
-<<<<<<< HEAD
-    <header>
-        <h1>Car Rental Service</h1>
-        <nav>
-            <ul>
-                <!-- Home link visible to all users -->
-                <li><a href="index.php">Home</a></li>
-
-                <!-- Links visible only to logged-in users -->
-                <?php if (isset($_SESSION['user'])): ?>
-                    <li><a href="my_rental.php">My Rentals</a></li>
-
-                    <!-- Special Offers for all users -->
-                    <li><a href="offers.php">Special Offers</a></li>
-
-=======
     <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
         <nav class="container-fluid d-flex justify-content-center align-items-center">
             <h1 class="navbar-brand">Car Rental Service</h1>
@@ -354,7 +168,6 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
->>>>>>> anwaar/main
                     <!-- Admin-only dashboard link -->
                     <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
                         <li class="nav-item"><a class="nav-link" href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
@@ -368,78 +181,28 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                             <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
                             <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
                     <?php endif; ?>
-<<<<<<< HEAD
-
-                    <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
-
-                    <!-- Profile icon link -->
-                    <li>
-                        <a href="profile.php" class="profile-link">
-=======
                     
                     <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
                     
                     <li class="nav-item">
                         <a href="profile.php" class="nav-link profile-link">
->>>>>>> anwaar/main
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                             </svg>
                         </a>
                     </li>
-<<<<<<< HEAD
-                <?php else: ?>
-                    <!-- Links for non-logged-in users -->
-                    <li><a href="Login-Signup-Logout/login.php">Login</a></li>
-                    <li><a href="Login-Signup-Logout/signup.php">Sign Up</a></li>
-                <?php endif; ?>
-
-                <li><a href="about us.html">About Us</a></li>
-
-                <li><a href="Call_Us.php">Contact Us</a></li>
-
-            </ul>
-=======
                 </ul>
             </div>
->>>>>>> anwaar/main
         </nav>
     </header>
 
     <!-- Main Content Section -->
     <main>
-<<<<<<< HEAD
-        <h2>Available Cars</h2>
-        <div class="sort-filter">
-            <form method="GET">
-                <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
-                <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
-                <label>Sort By:</label>
-                <select name="sort">
-                    <option value="none" <?= $sort == 'none' ? 'selected' : '' ?>>Default</option>
-                    <option value="price_asc" <?= $sort == 'price_asc' ? 'selected' : '' ?>>Price (Low-High)</option>
-                    <option value="price_desc" <?= $sort == 'price_desc' ? 'selected' : '' ?>>Price (High-Low)</option>
-                    <option value="year_asc" <?= $sort == 'year_asc' ? 'selected' : '' ?>>Year (Old-New)</option>
-                    <option value="year_desc" <?= $sort == 'year_desc' ? 'selected' : '' ?>>Year (New-Old)</option>
-                    <option value="available" <?= $sort == 'available' ? 'selected' : '' ?>>Availability</option>
-                </select>
-                <button type="submit" class="apply-button">Apply</button>
-            </form>
-        </div>
-
-        <form method="GET" action="index.php">
-            <a href="index.php" class="reset-button">Reset</a>
-        </form>
-
-        <br>
-
-=======
         <div class="reset-filter">
         <form method="GET" action="index.php">
             <a href="index.php" class="reset-button">Reset</a>
         </form>
         <br>
->>>>>>> anwaar/main
         <!-- Filter toggle button -->
         <button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
         </div>
@@ -520,15 +283,9 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <!-- Regular Cars Section -->
         <div class="regular-section">
             <h3 class="section-header">
-<<<<<<< HEAD
-                <?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium')
-                    ? '<i class="fas fa-car"></i> Standard Vehicles'
-                    : '<i class="fas fa-car"></i> Available Cars' ?>
-=======
                 <?= (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'premium') 
                     ? '<i class="fa-solid fa-gears"></i> Standard Vehicles' 
                     : '<i class="fa-solid fa-gears"></i> Available Cars' ?>
->>>>>>> anwaar/main
             </h3>
             <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
                 <div class="row">
@@ -548,20 +305,11 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <div class="footer-container">
             <!-- Contact Information -->
             <div class="footer-section">
-<<<<<<< HEAD
-                <li><a href="Call_Us.php">
-                        <h3>Contact Us</h3>
-                    </a></li>
-                <p>Email: info@carrentalservice.com</p>
-                <p>Phone: 0000000</p>
-=======
                 <h3>Contact Us</h3>
                 <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
                 <a href="01234567890" >Phone: 01234567890</a>
->>>>>>> anwaar/main
             </div>
-
-
+            
             <!-- Social Media Links -->
             <div class="footer-section">
                 <h3>Follow Us</h3>
@@ -572,22 +320,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
-<<<<<<< HEAD
-
-            <!-- Quick Links -->
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="about us.html">About Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
-
-=======
             
->>>>>>> anwaar/main
             <!-- Newsletter Subscription -->
             <div class="footer-section">
                 <h3>Subscribe</h3>
@@ -597,7 +330,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 </form>
             </div>
         </div>
-
+        
         <!-- Copyright Notice -->
         <div class="copyright">
             <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
@@ -625,7 +358,6 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
-
 </html>
 
 <?php
@@ -634,23 +366,22 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
  * This function creates the visual representation of each car
  * with all its details and rental button
  */
-function renderCarCard($car)
-{
+function renderCarCard($car) {
     global $conn;
 
     $carId = $car['id'];
     $name = htmlspecialchars($car['name'] ?? 'Unknown');
     $model = htmlspecialchars($car['model'] ?? 'Unknown');
     $type = htmlspecialchars($car['type'] ?? 'N/A');
-    $price = isset($car['price_per_day']) ?
-        '$' . number_format($car['price_per_day'], 2) :
+    $price = isset($car['price_per_day']) ? 
+        '$' . number_format($car['price_per_day'], 2) : 
         'N/A';
-    $image = !empty($car['image']) ?
-        'images/' . htmlspecialchars($car['image']) :
+    $image = !empty($car['image']) ? 
+        'images/' . htmlspecialchars($car['image']) : 
         'images/default.png';
     $status = $car['status'] ?? 'available';
     $category = htmlspecialchars($car['category'] ?? 'N/A');
-
+    
     // Get average rating for this car
     $avgQuery = "SELECT AVG(rating) AS avg_rating FROM rating WHERE car_id = $carId";
     $avgResult = mysqli_query($conn, $avgQuery);
@@ -671,18 +402,10 @@ function renderCarCard($car)
     <div class="card">
         <div class="card-body">
         <!-- Car Image -->
-<<<<<<< HEAD
-        <img src="<?= $image ?>" alt="<?= $name ?>">
-
-        <!-- Car Details -->
-        <h3><?= "$name ($model)" ?></h3>
-
-=======
         <img src="<?= $image ?>" class="card-img-top alt="<?= $name ?>">
         <!-- Car Details -->
         <div class="car-details">
         <h3 class="card-title"><?= "$name ($model)" ?></h3>
->>>>>>> anwaar/main
         <!-- Rating Stars -->
         <div class="rating-stars">
             <?php for ($i = 0; $i < $fullStars; $i++): ?>
@@ -701,22 +424,18 @@ function renderCarCard($car)
         <div class=" card-text">
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
-            <p><strong>Status:</strong>
+            <p><strong>Status:</strong> 
                 <span class="<?= $availabilityClass ?>">
                     <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>
                     <?= $availabilityText ?>
                 </span>
             </p>
-            <p><strong>Category:</strong>
+            <p><strong>Category:</strong> 
                 <span class="category-badge <?= $category ?>">
                     <?= ucfirst($category) ?>
                 </span>
             </p>
         </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> anwaar/main
         <!-- Rental Button -->
         <?php if ($status === 'available'): ?>
             <form method="GET" action="rent_request.php">
@@ -729,6 +448,6 @@ function renderCarCard($car)
         </div>
         </div>
     </div>
-<?php return ob_get_clean();
+    <?php return ob_get_clean();
 }
 ?>
