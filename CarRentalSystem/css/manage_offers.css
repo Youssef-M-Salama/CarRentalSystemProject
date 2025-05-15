@@ -69,7 +69,7 @@ textarea{
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 40px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
@@ -77,7 +77,7 @@ textarea{
 
 .btn:hover {
     background-color: #48A6A7;
-    transform: translateY(-1px);
+    transform: scale(1.02);
 }
 
 /* Table Styles */
@@ -94,7 +94,7 @@ th,
 td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #006A71;
 }
 
 th {
@@ -109,7 +109,7 @@ tr:hover {
 /* Status Badges */
 .badge {
     padding: 3px 8px;
-    border-radius: 12px;
+    border-radius: 40px;
     font-size: 0.8em;
     font-weight: bold;
 }
@@ -142,8 +142,10 @@ tr:hover {
 /* Alerts */
 .alert {
     padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    margin: 20px auto;
+    border-radius: 40px;
+    text-align: center;
+    width: fit-content;
 }
 
 .alert-success {

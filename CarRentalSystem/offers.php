@@ -156,8 +156,7 @@ if ($result->num_rows == 0) {
                                 
                                 <p class="card-text"><?php echo htmlspecialchars($offer['description']); ?></p>
                                 
-                                <div class="validity">
-                                    <i class="far fa-calendar-alt"></i> 
+                                <div class="validity"> 
                                     Valid from <?php echo date('M d, Y', strtotime($offer['start_date'])); ?> 
                                     to <?php echo date('M d, Y', strtotime($offer['end_date'])); ?>
                                 </div>

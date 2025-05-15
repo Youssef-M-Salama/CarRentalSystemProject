@@ -55,6 +55,8 @@
     width: calc(100% - 20px);
     height: 2px;
     background-color: #48A6A7;
+    transition: background-color 0.3s ease;
+
 }
 
 /* Profile icon */

@@ -262,7 +262,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin'])): ?>
             <div class="premium-section">
                 <h3 class="section-header">
-                    <i class="fas fa-crown"></i> Premium Cars
+                    Premium Cars
                 </h3>
                 <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
                     <div class="row">
@@ -282,8 +282,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <div class="regular-section">
             <h3 class="section-header">
                 <?= (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'premium') 
-                    ? '<i class="fas fa-car"></i> Standard Vehicles' 
-                    : '<i class="fas fa-car"></i> Available Cars' ?>
+                    ? ' Standard Vehicles' 
+                    : ' Available Cars' ?>
             </h3>
             <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
                 <div class="row">
@@ -298,7 +298,6 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             </div>
         </div>
     </main>
-
     <!-- Footer Section -->
     <footer>
         <div class="footer-container">

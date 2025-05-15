@@ -8,8 +8,17 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: "League Spartan", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #9ACBD0;
+    line-height: 1.6;
+    text-transform: capitalize;
 }
-
+select , input , textarea {
+    text-transform: capitalize;
+}
 main {
     flex: 1;
 }
@@ -17,15 +26,6 @@ main {
 footer {
     margin-top: auto;
 }
-body {
-    font-family: "League Spartan", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #9ACBD0;
-    line-height: 1.6;
-}
-
 * {
     margin: 0;
     padding: 0;

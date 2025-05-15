@@ -65,9 +65,12 @@ body {
     object-fit: cover;
     border-radius: 40px;
 }
-.offer-card-body .card-text{
-    margin: 5px;
+.offer-card-body p {
+    color: #006A71;
     font-weight: bold;
+    font-size: 16px;
+    border-radius: 40px;
+    margin: 5px;
 }
 .car-info{
     display: flex;
@@ -89,11 +92,12 @@ body {
 }
 
 .validity {
-    color:#006A71;
+    color: #006A71;
+    font-weight: bold;
     font-size: 16px;
-    background: #f8f9fa;
-    padding: 10px;
+    padding: 8px;
     border-radius: 40px;
+    margin: 5px;
 }
 
 .section-title {
@@ -126,9 +130,9 @@ body {
 }
 
 .price-info {
-    background: #e9ecef;
+    background:#F2EFE7;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 40px;
     margin: 10px 0;
 }
 

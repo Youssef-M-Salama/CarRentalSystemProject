@@ -1,18 +1,20 @@
 body {
     font-family: "League Spartan", sans-serif !important;
+    color: #006A71;
 }
 
 .rental-request {
+    width: 70%;
     background: white;
-    border-radius: 10px;
+    border-radius: 40px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
 .rental-request:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02);
 }
 
 .rental-status {
@@ -23,25 +25,34 @@ body {
 }
 
 .status-pending {
-    background-color: #FFFDE7;
-    color: #7a5d00;
+    width: fit-content;
+    border-radius: 40px;
+    background-color: #F2EFE7;
+    color:#006A71;
+    margin: auto;
 }
 
 .status-approved {
-    background-color: #E8F5E9;
-    color: #1e7e34;
+    width: fit-content;
+    border-radius: 40px;
+    background-color: #F2EFE7;
+    color:#006A71;
+    margin: auto;
 }
 
 .status-rejected {
-    background-color: #FFE7E7;
+    width: fit-content;
+    border-radius: 40px;
+    background-color: #F2EFE7;
     color: #99151b;
+    margin: auto;
 }
 
 .car-image {
     width: 200px;
     height: 150px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 40px;
     margin-right: 20px;
 }
 
@@ -119,18 +130,11 @@ body {
     padding: 20px;
 }
 
-.rental-request {
-    background-color: #F2EFE7;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 .rental-status {
     text-align: center;
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 40px;
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -138,6 +142,7 @@ body {
 .rental-info {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 20px;
 }
 
@@ -147,15 +152,33 @@ body {
 }
 
 .rental-dates {
+    display: flex;
+    width: 65%;
     background-color: #e0f7fa;
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-evenly
 }
-
+.rental-dates p{
+    margin: 0;
+}
 .no-rentals {
     text-align: center;
     padding: 30px 0;
     font-size: 18px;
     color: #666;
+}
+.my-rentals .rental-request .rental-info .car-details{
+    display: flex;
+    margin-top: 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 40px;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 40px;
 }

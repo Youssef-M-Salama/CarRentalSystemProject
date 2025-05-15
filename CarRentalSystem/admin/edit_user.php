@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </header>
 
     <!-- Main Content -->
-    <main>
+    <main class="edit-user-container">
         <h2>Edit User: <?php echo htmlspecialchars($user['username']); ?></h2>
         <form method="POST" action="edit_user.php?user_id=<?php echo $user['id']; ?>">
             <label for="role">Role:</label>
