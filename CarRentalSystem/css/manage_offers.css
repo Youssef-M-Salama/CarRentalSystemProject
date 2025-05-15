@@ -47,10 +47,18 @@ textarea{
     flex-direction: row;
     width: 60%;
     margin: 0 auto;
-    box-shadow: 0 3px 13px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 13px rgba(0,0,0,0.3);
     padding: 20px;
     border-radius: 40px;
     background-color: #fff;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+}
+.new-offer:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
 }
 .new-offer div{
     width: 80%;
@@ -77,12 +85,13 @@ textarea{
 
 .btn:hover {
     background-color: #48A6A7;
+    color: #fff;
     transform: scale(1.02);
 }
 
 /* Table Styles */
 table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -116,7 +125,7 @@ tr:hover {
 
 .type-client {
     background: #fff3e0;
-    color: #ef6c00;
+    color: #006A71;
 }
 
 .type-premium {
@@ -131,7 +140,7 @@ tr:hover {
 
 .status-active {
     background: #E8F5E9;
-    color: #1e7e34;
+    color: #006A71;
 }
 
 .status-inactive {
@@ -150,7 +159,7 @@ tr:hover {
 
 .alert-success {
     background: #E8F5E9;
-    color: #1e7e34;
+    color: #006A71;
 }
 
 .alert-error {

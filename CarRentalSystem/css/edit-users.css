@@ -1,0 +1,55 @@
+.edit-user-container {
+    background-color: #fff;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 40px;
+    box-shadow: 0 4px 8px;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    box-shadow: 0 2px 13px rgba(0, 0, 0, 0.3);
+}
+.edit-user-container:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
+}
+.edit-user-container:hover h2{
+    border-bottom: 1.5px solid #006A71;
+
+}
+.edit-user-container h2{
+    color: #006A71;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 20px auto;
+}
+.edit-user-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+}
+.edit-user-container form label{
+    font-size: 20px;
+    font-weight: bold;
+}
+.edit-user-container form select{
+    width: 50%;
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 2px solid #006A71;
+    background-color: #f9f9f9;
+    color: #006A71;
+    font-size: 1rem;
+}
+.edit-user-container form select:focus{
+    outline: none;
+    border: 2px solid #006A71;
+}

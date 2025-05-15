@@ -249,7 +249,9 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <option value="premium" <?= $class == 'premium' ? 'selected' : '' ?>>Premium</option>
                 </select><br><br>
                 </div>
+                <div class="btn-submit-cont">
                 <button type="submit" class="apply-button">Apply</button>
+                </div>
             </form>
         </div>
 
@@ -262,7 +264,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin'])): ?>
             <div class="premium-section">
                 <h3 class="section-header">
-                    Premium Cars
+                    <i class="fa-solid fa-crown"></i> Premium Cars
                 </h3>
                 <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
                     <div class="row">
@@ -282,8 +284,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <div class="regular-section">
             <h3 class="section-header">
                 <?= (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'premium') 
-                    ? ' Standard Vehicles' 
-                    : ' Available Cars' ?>
+                    ? '<i class="fa-solid fa-gears"></i> Standard Vehicles' 
+                    : '<i class="fa-solid fa-gears"></i> Available Cars' ?>
             </h3>
             <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
                 <div class="row">

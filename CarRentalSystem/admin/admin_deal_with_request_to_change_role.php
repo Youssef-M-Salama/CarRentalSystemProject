@@ -88,6 +88,7 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/manage_offers.css">
+    <link rel="stylesheet" href="../css/request_to_change_role.css">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
@@ -104,7 +105,7 @@ $result = $stmt->get_result();
         </div>
     </nav>
 </header>
-<main>
+<main class="role-change-requests">
     <?php if (isset($_SESSION['message'])): ?>
         <div class="notification <?= $_SESSION['msg_type'] ?>">
             <?= htmlspecialchars($_SESSION['message']) ?>
@@ -146,7 +147,7 @@ $result = $stmt->get_result();
                 </tbody>
             </table>
         <?php else: ?>
-            <p style="text-align:center; padding:20px;">No pending role change requests.</p>
+            <p style="text-align:center; padding:20px;" class="no-pending">No pending role change requests.</p>
         <?php endif; ?>
     </div>
 </main>

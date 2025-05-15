@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 45px;
     align-items: center;
     justify-content: center;
 }
@@ -27,6 +27,7 @@
     align-items: center;
     padding: 0;
     border-radius: 40px;
+    border-right: 3px solid transparent;
 }
 
 .card img {
@@ -56,8 +57,9 @@
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-right: 3px solid #006A71;
 }
 
 .car-details {
@@ -183,7 +185,7 @@
     flex-direction: row;
     width: 80%;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #006A71;
     background-color: #f9f9f9;
     border-radius: 40px;
     justify-content: center;
@@ -225,7 +227,10 @@
     text-decoration: none;
     margin-left: 10px;
 }
-
+.btn-submit-cont{
+    display: flex;
+    justify-content: center;
+}
 .reset-button {
     display: inline-block;
     padding: 10px 20px;
@@ -269,25 +274,21 @@
 
 /* Section headers */
 .section-header {
-    /* background: linear-gradient(to right, #006A71 0%,#00796b 100%);
-    background-clip: text;
-    -webkit-text-fill-color: transparent; */
     color: #006A71;
     width: fit-content;
-    border-bottom: 2px solid #006A71;
-    /* background-color: #fff; */
-    /* width: fit-content; */
+    background-color: #fff;
     text-align: center;
     margin: 20px auto ;
-    /* margin-left: 100px; */
     padding: 10px 20px;
     border-radius: 40px;
-    box-shadow:  0 2px 13px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    box-shadow:  0 2px 13px rgba(0, 0, 0, 0.2);
 }
 .premium-section:hover .section-header,
 .regular-section:hover .section-header {
-    color: #48A6A7;
-    border-bottom: 2px solid #48A6A7;
+    border-top: 2px solid #006A71;
+    border-bottom: 2px solid #006A71;
 
 }
 main {
@@ -311,7 +312,7 @@ main {
 .filter-box select {
     width: 100%;
     padding: 10px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #006A71;
     border-radius: 40px;
     font-size: 14px;
     transition: all 0.3s ease;

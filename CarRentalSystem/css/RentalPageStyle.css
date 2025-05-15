@@ -10,11 +10,16 @@ body {
     padding: 20px;
     margin: 20px auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
     transition: transform 0.3s ease;
 }
 
 .rental-request:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    transition: all 200ms ease-in-out;
 }
 
 .rental-status {

@@ -49,11 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../css/AdminDashboard.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/main-content.css">
     <link rel="stylesheet" href="../css/sort-filter.css">
     <link rel="stylesheet" href="../css/offers.css">
-    <link rel="stylesheet" href="../css/buttons.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/edit-users.css">
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>

@@ -12,16 +12,21 @@ body {
   flex-direction: column;
   gap: 10px;
   background-color: white;
-  border-radius: 25px;
-  transition: .4s ease-in-out;
+  border-radius: 40px;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  /* transition: .4s ease-in-out; */
   box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
 }
 
 .login-container:hover,
 .signup-container:hover {
-  transform: translateX(-0.5em) translateY(-0.5em);
-  border: 1px solid #006A71;
-  box-shadow: 10px 10px 0px #006A71;
+  border-bottom: 3px solid #006A71;
+  border-top: 3px solid #006A71;
+  border-radius: 40px;
+  /* box-shadow: 0px 2px 7px #006A71; */
+  transition: all 200ms ease-in-out;
+
 }
 
 .login-container h2,
@@ -59,16 +64,11 @@ body {
   transition: .4s ease-in-out;
 }
 
-.login-form input:hover,
-.signup-form input:hover {
-  box-shadow: 6px 6px 0px #006A71,
-             -3px -3px 10px #ffffff;
-}
 
 .login-form input:focus,
 .signup-form input:focus {
   background: #ffffff;
-  box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.3);
 }
 
 .login-form button,
@@ -89,14 +89,7 @@ body {
 
 .login-form button:hover,
 .signup-form button:hover {
-  box-shadow: 6px 6px 0px #006A71,
-              -3px -3px 10px #ffffff;
-  border: 1px solid #9ACBD0;
-}
+  background-color: #48A6A7;
+  transition: all 300ms ease-in-out;
+  }
 
-.login-form button:active,
-.signup-form button:active {
-  transition: .2s;
-  transform: translateX(0em) translateY(0em);
-  box-shadow: none;
-}
