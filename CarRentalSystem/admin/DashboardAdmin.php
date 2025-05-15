@@ -99,224 +99,37 @@ $unavailable_cars = mysqli_query($conn, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="../css/AdminDashboard.css">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main-content.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/sort-filter.css">
+    <link rel="stylesheet" href="../css/offers.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
 
-    <style>
-        /* Tab Navigation Styles */
-        .tab-navigation {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .tab-navigation a {
-            text-decoration: none;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .tab-navigation a:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Notification Badge Styles */
-        .notification-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #dc3545;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 50%;
-            font-size: 0.8em;
-            font-weight: bold;
-            min-width: 20px;
-            text-align: center;
-            line-height: 1.2;
-            transition: transform 0.3s ease;
-        }
-        .notification-badge:hover {
-            transform: scale(1.1);
-        }
-
-        /* Rental Request Styles */
-        .rental-request {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .rental-request:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .rental-request-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .rental-request-content {
-            display: flex;
-            gap: 20px;
-        }
-        .rental-car-image {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 4px;
-            transition: transform 0.3s ease;
-        }
-        .rental-car-image:hover {
-            transform: scale(1.05);
-        }
-        .rental-info {
-            flex-grow: 1;
-        }
-        .rental-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .status-pending {
-            color: #856404;
-            background-color: #fff3cd;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .status-approved {
-            color: #155724;
-            background-color: #d4edda;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .status-rejected {
-            color: #721c24;
-            background-color: #f8d7da;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .btn-approve {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-approve:hover {
-            background-color: #218838;
-            transform: translateY(-1px);
-        }
-        .btn-reject {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .btn-reject:hover {
-            background-color: #c82333;
-            transform: translateY(-1px);
-        }
-
-        /* Table Styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        /* Form Styles */
-        form {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        button[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-            transform: translateY(-1px);
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Error Message Styles */
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-    </style>
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <h1>Admin Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Back to Home</a></li>
-                <li><a href="../Login-Signup-Logout/logout.php">Logout</a></li>
+    <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+        <nav class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h1 class="navbar-brand">Admin Dashboard</h1>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a  class="nav-link" href="../index.php">Back to Home</a></li>
+                <li class="nav-item"><a  class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
             </ul>
+            </div>
         </nav>
     </header>
 
@@ -366,17 +179,21 @@ $unavailable_cars = mysqli_query($conn, $query);
         </div>
 
         <!-- Add Car Form -->
+        <div class="add-car">
         <section id="add-car" class="tab-content active">
-            <h3>Add New Car</h3>
             <form method="POST" action="DashboardAdmin.php" enctype="multipart/form-data">
+                <h3>Add New Car</h3>
+                <div class="car-input">
                 <input type="text" name="name" placeholder="Car Name" required>
                 <input type="text" name="model" placeholder="Model" required>
+                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
+                </div>
+                <div class="car-select">
                 <select name="type" required>
                     <option value="Sedan">Sedan</option>
                     <option value="SUV">SUV</option>
                     <option value="Crossover">Crossover</option>
                 </select>
-                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
                 <select name="status" required>
                     <option value="available">Available</option>
                     <option value="not available">Not Available</option>
@@ -385,11 +202,13 @@ $unavailable_cars = mysqli_query($conn, $query);
                     <option value="free">Free</option>
                     <option value="premium">Premium</option>
                 </select>
-                <label for="image">Upload Image:</label>
-                <input type="file" name="image" id="image" accept="image/*" required>
+                </div>
+                <label for="image"class="custom-file-upload"><i class="fas fa-cloud-upload-alt"></i> Upload Image:</label>
+                <input type="file" name="image" id="image" accept="image/*" required><span class="file-name"> No file chosen</span>
                 <button type="submit" name="add_car">Add Car</button>
             </form>
         </section>
+    </div>
 
         <!-- Car List -->
         <section id="car-list" class="tab-content">
@@ -420,15 +239,15 @@ $unavailable_cars = mysqli_query($conn, $query);
                             <td>
                                 <?php if (!empty($car['image'])): ?>
                                     <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
-                                         alt="<?= htmlspecialchars($car['name']) ?>" 
-                                         width="50">
+                                        alt="<?= htmlspecialchars($car['name']) ?>" 
+                                        width="50">
                                 <?php else: ?>
                                     No Image
                                 <?php endif; ?>
                             </td>
                             <td><?= htmlspecialchars($car['category']) ?></td>
                             <td>
-                                <form method="POST" action="delete_car.php">
+                                <form class="delete-form" method="POST" action="delete_car.php">
                                     <input type="hidden" name="car_id" value="<?= $car['id'] ?>">
                                     <button type="submit" onclick="return confirm('Are you sure you want to delete this car?')">Delete</button>
                                 </form>
@@ -468,8 +287,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                                 <td>
                                     <?php if (!empty($car['image'])): ?>
                                         <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
-                                             alt="<?= htmlspecialchars($car['name']) ?>" 
-                                             width="50">
+                                            alt="<?= htmlspecialchars($car['name']) ?>" 
+                                            width="50">
                                     <?php else: ?>
                                         No Image
                                     <?php endif; ?>
@@ -549,8 +368,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                             </div>
                             <div class="rental-request-content">
                                 <img src="../images/<?= htmlspecialchars($request['image']) ?>" 
-                                     alt="<?= htmlspecialchars($request['car_name']) ?>" 
-                                     class="rental-car-image">
+                                    alt="<?= htmlspecialchars($request['car_name']) ?>" 
+                                    class="rental-car-image">
                                 <div class="rental-info">
                                     <p><strong>User:</strong> <?= htmlspecialchars($request['username']) ?></p>
                                     <p><strong>Car:</strong> <?= htmlspecialchars($request['car_name']) ?> (<?= htmlspecialchars($request['model']) ?>)</p>
@@ -609,17 +428,71 @@ $unavailable_cars = mysqli_query($conn, $query);
             <?php endif; ?>
         </section>
     </main>
-
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="footer-section">
+                <h3>Subscribe</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+        </div>
+    </footer>
     <script>
         function showTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(function(tab) {
-                tab.classList.remove('active');
-            });
-
-            // Show the selected tab content
-            document.getElementById(tabId).classList.add('active');
-        }
+    // hide content of all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // hide div.add-car 
+    document.querySelector('.add-car').style.display = 'none';
+    
+    // show content of the selected tab
+    document.getElementById(tabId).classList.add('active');
+    
+    // show add-car div if the selected tab is 'add-car'
+    if (tabId === 'add-car') {
+        document.querySelector('.add-car').style.display = 'block';
+    }
+}
+// Show the default tab on page load
+window.onload = function() {
+    showTab('add-car'); 
+};
+// Handle file input change event
+document.getElementById('image').addEventListener('change', function(e) {
+    const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+    document.querySelector('.file-name').textContent = fileName;
+});
     </script>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

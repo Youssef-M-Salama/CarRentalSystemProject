@@ -1,86 +1,180 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f9f9f9;
-  color: #333;
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
 }
 
-.container {
-  width: 90%;
-  max-width: 1000px;
+header nav ul li a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* تنسيق العنصر النشط */
+header nav ul li a.active {
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+header nav ul li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 2px;
+  background-color: white;
+}
+
+/* تأثير hover */
+header nav ul li a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 2px;
+  background-color: #48A6A7;
+}
+
+/* أيقونة البروفايل */
+header nav ul li a.profile-link.active svg path {
+  fill:#fff;
+  color: #fff;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: auto;
   margin: 40px auto;
   padding: 40px 20px;
+  border-radius: 40px;
   background-color: #fff;
+  border-bottom: 2px solid transparent;
+  border-top: 2px solid transparent;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-h1 {
+.about-container:hover {
+  border-bottom: 2px solid #48A6A7;
+  border-top: 2px solid #48A6A7;
+  border-radius: 40px;
+  transition: all 200ms ease-in-out;
+}
+.about-container h1 {
+  width: 300px;
+  margin: auto;
+  border-bottom: 2px solid #48A6A7;
   text-align: center;
-  margin-bottom: 30px;
-  color: #1e88e5;
+  margin-bottom: 50px;
+  padding: 15px;
+  color: #48A6A7;
 }
 
-h2 {
-  color: #1e88e5;
+.about-section-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
-.section {
-  margin-bottom: 40px;
+.about-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 40%;
+    border-bottom: 2px solid #48A6A7;
+    margin-bottom: 30px;
+    gap: 5px;
+    padding: 25px;
+    flex-direction: row;
 }
 
-.section h2 {
-  border-left: 5px solid #1e88e5;
+.about-section h2 {
+  color:#48A6A7;
+  border-left: 5px solid #48A6A7;
   padding-left: 10px;
 }
 
-.section p {
+.about-section p {
   margin-bottom: 20px;
+  color: #000000b3;
 }
 
-.features-table {
-  width: 90%;
-  border-collapse: collapse;
-  margin: 20px auto;
+.features-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: auto;
+  margin: 40px auto;
+  padding: 40px 20px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-top: 3px solid #1e88e5;
+  border-bottom: 2px solid transparent;
+  border-top: 2px solid transparent;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #48A6A7;
+  border-radius: 40px;
 }
-
-.features-table tr:nth-child(odd) {
-  background-color: #f4f4f4;
+.features-container:hover {
+  border-bottom: 2px solid #48A6A7;
+  border-top: 2px solid #48A6A7;
+  border-radius: 40px;
+  transition: all 200ms ease-in-out;
 }
-
-.features-table td {
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #ddd;
-  vertical-align: middle;
-}
-
-/* تخصيص الأعمدة الخاصة بالصور */
-.features-table td:first-child,
-.features-table td:last-child {
-  width: 25%;
-  height: 250px;
-}
-
-/* تنسيق الصور داخل الجدول */
-.features-table td img {
+.features-row-container {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  height: auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.features-container h1 {
+  width: 300px;
+  margin: auto;
+  border-bottom: 2px solid #48A6A7;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 15px;
+  color: #48A6A7;
+}
+
+.features-container .row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 25px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;}
+
+.features-row-container p {
+  width: 40%;
+  color:  #000000b3;
+}
+.features-row-container p b{
+  color:  #48A6A7;
+}
+/* تنسيق الصور داخل الجدول */
+.features-img {
+  width: 30%;
+  object-fit: contain;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0;
 }
 
-/* تخصيص عمود النص */
-.features-table td:nth-child(2) {
-  text-align: left;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.features-table td:nth-child(2) p {
-  margin: 10px 0;
+.features-img img {
+  width: 300px;
+  height: auto;
+  padding: 0;
 }

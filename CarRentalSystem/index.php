@@ -67,13 +67,15 @@ if ($availability === '1') {
 }
 
 // Exclude premium for regular users
-if (!isset($_SESSION['user']) || !in_array($_SESSION['user']['role'], ['premium', 'admin'])) {
+if (!isset($_SESSION['user'])) {
+    $regularQuery .= " AND category != 'premium'";
+} elseif (isset($_SESSION['user']) && !in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin'])) {
     $regularQuery .= " AND category != 'premium'";
 }
 
 // Prepare premium query
 $premiumQuery = '';
-if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin']) && $class != 'free') {
+if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin']) && $class != 'free') {
     $premiumQuery = "SELECT * FROM cars WHERE category = 'premium' AND (name LIKE '%$search%' OR model LIKE '%$search%')";
 
     if (!empty($type)) {
@@ -137,7 +139,18 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Rental Service</title>
+<<<<<<< HEAD
 
+=======
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+>>>>>>> anwaar/main
     <!-- Include CSS stylesheets -->
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/header.css">
@@ -145,6 +158,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sort-filter.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
@@ -307,10 +321,15 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
             border-radius: 5px;
         }
     </style>
+=======
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="offers.css">
+>>>>>>> anwaar/main
 </head>
 
 <body>
     <!-- Website Header Section -->
+<<<<<<< HEAD
     <header>
         <h1>Car Rental Service</h1>
         <nav>
@@ -325,21 +344,50 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <!-- Special Offers for all users -->
                     <li><a href="offers.php">Special Offers</a></li>
 
+=======
+    <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+        <nav class="container-fluid d-flex justify-content-center align-items-center">
+            <h1 class="navbar-brand">Car Rental Service</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
+>>>>>>> anwaar/main
                     <!-- Admin-only dashboard link -->
-                    <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                        <li><a href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                        <li class="nav-item"><a class="nav-link" href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
                     <?php endif; ?>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="nav-item"><a class="nav-link" href="my_rental.php">My Rentals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="offers.php">Special Offers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
+                        <?php else: ?>
+                            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/login.php">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/signup.php">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Login-Signup-Logout/logout.php">Logout</a></li>
+                    <?php endif; ?>
+<<<<<<< HEAD
 
                     <li><a href="Login-Signup-Logout/logout.php">Logout</a></li>
 
                     <!-- Profile icon link -->
                     <li>
                         <a href="profile.php" class="profile-link">
+=======
+                    
+                    <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                    
+                    <li class="nav-item">
+                        <a href="profile.php" class="nav-link profile-link">
+>>>>>>> anwaar/main
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                             </svg>
                         </a>
                     </li>
+<<<<<<< HEAD
                 <?php else: ?>
                     <!-- Links for non-logged-in users -->
                     <li><a href="Login-Signup-Logout/login.php">Login</a></li>
@@ -351,11 +399,16 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <li><a href="Call_Us.php">Contact Us</a></li>
 
             </ul>
+=======
+                </ul>
+            </div>
+>>>>>>> anwaar/main
         </nav>
     </header>
 
     <!-- Main Content Section -->
     <main>
+<<<<<<< HEAD
         <h2>Available Cars</h2>
         <div class="sort-filter">
             <form method="GET">
@@ -380,12 +433,20 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
         <br>
 
+=======
+        <div class="reset-filter">
+        <form method="GET" action="index.php">
+            <a href="index.php" class="reset-button">Reset</a>
+        </form>
+        <br>
+>>>>>>> anwaar/main
         <!-- Filter toggle button -->
         <button class="toggle-btn" onclick="toggleFilter()">Filter Options</button>
-
+        </div>
         <!-- Filter box -->
         <div class="filter-box" id="filterBox">
             <form method="GET" action="index.php">
+                <div class="filter-car-details">
                 <label>Price Range:</label><br>
                 <input type="number" min="0" name="min_price" placeholder="Min Price" value="<?= htmlspecialchars($min_price) ?>">
                 <input type="number" min="0" name="max_price" placeholder="Max Price" value="<?= htmlspecialchars($max_price) ?>"><br><br>
@@ -404,7 +465,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <option value="1" <?= $availability === '1' ? 'selected' : '' ?>>Available</option>
                     <option value="0" <?= $availability === '0' ? 'selected' : '' ?>>Not Available</option>
                 </select><br><br>
-
+                </div>
+                <div class="filter-car-model">
                 <label>Car Name:</label>
                 <input type="text" name="name" placeholder="e.g. BMW" value="<?= htmlspecialchars($name) ?>">
                 <br><br>
@@ -423,8 +485,10 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <option value="free" <?= $class == 'free' ? 'selected' : '' ?>>Free</option>
                     <option value="premium" <?= $class == 'premium' ? 'selected' : '' ?>>Premium</option>
                 </select><br><br>
-
+                </div>
+                <div class="btn-submit-cont">
                 <button type="submit" class="apply-button">Apply</button>
+                </div>
             </form>
         </div>
 
@@ -434,12 +498,13 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <?php endif; ?>
 
         <!-- Premium Cars Section -->
-        <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'], ['premium', 'admin'])): ?>
+        <?php if (isset($_SESSION['user']) && in_array($_SESSION['user']['role'] ?? '', ['premium', 'admin'])): ?>
             <div class="premium-section">
                 <h3 class="section-header">
-                    <i class="fas fa-crown"></i> Premium Cars
+                    <i class="fa-solid fa-crown"></i> Premium Cars
                 </h3>
-                <div class="car-grid">
+                <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
+                    <div class="row">
                     <?php if ($premiumResult && mysqli_num_rows($premiumResult) > 0): ?>
                         <?php while ($car = mysqli_fetch_assoc($premiumResult)): ?>
                             <?= renderCarCard($car) ?>
@@ -447,6 +512,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <?php else: ?>
                         <p class="no-cars">No premium cars available</p>
                     <?php endif; ?>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
@@ -454,11 +520,18 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <!-- Regular Cars Section -->
         <div class="regular-section">
             <h3 class="section-header">
+<<<<<<< HEAD
                 <?= (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'premium')
                     ? '<i class="fas fa-car"></i> Standard Vehicles'
                     : '<i class="fas fa-car"></i> Available Cars' ?>
+=======
+                <?= (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'premium') 
+                    ? '<i class="fa-solid fa-gears"></i> Standard Vehicles' 
+                    : '<i class="fa-solid fa-gears"></i> Available Cars' ?>
+>>>>>>> anwaar/main
             </h3>
-            <div class="car-grid">
+            <div class="car-grid row row-cols-1 row-cols-md-2 g-4">
+                <div class="row">
                 <?php if ($regularResult && mysqli_num_rows($regularResult) > 0): ?>
                     <?php while ($car = mysqli_fetch_assoc($regularResult)): ?>
                         <?= renderCarCard($car) ?>
@@ -466,20 +539,26 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <?php else: ?>
                     <p class="no-cars">No cars available</p>
                 <?php endif; ?>
+                </div>
             </div>
         </div>
     </main>
-
     <!-- Footer Section -->
     <footer>
         <div class="footer-container">
             <!-- Contact Information -->
             <div class="footer-section">
+<<<<<<< HEAD
                 <li><a href="Call_Us.php">
                         <h3>Contact Us</h3>
                     </a></li>
                 <p>Email: info@carrentalservice.com</p>
                 <p>Phone: 0000000</p>
+=======
+                <h3>Contact Us</h3>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
+>>>>>>> anwaar/main
             </div>
 
 
@@ -488,11 +567,12 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 <h3>Follow Us</h3>
                 <ul class="social-links">
                     <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
                     <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                     <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
+<<<<<<< HEAD
 
             <!-- Quick Links -->
             <div class="footer-section">
@@ -505,6 +585,9 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 </ul>
             </div>
 
+=======
+            
+>>>>>>> anwaar/main
             <!-- Newsletter Subscription -->
             <div class="footer-section">
                 <h3>Subscribe</h3>
@@ -522,11 +605,25 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     </footer>
 
     <script>
-        function toggleFilter() {
-            var box = document.getElementById("filterBox");
-            box.style.display = (box.style.display === "none" || box.style.display === "") ? "block" : "none";
+    // تحديد الحالة الأولية للفلتر (مخفي عند تحميل الصفحة)
+    document.addEventListener('DOMContentLoaded', function() {
+        var box = document.getElementById("filterBox");
+        box.style.display = "none";
+    });
+
+    // وظيفة تبديل إظهار/إخفاء الفلتر
+    function toggleFilter() {
+        var box = document.getElementById("filterBox");
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "flex";
+        } else {
+            box.style.display = "none";
         }
-    </script>
+    }
+</script>
+    
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -570,13 +667,22 @@ function renderCarCard($car)
     $emptyStars = 5 - $fullStars - $halfStar;
 
     ob_start(); ?>
+
     <div class="card">
+        <div class="card-body">
         <!-- Car Image -->
+<<<<<<< HEAD
         <img src="<?= $image ?>" alt="<?= $name ?>">
 
         <!-- Car Details -->
         <h3><?= "$name ($model)" ?></h3>
 
+=======
+        <img src="<?= $image ?>" class="card-img-top alt="<?= $name ?>">
+        <!-- Car Details -->
+        <div class="car-details">
+        <h3 class="card-title"><?= "$name ($model)" ?></h3>
+>>>>>>> anwaar/main
         <!-- Rating Stars -->
         <div class="rating-stars">
             <?php for ($i = 0; $i < $fullStars; $i++): ?>
@@ -591,9 +697,8 @@ function renderCarCard($car)
             <span style="margin-left: 5px; font-size: 0.9em; color: #666;">
                 <?= $averageRating ?>/5
             </span>
-        </div>
-
-        <div class="car-details">
+            </div>
+        <div class=" card-text">
             <p><strong>Type:</strong> <?= $type ?></p>
             <p><strong>Price:</strong> <?= $price ?>/day</p>
             <p><strong>Status:</strong>
@@ -608,7 +713,10 @@ function renderCarCard($car)
                 </span>
             </p>
         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> anwaar/main
         <!-- Rental Button -->
         <?php if ($status === 'available'): ?>
             <form method="GET" action="rent_request.php">
@@ -618,6 +726,8 @@ function renderCarCard($car)
         <?php else: ?>
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
+        </div>
+        </div>
     </div>
 <?php return ob_get_clean();
 }

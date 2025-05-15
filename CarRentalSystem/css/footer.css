@@ -1,49 +1,89 @@
 footer {
-    background: #333;
+    font-family: "League Spartan", sans-serif;
+    background-color: #006A71;
     color: white;
-    text-align: center;
-    padding: 20px 40px;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
     font-size: 0.9rem;
     margin-top: 40px;
-  }
-  
-  .footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    border-radius: 40px 40px 0 0;
+    width: 90%;
+    margin: auto;
+    transition: .4s ease-in-out;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+}
+
+.footer-container {
+    display: flex;
     justify-items: center;
-    padding: 20px 0;
-  }
-  
-  .footer-section h3 {
+    justify-content: space-around;
+}
+
+.footer-section h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
-  }
-  
-  .social-links {
+}
+
+.footer-section a,
+.footer-section p {
+    margin: 0;
+}
+
+.footer-section a {
+    display: block;
+}
+
+.footer-section input {
+    background-color: #fff;
+    color: #006A71;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-section button {
+    background-color: #fff;
+    color: #48A6A7;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-section button:hover {
+    transform: scale(1.05);
+}
+
+.social-links {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     gap: 15px;
-  }
-  
-  .social-links li a {
+}
+
+.social-links li a {
     color: #fff;
     font-size: 1.5rem;
     transition: color 0.3s ease;
-  }
-  
-  .social-links li a:hover {
-    color: #4a90e2;
-  }
-  
-  .copyright {
+}
+
+.social-links li a:hover {
+    color: #48A6A7;
+}
+
+.copyright {
+    display: block;
     text-align: center;
-    padding: 10px 0;
-    background: #222;
     color: #ddd;
-  }
+}
+
+.copyright p {
+    margin: 0;
+}

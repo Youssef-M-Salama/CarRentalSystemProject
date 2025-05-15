@@ -1,0 +1,217 @@
+/* Professional Notification Styling */
+.notification-card {
+    position: relative;
+    width: 50%;
+    padding: 15px;
+    border-radius: 40px;
+    margin: 20px auto;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: slideIn 0.5s ease;
+}
+
+.notification-card .icon-container {
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+}
+
+.checkmark-circle {
+    stroke: #006A71;
+    stroke-width: 3;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+    stroke: #006A71;
+    stroke-width: 3;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+.notification-card h4 {
+    color: #006A71;
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+}
+
+.notification-card p {
+    color: #525f69;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: 0;
+    font-size: 1.2rem;
+    color: #6c757d;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #343a40;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+    .notification-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .checkmark {
+        margin: 0 auto 15px;
+    }
+}
+
+/* Profile container styling */
+.profile-container {
+    color: #006A71;
+    margin: 0 auto;
+    text-align: center;
+    width: 55%;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    border-top:2px solid transparent;
+    border-bottom:2px solid transparent;
+    box-shadow: 0 2px 13px rgba(0, 0, 0, 0.3);
+
+}
+.profile-container:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
+}
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    width: fit-content;
+    margin: 10px auto;
+    text-align: center;
+    border-radius: 40px;
+    padding: 10px 20px;
+    /* border-bottom: 2px solid #006A71; */
+}
+
+.profile-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.profile-form input {
+    color: #006A71;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #006A71;
+    border-radius: 40px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+.profile-form input:focus{
+    border: 3px solid #006A71;
+    outline: none;
+}
+.profile-form div{
+    text-align: left;
+}
+.full-width {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+}
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    border-radius: 40px;
+    background-color: #006A71;
+    color: white;
+}
+.btn-primary:hover{
+    background-color: #48A6A7;
+}
+.btn-cancel {
+    border-radius: 40px;
+    background-color: #343a40;
+    color: white;
+    margin-left: 15px;
+}
+.btn-cancel:hover{
+    background-color: #495057;
+    color: white;
+}
+.btn-warning,
+.btn.btn-warning.btn-warning{
+    background-color: #006A71;
+    border-radius: 40px;
+    color: white;
+}
+.btn-warning:hover,
+.btn.btn-warning.btn-warning:hover{
+    background-color: #495057;
+    color: white;
+}
+.error-list {
+    list-style: none;
+    padding: 20px;
+    background: #FFE7E7;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+
+/* .success {
+    padding: 20px;
+    background: #006A71;
+    color: #000;
+    border-radius: 6px;
+    margin-bottom: 25px;
+} */
+
+@media (max-width: 768px) {
+    .profile-form {
+        grid-template-columns: 1fr;
+    }
+}

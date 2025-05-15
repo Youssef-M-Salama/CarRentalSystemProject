@@ -1,22 +1,69 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: "Poppins", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
-    color: #333;
+    color: #9ACBD0;
     line-height: 1.6;
-  }
-  
-  h2 {
+    text-transform: capitalize;
+}
+select , input , textarea {
+    text-transform: capitalize;
+}
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
     font-size: 2rem;
-    color: #333;
+    color: #006A71;
     margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    justify-items: center;
-  }
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    height: 4px;
+    width: 8px;
+    background:  white;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background:  #006A71;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+}

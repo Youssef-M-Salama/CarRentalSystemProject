@@ -1,0 +1,205 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'League Spartan', sans-serif;
+}
+.container mt-5 mb-5{
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 80px;
+    padding: 20px;
+}
+.offer-card {
+    text-transform: capitalize;
+    width: 100%;
+    display: flex;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.offer-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.offer-header {
+    display: flex;
+    background: linear-gradient(135deg, #006A71 0%, #004B50 100%);
+    color: white;
+    padding: 20px;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.offer-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: white;
+    border-radius: 0 0 15px 15px;
+    z-index: -1;
+}
+.offer-card-body{
+    color: #006A71;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+}
+.offer-card-body img {
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 40px;
+}
+.offer-card-body p {
+    color: #006A71;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 40px;
+    margin: 5px;
+}
+.car-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+.mt-3{
+    margin: 0!important;
+}
+.discount-badge {
+    background: #48A6A7;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 40px;
+    font-weight: bold;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.validity {
+    color: #006A71;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 40px;
+    margin: 5px;
+}
+
+.section-title {
+    font-family: 'League Spartan', sans-serif;
+    color: #006A71;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #006A71, #004B50);
+} */
+
+.no-offers {
+    text-align: center;
+    padding: 50px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.price-info {
+    background:#F2EFE7;
+    padding: 10px;
+    border-radius: 40px;
+    margin: 10px 0;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #48A6A7;
+}
+
+.discounted-price {
+    color: #006A71;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.rent-button {
+    background: linear-gradient(135deg, #006A71 0%, #004B50 100%);
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.rent-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 106, 113, 0.4);
+}
+
+.user-badge {
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #006A71;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.user-role {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}

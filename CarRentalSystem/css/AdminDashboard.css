@@ -1,0 +1,361 @@
+body {
+    font-family: "League Spartan", sans-serif !important;
+}
+
+main {
+    padding: 20px !important;
+}
+/* add car */
+.add-car{
+    display: flex;
+    flex-direction:row;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 0 2px 13px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #fff;
+    box-shadow: 0 3px 13px rgba(0,0,0,0.3);
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+}
+.add-car:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
+}
+/* إخفاء div.add-car افتراضيًا */
+.add-car {
+    display: none;
+}
+
+/* عندما يكون section#add-car.active (مفعل) */
+#add-car.active {
+    display: block; /* أو أي استايل آخر تريدينه */
+}
+/* Tab Navigation Styles */
+.tab-navigation {
+    display: flex;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tab-navigation a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #006A71;
+    color: white;
+    border-radius: 40px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.tab-navigation a:hover {
+    background-color: #48A6A7;
+    transform: scale(1.05);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Notification Badge Styles */
+.notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #48A6A7;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1.2;
+    transition: transform 0.3s ease;
+}
+
+.notification-badge:hover {
+    transform: scale(1.1);
+}
+
+/* Rental Request Styles */
+.rental-requests-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.rental-request {
+    font-family: "League Spartan", sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    background-color: #fff;
+    border-radius: 40px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.rental-request:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
+}
+
+.rental-request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 20px;
+    color:  #006A71;
+
+}
+
+.rental-request-content {
+    display: flex;
+    gap: 20px;
+}
+
+.rental-car-image {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 40px;
+    transition: transform 0.3s ease;
+}
+
+.rental-car-image:hover {
+    transform: scale(1.05);
+}
+
+.rental-info {
+    flex-grow: 1;
+}
+.rental-info p ,
+.rental-info strong {
+    color: #006A71;
+}
+
+.rental-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.status-pending {
+    color: rental-info;
+    background-color: #FFFDE7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.status-approved {
+    color: #1e7e34;
+    background-color: #E8F5E9;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: #99151b;
+    background-color: #FFE7E7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.btn-approve,
+.btn-reject {
+    background-color: #006A71;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-approve:hover,
+.btn-reject:hover {
+    background-color: #48A6A7;
+    transform: translateY(-1px);
+}
+
+/* Table Styles */
+table {
+    margin: 0 auto;
+    width: 70%;
+    border-collapse: collapse;
+    border-radius: 40px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #006A71;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+td img{
+    width: 50%;
+}
+th {
+    background-color: #006A71;
+    color: white;
+}
+
+tr:hover {
+    background-color: #F2F8FA;
+}
+
+/* Form Styles */
+.tab-content h3 {
+    text-align: center;
+    color:  #006A71;
+}
+
+.tab-content form {
+    display: flex;
+    border-radius: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.tab-content input,
+.tab-content select {
+    font-family: "League Spartan", sans-serif;
+    width: 30%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #006A71;
+    border-radius: 40px;
+    color: #006A71;
+}
+.tab-content input:focus,
+.tab-content select:focus {
+    border: 2px solid #006A71;
+    outline: none;
+} 
+.car-input{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+}
+.car-select{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* إخفاء زر الاختيار الافتراضي */
+.add-car input[type="file"] {
+    display: none;
+}
+/* تنسيق التسمية المخصصة للزر */
+.add-car .custom-file-upload {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #006A71;
+    color: white;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    margin: 10px 0;
+    border: none;
+}
+
+.add-car .custom-file-upload:hover {
+    background-color: #48A6A7;
+    transform: scale(1.02);
+}
+
+/* تنسيق نص "No file chosen" */
+.add-car .file-name {
+    display: block;
+    margin: 8px;
+    color: #006A71;
+    font-size: 15px;
+}
+button[type="submit"] {
+    background-color: #006A71;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+button[type="submit"]:hover {
+    background-color: #48A6A7;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Error Message Styles */
+.error-message {
+    background-color: #FFE7E7;
+    color: #99151b;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.3s ease;
+    font-family: "League Spartan", sans-serif;
+}
+
+/* Delete Form */
+.delete-form {
+    display: flex;
+    padding: 20px;
+    border-radius: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

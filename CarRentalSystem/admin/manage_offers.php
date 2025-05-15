@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssdssssi", $title, $description, $discount_percentage, $user_type, $start_date, $end_date, $status, $car_id);
-    
+
     if ($stmt->execute()) {
         $success_message = "Offer created successfully!";
     } else {
@@ -42,256 +42,226 @@ $sql = "SELECT o.*, c.name as car_name, c.model as car_model
         ORDER BY o.id DESC";
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Premium Offers - Admin Panel</title>
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .admin-nav {
-            margin-bottom: 20px;
-        }
-        .admin-nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            background: #f0f0f0;
-            transition: background 0.3s;
-        }
-        .admin-nav a:hover {
-            background: #e0e0e0;
-        }
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-        }
-        .alert-error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .form-section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #218838;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background: #f8f9fa;
-            font-weight: bold;
-        }
-        .badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
-        .type-client {
-            background: #6c757d;
-            color: white;
-        }
-        .type-premium {
-            background: #ffc107;
-            color: black;
-        }
-        .type-all {
-            background: #17a2b8;
-            color: white;
-        }
-        .status-active {
-            background: #28a745;
-            color: white;
-        }
-        .status-inactive {
-            background: #dc3545;
-            color: white;
-        }
-    </style>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/AdminDashboard.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/main-content.css">
+    <link rel="stylesheet" href="../css/sort-filter.css">
+    <link rel="stylesheet" href="../css/offers.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/manage_offers.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Manage Premium Offers</h1>
-        
-        <div class="admin-nav">
-            <a href="DashboardAdmin.php"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
-            <a href="../index.php"><i class="fas fa-home"></i> Back to Home</a>
-            <a href="../Login-Signup-Logout/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+<!-- Header Section -->
+<header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+    <nav class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h1 class="navbar-brand">Manage Premium Offers</h1>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="DashboardAdmin.php">Back to Admin Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.php">Back to Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
+            </ul>
         </div>
-        
-        <?php if (isset($success_message)): ?>
-            <div class="alert alert-success"><?php echo htmlspecialchars($success_message); ?></div>
-        <?php endif; ?>
-        
-        <?php if (isset($error_message)): ?>
-            <div class="alert alert-error"><?php echo htmlspecialchars($error_message); ?></div>
-        <?php endif; ?>
+    </nav>
+</header>
 
-        <div class="form-section">
-            <h2>Create New Offer</h2>
-            <form method="POST">
-                <div class="form-group">
-                    <label for="title">Offer Title</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
+<main>
+    <?php if (isset($success_message)): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success_message) ?></div>
+    <?php elseif (isset($error_message)): ?>
+        <div class="alert alert-error"><?= htmlspecialchars($error_message) ?></div>
+    <?php endif; ?>
 
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" required></textarea>
-                </div>
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+        <a href="#create-offer" onclick="showTab('create-offer')">Create Offer</a>
+        <a href="#offers-list" onclick="showTab('offers-list')">Current Offers</a>
+    </div>
 
-                <div class="form-group">
-                    <label for="discount_percentage">Discount Percentage</label>
-                    <input type="number" id="discount_percentage" name="discount_percentage" min="0" max="100" step="0.01" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="user_type">User Type</label>
-                    <select id="user_type" name="user_type" required>
-                        <option value="client">Regular Users</option>
-                        <option value="premium">Premium Users</option>
-                        <option value="all">All Users</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="start_date">Start Date</label>
-                    <input type="date" id="start_date" name="start_date" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="end_date">End Date</label>
-                    <input type="date" id="end_date" name="end_date" required>
-                </div>
-
-                
-
-                  <div class="form-group">
-                    <label for="car_id">Select a Car </label>
-                    <select id="car_id" name="car_id">
-                        <!-- Disabled placeholder option (outside optgroup) -->
-                        <option disabled selected>Select a car</option>
-                        
-                        <!-- Grouped options -->
-                        <optgroup label="All cars">
+    <!-- Create Offer Form -->
+    <div class="new-offer">
+    <section id="create-offer" class="tab-content active">
+        <form method="POST">
+            <h3>Create New Offer</h3>
+            <div class="offer-sec1">
+            <div class="form-group">
+                <label for="title">Offer Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="discount_percentage">Discount Percentage</label>
+                <input type="number" id="discount_percentage" name="discount_percentage" min="0" max="100" step="0.01" required>
+            </div></div>
+            <div class="offer-sec2">
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="2" rows="2" required></textarea>
+            </div></div>
+            <div class="offer-sec3">
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div></div>
+            <div class="offer-sec4">
+            <div class="form-group">
+                <label for="user_type">User Type</label>
+                <select id="user_type" name="user_type" required>
+                    <option value="client">Regular Users</option>
+                    <option value="premium">Premium Users</option>
+                    <option value="all">All Users</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="car_id">Select a Car</label>
+                <select id="car_id" name="car_id">
+                    <option disabled selected>Select a car</option>
+                    <optgroup label="All cars">
                         <?php while ($car = $cars_result->fetch_assoc()): ?>
-                            <option value="<?php echo $car['id']; ?>">
-                            <?php echo htmlspecialchars($car['name'] . ' ' . $car['model']); ?>
+                            <option value="<?= $car['id'] ?>">
+                                <?= htmlspecialchars($car['name'] . ' ' . $car['model']) ?>
                             </option>
                         <?php endwhile; ?>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" required>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn">Create Offer</button>
-            </form>
-        </div>
-
-        <div class="offers-list">
-            <h2>Current Offers</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Discount</th>
-                        <th>User Type</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Car</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($offer = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($offer['title']); ?></td>
-                        <td><?php echo htmlspecialchars($offer['description']); ?></td>
-                        <td><?php echo $offer['discount_percentage']; ?>%</td>
-                        <td>
-                            <span class="badge type-<?php echo $offer['user_type']; ?>">
-                                <?php echo ucfirst($offer['user_type']); ?>
-                            </span>
-                        </td>
-                        <td><?php echo $offer['start_date']; ?></td>
-                        <td><?php echo $offer['end_date']; ?></td>
-                        <td>
-                            <?php if ($offer['car_id']): ?>
-                                <?php echo htmlspecialchars($offer['car_name'] . ' ' . $offer['car_model']); ?>
-                            <?php else: ?>
-                                All Cars
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <span class="badge status-<?php echo $offer['status']; ?>">
-                                <?php echo ucfirst($offer['status']); ?>
-                            </span>
-                        </td>
-                    </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </div>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div></div>
+            <button type="submit" class="btn">Create Offer</button>
+        </form>
+    </section>
     </div>
+    <!-- Current Offers Table -->
+    <section id="offers-list" class="tab-content">
+        <h3>Current Offers</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Discount</th>
+                    <th>User Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Car</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($offer = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($offer['title']) ?></td>
+                        <td><?= htmlspecialchars($offer['description']) ?></td>
+                        <td><?= $offer['discount_percentage'] ?>%</td>
+                        <td><span class="badge type-<?= $offer['user_type'] ?>"><?= ucfirst($offer['user_type']) ?></span></td>
+                        <td><?= $offer['start_date'] ?></td>
+                        <td><?= $offer['end_date'] ?></td>
+                        <td><?= $offer['car_name'] ? htmlspecialchars($offer['car_name'] . ' ' . $offer['car_model']) : 'All Cars' ?></td>
+                        <td><span class="badge status-<?= $offer['status'] ?>"><?= ucfirst($offer['status']) ?></span></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="footer-section">
+                <h3>Subscribe</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+function showTab(tabId) {
+    // تحديث حالة التبويبات النشطة
+    document.querySelectorAll('.tab-navigation a').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelector(`.tab-navigation a[href="#${tabId}"]`).classList.add('active');
+    
+    // إخفاء جميع المحتويات
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // التحكم في عرض div.new-offer
+    const newOfferDiv = document.querySelector('.new-offer');
+    newOfferDiv.style.display = 'none';
+    
+    // إظهار المحتوى المحدد
+    if (tabId === 'create-offer') {
+        newOfferDiv.style.display = 'flex';
+        document.getElementById('create-offer').classList.add('active');
+    } else {
+        document.getElementById('offers-list').classList.add('active');
+    }
+}
+
+// عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    showTab('create-offer');
+});
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
-</html> 
+</html>

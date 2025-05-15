@@ -1,51 +1,154 @@
-.my-rentals {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+body {
+    font-family: "League Spartan", sans-serif !important;
+    color: #006A71;
 }
 
 .rental-request {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    background: white;
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    transition: transform 0.3s ease;
+}
+
+.rental-request:hover {
+    transform: scale(1.01);
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    transition: all 200ms ease-in-out;
 }
 
 .rental-status {
-    text-align: center;
-    padding: 8px;
-    border-radius: 4px;
-    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
     margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .status-pending {
-    background-color: #fff3cd;
-    color: #856404;
+    width: fit-content;
+    border-radius: 40px;
+    background-color: #F2EFE7;
+    color:#006A71;
+    margin: auto;
 }
 
 .status-approved {
-    background-color: #d4edda;
-    color: #155724;
+    width: fit-content;
+    border-radius: 40px;
+    background-color: #F2EFE7;
+    color:#006A71;
+    margin: auto;
 }
 
 .status-rejected {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-.rental-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    width: fit-content;
+    border-radius: 40px;
+    background-color: #F2EFE7;
+    color: #99151b;
+    margin: auto;
 }
 
 .car-image {
     width: 200px;
     height: 150px;
     object-fit: cover;
+    border-radius: 40px;
+    margin-right: 20px;
+}
+
+.rental-info {
+    display: flex;
+    align-items: flex-start;
+}
+
+.car-details {
+    flex-grow: 1;
+}
+
+.rating-form {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
     border-radius: 5px;
+}
+
+.rating-form select,
+.rating-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.rating-form button {
+    background: #006A71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.rating-form button:hover {
+    background: #48A6A7;
+}
+
+.star-rating {
+    color: #ffc107;
+    font-size: 1.2em;
+}
+
+.rental-dates {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.no-rentals {
+    text-align: center;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.no-rentals a {
+    color: #006A71;
+    text-decoration: none;
+}
+
+.no-rentals a:hover {
+    text-decoration: underline;
+}
+
+.my-rentals {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.rental-status {
+    text-align: center;
+    padding: 8px;
+    border-radius: 40px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.rental-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 .car-details {
@@ -54,15 +157,33 @@
 }
 
 .rental-dates {
-    background-color: #e9f7ff;
+    display: flex;
+    width: 65%;
+    background-color: #e0f7fa;
     padding: 10px;
     border-radius: 4px;
     margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-evenly
 }
-
+.rental-dates p{
+    margin: 0;
+}
 .no-rentals {
     text-align: center;
     padding: 30px 0;
     font-size: 18px;
     color: #666;
+}
+.my-rentals .rental-request .rental-info .car-details{
+    display: flex;
+    margin-top: 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 40px;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 40px;
 }

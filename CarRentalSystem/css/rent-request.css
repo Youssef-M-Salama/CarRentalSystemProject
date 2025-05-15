@@ -2,35 +2,63 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.1);
 }
 
 .rental-form h2 {
     margin-top: 0;
+<<<<<<< HEAD
     color: #333; /* اللون الأسود الداكن */
+=======
+    color: #9ACBD0;
+>>>>>>> anwaar/main
 }
 
 .rental-form .car-details {
     display: flex;
     margin-bottom: 20px;
     align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
 }
 
-.rental-form .car-image {
-    width: 150px;
-    margin-right: 20px;
+.car-info {
+    display: flex;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.car-image {
+    width: 45%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
 .rental-form .car-image img {
     width: 100%;
+    height: auto;
     border-radius: 5px;
 }
 
 .rental-form .car-info h3 {
     margin-top: 0;
+<<<<<<< HEAD
     color: #333; /* اللون الأسود الداكن */
+=======
+    text-transform: capitalize;
+>>>>>>> anwaar/main
 }
 
 .rental-form form {
@@ -65,15 +93,19 @@
 
 .rental-form .price-calculation {
     margin-top: 10px;
-    background-color: #e9f7ff;
+    background-color: #e0f7fa;
     padding: 10px;
     border-radius: 4px;
     font-weight: bold;
+<<<<<<< HEAD
     color: #333; /* لون النص داخل السعر */
+=======
+    color: #006A71;
+>>>>>>> anwaar/main
 }
 
 .success-message {
-    background-color: #d4edda;
+    background-color: #E8F5E9;
     color: #155724;
     padding: 10px;
     border-radius: 4px;
@@ -81,7 +113,7 @@
 }
 
 .error-message {
-    background-color: #f8d7da;
+    background-color: #FFE7E7;
     color: #721c24;
     padding: 10px;
     border-radius: 4px;

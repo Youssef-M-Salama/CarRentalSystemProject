@@ -1,0 +1,339 @@
+/* Container for car grid layout */
+.car-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 80px;
+    padding: 20px;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 45px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for individual car cards */
+.card {
+    background-color: #fff;
+    color: #000;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 500px;
+    height: 225px;
+    text-align: center;
+    align-items: center;
+    padding: 0;
+    border-radius: 40px;
+    border-right: 3px solid transparent;
+}
+
+.card img {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.card h3,
+.card p {
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.card h3 {
+    font-size: 20px;
+}
+
+.card p {
+    font-size: 14px;
+}
+
+.card p strong {
+    font-weight: bold;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-right: 3px solid #006A71;
+}
+
+.car-details {
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-body {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.car-name-rate {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-rent:hover {
+    background-color: #48A6A7;
+    transform: scale(1.05);
+}
+
+.btn-disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Rental button styling */
+.btn-rent {
+    background-color: #006A71;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-disabled {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    width: 70%;
+    margin-top: 10px;
+    cursor: not-allowed;
+}
+
+/* Space between premium and regular sections */
+.premium-section {
+    margin-bottom: 40px;
+}
+
+.no-cars {
+    text-align: center;
+}
+
+/* Reset filter */
+.reset-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Filter */
+.filter-car-model {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-car-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Filter box styling */
+.filter-box {
+    display: none;
+}
+
+.filter-box.active {
+    display: flex;
+}
+
+.filter-box {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    padding: 15px;
+    border: 1px solid #006A71;
+    background-color: #f9f9f9;
+    border-radius: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    background-color: #006A71;
+    border-radius: 40px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+
+}
+
+.apply-button {
+    justify-content: center;
+    background-color: #006A71;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #48A6A7;
+}
+
+.apply-button,
+.reset-button {
+    background-color: #006A71;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.btn-submit-cont{
+    display: flex;
+    justify-content: center;
+}
+.reset-button {
+    display: inline-block;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+
+}
+.toggle-btn:hover ,
+.reset-button:hover {
+    background-color: #48A6A7;
+    transition: background-color 0.3s ease;
+
+}
+/* Rating stars styling */
+.rating-stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating-stars i {
+    margin-right: 2px;
+}
+
+/* Category badges */
+.category-badge {
+    padding: 3px 8px;
+    border-radius: 40px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.category-badge.free {
+    background-color: #e0f7fa;
+    color: #00796b;
+}
+
+.category-badge.premium {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+/* Section headers */
+.section-header {
+    color: #006A71;
+    width: fit-content;
+    background-color: #fff;
+    text-align: center;
+    margin: 20px auto ;
+    padding: 10px 20px;
+    border-radius: 40px;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    box-shadow:  0 2px 13px rgba(0, 0, 0, 0.2);
+}
+.premium-section:hover .section-header,
+.regular-section:hover .section-header {
+    border-top: 2px solid #006A71;
+    border-bottom: 2px solid #006A71;
+
+}
+main {
+    padding: 40px;
+}
+
+/* Status labels */
+.available {
+    color: #1e7e34;
+    font-weight: bold;
+}
+
+.not-available {
+    color: #99151b;
+    font-weight: bold;
+}
+
+/* General input styling */
+.filter-box input[type="text"],
+.filter-box input[type="number"],
+.filter-box select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #006A71;
+    border-radius: 40px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Focus effect */
+.filter-box input:focus,
+.filter-box select:focus {
+    border-color: #006A71;
+    box-shadow: 0 0 0 2px #48A6A7;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .filter-box input,
+    .filter-box select {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+}
+label{
+    color: #006A71;
+}

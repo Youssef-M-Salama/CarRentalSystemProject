@@ -1,45 +1,48 @@
+body {
+    font-family: "League Spartan", sans-serif;
+}
+
 .login-container,
 .signup-container {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-.login-form,
-.signup-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  background-color: white;
+  border-radius: 40px;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  /* transition: .4s ease-in-out; */
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
 }
 
-.login-form input,
-.signup-form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+.login-container:hover,
+.signup-container:hover {
+  border-bottom: 3px solid #006A71;
+  border-top: 3px solid #006A71;
+  border-radius: 40px;
+  /* box-shadow: 0px 2px 7px #006A71; */
+  transition: all 200ms ease-in-out;
+
 }
 
-.login-form button,
-.signup-form button {
-  padding: 10px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+.login-container h2,
+.signup-container h2 {
+  color: #006A71;
+  text-align: center;
+  font-weight: bold;
+}
+
+.signup-container p {
+  margin: 15px;
+}
+
+.signup-container p:hover {
+  color: #006A71;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.login-form button:hover,
-.signup-form button:hover {
-  background-color: #3b5998;
 }
 
 .error {
@@ -47,3 +50,46 @@
   font-size: 0.9rem;
   margin-top: 10px;
 }
+
+.login-form input,
+.signup-form input {
+  border-radius: 10px;
+  border: 1px solid #9ACBD0;
+  background-color: #F8FAFC;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  outline: none;
+  padding: 0.7em;
+  transition: .4s ease-in-out;
+}
+
+
+.login-form input:focus,
+.signup-form input:focus {
+  background: #ffffff;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.3);
+}
+
+.login-form button,
+.signup-form button {
+  width: 100%;
+  margin-top: 1em;
+  align-self: center;
+  padding: 0.7em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-radius: 10px;
+  border: none;
+  background-color: #006A71;
+  color: white;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
+}
+
+.login-form button:hover,
+.signup-form button:hover {
+  background-color: #48A6A7;
+  transition: all 300ms ease-in-out;
+  }
+

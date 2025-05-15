@@ -1,0 +1,168 @@
+body{
+    font-family: "League Spartan", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+main {
+    padding: 40px;
+}
+
+/* Form Section */
+.form-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #006A71;
+    border-radius: 40px;
+}
+textarea{
+    border-radius: 40px;
+    width: 100%;
+    height: 50%;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #006A71;
+}
+
+.new-offer {
+    display: none; 
+    flex-direction: row;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 0 3px 13px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #fff;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+}
+.new-offer:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
+}
+.new-offer div{
+    width: 80%;
+}
+
+.offer-sec1,.offer-sec2,.offer-sec3,.offer-sec4{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+}
+/* Button Styles */
+.btn {
+    background-color: #006A71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: #48A6A7;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+/* Table Styles */
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "League Spartan", sans-serif;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #006A71;
+}
+
+th {
+    background-color: #006A71;
+    color: white;
+}
+
+tr:hover {
+    background-color: #F2F8FA;
+}
+
+/* Status Badges */
+.badge {
+    padding: 3px 8px;
+    border-radius: 40px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.type-client {
+    background: #fff3e0;
+    color: #006A71;
+}
+
+.type-premium {
+    background: #e0f7fa;
+    color: #00796b;
+}
+
+.type-all {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.status-active {
+    background: #E8F5E9;
+    color: #006A71;
+}
+
+.status-inactive {
+    background: #FFE7E7;
+    color: #99151b;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 40px;
+    text-align: center;
+    width: fit-content;
+}
+
+.alert-success {
+    background: #E8F5E9;
+    color: #006A71;
+}
+
+.alert-error {
+    background: #FFE7E7;
+    color: #99151b;
+}
