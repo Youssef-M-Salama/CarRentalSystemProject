@@ -33,21 +33,28 @@ $discounted_price = $has_offer ?
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent Car - Car Rental System</title>    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Rent Car - Car Rental System</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com ">
+    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan :wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css ">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="css/rent-request.css">
+    <link rel="stylesheet" href="css/AdminDashboard.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/main-content.css">
-    <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/rent_car.css">
-
-
- 
+    <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/offers.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-
 <!-- Website Header Section -->
 <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
     <nav class="container-fluid d-flex justify-content-center align-items-center">
@@ -76,55 +83,56 @@ $discounted_price = $has_offer ?
     </nav>
 </header>
 
-<div class="container mt-5 mb-5">
-    <h2 class="text-center">Submit Rental Request</h2>
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="rental-request">
-                <div class="d-flex align-items-center">
-                    <img src="images/<?php echo htmlspecialchars($car['image']); ?>" 
-                         alt="<?php echo htmlspecialchars($car['name']); ?>" 
-                         class="car-image me-3">
+<!-- Rental Form Wrapper -->
+<main>
+    <div class="rental-form">
+        <h2>Confirm Rental Request</h2>
 
-                    <div class="flex-grow-1">
-                        <h4><?php echo htmlspecialchars($car['name'] . ' (' . $car['model'] . ')'); ?></h4>
-                        <p><strong>Type:</strong> <?php echo htmlspecialchars($car['type']); ?></p>
-                        <p><strong>Category:</strong> <?php echo htmlspecialchars($car['category']); ?></p>
-                        <p><strong>Price/Day:</strong> $<?php echo number_format($discounted_price, 2); ?></p>
-                    </div>
-                </div>
-
-                <form action="process_rental.php" method="POST" class="mt-3">
-                    <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
-                    <input type="hidden" name="offer_id" value="<?php echo $offer_id; ?>">
-
-                    <div class="mb-3">
-                        <label for="start_date" class="form-label">Start Date</label>
-                        <input type="date" class="form-control date-picker" id="start_date" name="start_date"
-                               min="<?php echo date('Y-m-d'); ?>" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="end_date" class="form-label">End Date</label>
-                        <input type="date" class="form-control date-picker" id="end_date" name="end_date"
-                               min="<?php echo date('Y-m-d'); ?>" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="total_price" class="form-label" >Estimated Total Price</label>
-                        <input type="text" class="form-control" id="total_price" readonly>
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-success submit-button">
-                            <i class="fas fa-check"></i> Submit Rental Request
-                        </button>
-                    </div>
-                </form>
+        <div class="car-details">
+            <div class="car-image">
+                <img src="images/<?php echo htmlspecialchars($car['image']); ?>" 
+                     alt="<?php echo htmlspecialchars($car['name']); ?>" 
+                     class="me-3">
+            </div>
+            <div class="car-info">
+                <h3><?php echo htmlspecialchars($car['name'] . ' (' . $car['model'] . ')'); ?></h3>
+                <p><strong>Type:</strong> <?php echo htmlspecialchars($car['type']); ?></p>
+                <p><strong>Category:</strong> <?php echo htmlspecialchars($car['category']); ?></p>
+                <p><strong>Price/Day:</strong> $<?php echo number_format($has_offer ? $discounted_price : $car['price_per_day'], 2); ?></p>
+                <?php if ($has_offer): ?>
+                    <small class="d-block"><?= htmlspecialchars($car['offer_title']); ?></small>
+                    <div class="offer-badge"><?= $car['discount_percentage']; ?>% OFF</div>
+                <?php endif; ?>
             </div>
         </div>
+
+        <form action="process_rental.php" method="POST" class="mt-3">
+            <input type="hidden" name="car_id" value="<?php echo $car_id; ?>">
+            <input type="hidden" name="offer_id" value="<?php echo $offer_id; ?>">
+
+            <div class="date-inputs">
+                <div>
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" id="start_date" name="start_date"
+                           min="<?php echo date('Y-m-d'); ?>" required
+                           onchange="calculatePrice()">
+                </div>
+                <div>
+                    <label for="end_date">End Date:</label>
+                    <input type="date" id="end_date" name="end_date"
+                           min="<?php echo date('Y-m-d'); ?>" required
+                           onchange="calculatePrice()">
+                </div>
+            </div>
+
+            <div id="price-calculation" class="price-calculation" style="display: none;">
+                Total Price: $<span id="total-price">0.00</span>
+            </div>
+
+            <button type="submit" class="btn btn-rent">Submit Rental Request</button>
+        </form>
     </div>
-</div>
+</main>
 
 <!-- Footer Section -->
 <footer>
@@ -157,25 +165,26 @@ $discounted_price = $has_offer ?
 </footer>
 
 <script>
-    // Calculate total price when dates change
-    document.getElementById('start_date').addEventListener('change', calculateTotal);
-    document.getElementById('end_date').addEventListener('change', calculateTotal);
+    function calculatePrice() {
+        const startDate = document.getElementById('start_date').value;
+        const endDate = document.getElementById('end_date').value;
 
-    function calculateTotal() {
-        const startDate = new Date(document.getElementById('start_date').value);
-        const endDate = new Date(document.getElementById('end_date').value);
-        if (startDate && endDate && startDate <= endDate) {
-            const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
-            const pricePerDay = <?php echo $discounted_price; ?>;
-            const total = days * pricePerDay;
-            document.getElementById('total_price').value = '$' + total.toFixed(2);
-        } else {
-            document.getElementById('total_price').value = '';
+        if (startDate && endDate) {
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+            if (diffDays > 0) {
+                document.getElementById('price-calculation').style.display = 'block';
+                document.getElementById('total-price').textContent =
+                    (diffDays * <?= $discounted_price; ?>).toFixed(2);
+            }
         }
     }
 </script>
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>
