@@ -95,6 +95,7 @@ $unavailable_cars = mysqli_query($conn, $query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -119,16 +120,17 @@ $unavailable_cars = mysqli_query($conn, $query);
     <link rel="stylesheet" href="../css/index.css">
 
 </head>
+
 <body>
     <!-- Header Section -->
     <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
         <nav class="container-fluid d-flex justify-content-center align-items-center">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <h1 class="navbar-brand">Admin Dashboard</h1>
-            <ul class="navbar-nav">
-                <li class="nav-item"><a  class="nav-link" href="../index.php">Back to Home</a></li>
-                <li class="nav-item"><a  class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
-            </ul>
+                <h1 class="navbar-brand">Admin Dashboard</h1>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.php">Back to Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -141,27 +143,27 @@ $unavailable_cars = mysqli_query($conn, $query);
                 <?php unset($_SESSION['error']); ?>
             </div>
         <?php endif; ?>
-        
+
         <!-- Tab Navigation -->
         <div class="tab-navigation">
             <a href="#add-car" onclick="showTab('add-car')">Add Car</a>
             <a href="#car-list" onclick="showTab('car-list')">Car List</a>
             <a href="#user-management" onclick="showTab('user-management')">User Management</a>
             <a href="#rental-requests" onclick="showTab('rental-requests')">
-                Rental Requests 
+                Rental Requests
                 <?php if ($pending_rentals > 0): ?>
                     <span class="notification-badge"><?= $pending_rentals ?></span>
                 <?php endif; ?>
             </a>
             <a href="#retrieve-cars" onclick="showTab('retrieve-cars')">
-                Retrieve Cars 
+                Retrieve Cars
                 <?php if ($rented_cars > 0): ?>
                     <span class="notification-badge"><?= $rented_cars ?></span>
                 <?php endif; ?>
             </a>
             <a href="manage_offers.php" class="offers-btn">
                 Manage Premium Offers
-                <?php 
+                <?php
                 // Get pending offers count
                 $pending_offers_sql = "SELECT COUNT(*) as count FROM offers WHERE status = 'pending'";
                 $pending_offers_result = mysqli_query($conn, $pending_offers_sql);
@@ -171,7 +173,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                 <?php endif; ?>
             </a>
             <a href="admin_deal_with_request_to_change_role.php">
-                Role Change Requests 
+                Role Change Requests
                 <?php if ($role_requests > 0): ?>
                     <span class="notification-badge"><?= $role_requests ?></span>
                 <?php endif; ?>
@@ -180,35 +182,35 @@ $unavailable_cars = mysqli_query($conn, $query);
 
         <!-- Add Car Form -->
         <div class="add-car">
-        <section id="add-car" class="tab-content active">
-            <form method="POST" action="DashboardAdmin.php" enctype="multipart/form-data">
-                <h3>Add New Car</h3>
-                <div class="car-input">
-                <input type="text" name="name" placeholder="Car Name" required>
-                <input type="text" name="model" placeholder="Model" required>
-                <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
-                </div>
-                <div class="car-select">
-                <select name="type" required>
-                    <option value="Sedan">Sedan</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Crossover">Crossover</option>
-                </select>
-                <select name="status" required>
-                    <option value="available">Available</option>
-                    <option value="not available">Not Available</option>
-                </select>
-                <select name="category" required>
-                    <option value="free">Free</option>
-                    <option value="premium">Premium</option>
-                </select>
-                </div>
-                <label for="image"class="custom-file-upload"><i class="fas fa-cloud-upload-alt"></i> Upload Image:</label>
-                <input type="file" name="image" id="image" accept="image/*" required><span class="file-name"> No file chosen</span>
-                <button type="submit" name="add_car">Add Car</button>
-            </form>
-        </section>
-    </div>
+            <section id="add-car" class="tab-content active">
+                <form method="POST" action="DashboardAdmin.php" enctype="multipart/form-data">
+                    <h3>Add New Car</h3>
+                    <div class="car-input">
+                        <input type="text" name="name" placeholder="Car Name" required>
+                        <input type="text" name="model" placeholder="Model" required>
+                        <input type="number" step="0.01" name="price_per_day" placeholder="Price Per Day" required min='0'>
+                    </div>
+                    <div class="car-select">
+                        <select name="type" required>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Crossover">Crossover</option>
+                        </select>
+                        <select name="status" required>
+                            <option value="available">Available</option>
+                            <option value="not available">Not Available</option>
+                        </select>
+                        <select name="category" required>
+                            <option value="free">Free</option>
+                            <option value="premium">Premium</option>
+                        </select>
+                    </div>
+                    <label for="image" class="custom-file-upload"><i class="fas fa-cloud-upload-alt"></i> Upload Image:</label>
+                    <input type="file" name="image" id="image" accept="image/*" required><span class="file-name"> No file chosen</span>
+                    <button type="submit" name="add_car">Add Car</button>
+                </form>
+            </section>
+        </div>
 
         <!-- Car List -->
         <section id="car-list" class="tab-content">
@@ -238,8 +240,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                             <td><?= htmlspecialchars($car['status']) ?></td>
                             <td>
                                 <?php if (!empty($car['image'])): ?>
-                                    <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
-                                        alt="<?= htmlspecialchars($car['name']) ?>" 
+                                    <img src="../images/<?= htmlspecialchars($car['image']) ?>"
+                                        alt="<?= htmlspecialchars($car['name']) ?>"
                                         width="50">
                                 <?php else: ?>
                                     No Image
@@ -286,8 +288,8 @@ $unavailable_cars = mysqli_query($conn, $query);
                                 <td><?= htmlspecialchars($car['category']) ?></td>
                                 <td>
                                     <?php if (!empty($car['image'])): ?>
-                                        <img src="../images/<?= htmlspecialchars($car['image']) ?>" 
-                                            alt="<?= htmlspecialchars($car['name']) ?>" 
+                                        <img src="../images/<?= htmlspecialchars($car['image']) ?>"
+                                            alt="<?= htmlspecialchars($car['name']) ?>"
                                             width="50">
                                     <?php else: ?>
                                         No Image
@@ -350,33 +352,40 @@ $unavailable_cars = mysqli_query($conn, $query);
                         <div class="rental-request">
                             <div class="rental-request-header">
                                 <h4>Request #<?= $request['id'] ?></h4>
-                                <?php 
-                                    $statusClass = '';
-                                    switch($request['status']) {
-                                        case 'pending':
-                                            $statusClass = 'status-pending';
-                                            break;
-                                        case 'approved':
-                                            $statusClass = 'status-approved';
-                                            break;
-                                        case 'rejected':
-                                            $statusClass = 'status-rejected';
-                                            break;
-                                    }
+                                <?php
+                                $statusClass = '';
+                                switch ($request['status']) {
+                                    case 'pending':
+                                        $statusClass = 'status-pending';
+                                        break;
+                                    case 'approved':
+                                        $statusClass = 'status-approved';
+                                        break;
+                                    case 'rejected':
+                                        $statusClass = 'status-rejected';
+                                        break;
+                                }
                                 ?>
                                 <span class="<?= $statusClass ?>"><?= ucfirst($request['status']) ?></span>
                             </div>
                             <div class="rental-request-content">
-                                <img src="../images/<?= htmlspecialchars($request['image']) ?>" 
-                                    alt="<?= htmlspecialchars($request['car_name']) ?>" 
+                                <img src="../images/<?= htmlspecialchars($request['image']) ?>"
+                                    alt="<?= htmlspecialchars($request['car_name']) ?>"
                                     class="rental-car-image">
                                 <div class="rental-info">
                                     <p><strong>User:</strong> <?= htmlspecialchars($request['username']) ?></p>
                                     <p><strong>Car:</strong> <?= htmlspecialchars($request['car_name']) ?> (<?= htmlspecialchars($request['model']) ?>)</p>
                                     <p><strong>Period:</strong> <?= date('M d, Y', strtotime($request['start_date'])) ?> to <?= date('M d, Y', strtotime($request['end_date'])) ?></p>
                                     <p><strong>Category:</strong> <?= htmlspecialchars($request['category']) ?></p>
-                                    <p><strong>Requested on:</strong> <?= date('M d, Y H:i', strtotime($request['created_at'])) ?></p>
+
+
+                                    <p><strong>With Driver:</strong> <?= htmlspecialchars($request['with_driver']) ?></p>
+                                    <p><strong>Tota Price:</strong> <?= htmlspecialchars($request['total_price']) ?></p>
+
+
                                     
+                                    <p><strong>Requested on:</strong> <?= date('M d, Y H:i', strtotime($request['created_at'])) ?></p>
+
                                     <?php if ($request['status'] === 'pending'): ?>
                                         <div class="rental-actions">
                                             <form method="POST" action="approve_request.php">
@@ -405,10 +414,10 @@ $unavailable_cars = mysqli_query($conn, $query);
             <!-- Contact Information -->
             <div class="footer-section">
                 <h3>Contact Us</h3>
-                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
-                <a href="01234567890" >Phone: 01234567890</a>
+                <a href="mailto:info@carrentalservice.com">Email: info@carrentalservice.com</a>
+                <a href="01234567890">Phone: 01234567890</a>
             </div>
-            
+
             <!-- Social Media Links -->
             <div class="footer-section">
                 <h3>Follow Us</h3>
@@ -419,7 +428,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                     <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </div>
-            
+
             <!-- Newsletter Subscription -->
             <div class="footer-section">
                 <h3>Subscribe</h3>
@@ -429,7 +438,7 @@ $unavailable_cars = mysqli_query($conn, $query);
                 </form>
             </div>
         </div>
-        
+
         <!-- Copyright Notice -->
         <div class="copyright">
             <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
@@ -437,33 +446,34 @@ $unavailable_cars = mysqli_query($conn, $query);
     </footer>
     <script>
         function showTab(tabId) {
-    // hide content of all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    // hide div.add-car 
-    document.querySelector('.add-car').style.display = 'none';
-    
-    // show content of the selected tab
-    document.getElementById(tabId).classList.add('active');
-    
-    // show add-car div if the selected tab is 'add-car'
-    if (tabId === 'add-car') {
-        document.querySelector('.add-car').style.display = 'block';
-    }
-}
-// Show the default tab on page load
-window.onload = function() {
-    showTab('add-car'); 
-};
-// Handle file input change event
-document.getElementById('image').addEventListener('change', function(e) {
-    const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
-    document.querySelector('.file-name').textContent = fileName;
-});
+            // hide content of all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // hide div.add-car 
+            document.querySelector('.add-car').style.display = 'none';
+
+            // show content of the selected tab
+            document.getElementById(tabId).classList.add('active');
+
+            // show add-car div if the selected tab is 'add-car'
+            if (tabId === 'add-car') {
+                document.querySelector('.add-car').style.display = 'block';
+            }
+        }
+        // Show the default tab on page load
+        window.onload = function() {
+            showTab('add-car');
+        };
+        // Handle file input change event
+        document.getElementById('image').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file chosen';
+            document.querySelector('.file-name').textContent = fileName;
+        });
     </script>
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
+
 </html>
