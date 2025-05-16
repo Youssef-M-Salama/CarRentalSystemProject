@@ -17,6 +17,10 @@ $role_requests_sql = "SELECT COUNT(*) as count FROM role_change_requests WHERE s
 $role_requests_result = mysqli_query($conn, $role_requests_sql);
 $role_requests = mysqli_fetch_assoc($role_requests_result)['count'];
 
+$message_requests_sql = "SELECT COUNT(*) as count FROM contact_messages WHERE status = 'unread'";
+$message_requests_result = mysqli_query($conn, $message_requests_sql);
+$message_requests = mysqli_fetch_assoc($message_requests_result)['count'];
+
 // Check if the user is logged in and is an admin
 if (!isLoggedIn() || !isAdmin()) {
     header("Location: ../Login-Signup-Logout/login.php");
@@ -178,6 +182,13 @@ $unavailable_cars = mysqli_query($conn, $query);
                     <span class="notification-badge"><?= $role_requests ?></span>
                 <?php endif; ?>
             </a>
+              <a href ="admin_read_messages.php">
+                Messages
+                <?php if ($message_requests > 0) : ?>
+                    <span class="notification-badge"><?= $message_requests ?></span>
+                <?php endif; ?>
+            </a>
+
         </div>
 
         <!-- Add Car Form -->

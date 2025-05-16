@@ -200,6 +200,22 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
     <!-- Main Content Section -->
     <main>
+        <div class="sort-filter">
+            <form method="GET">
+                <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
+                <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
+                <label>Sort By:</label>
+                <select name="sort">
+                    <option value="none" <?= $sort == 'none' ? 'selected' : '' ?>>Default</option>
+                    <option value="price_asc" <?= $sort == 'price_asc' ? 'selected' : '' ?>>Price (Low-High)</option>
+                    <option value="price_desc" <?= $sort == 'price_desc' ? 'selected' : '' ?>>Price (High-Low)</option>
+                    <option value="year_asc" <?= $sort == 'year_asc' ? 'selected' : '' ?>>Year (Old-New)</option>
+                    <option value="year_desc" <?= $sort == 'year_desc' ? 'selected' : '' ?>>Year (New-Old)</option>
+                    <option value="available" <?= $sort == 'available' ? 'selected' : '' ?>>Availability</option>
+                </select>
+                <button type="submit" class="apply-button">Apply</button>
+            </form>
+        </div>
         <div class="reset-filter">
         <form method="GET" action="index.php">
             <a href="index.php" class="reset-button">Reset</a>
@@ -447,6 +463,7 @@ function renderCarCard($car) {
         <?php else: ?>
             <button class="btn-disabled" disabled>Not Available</button>
         <?php endif; ?>
+            <a href="car_details.php?car_id=<?= $car['id'] ?>" class="btn-details">View Details</a>
         </div>
         </div>
     </div>
