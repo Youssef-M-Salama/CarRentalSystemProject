@@ -49,13 +49,15 @@ CREATE TABLE IF NOT EXISTS rental_requests (
     offer_id INT,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    total_price DECIMAL(10, 2) NOT NULL,
+    with_driver ENUM('yes', 'no') NOT NULL DEFAULT 'no',
+    total_price DECIMAL(10, 2) NOT NULL, -- This will be calculated by triggers
     status ENUM('pending', 'approved', 'rejected', 'completed') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_rental_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT fk_rental_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
     CONSTRAINT fk_rental_offer FOREIGN KEY (offer_id) REFERENCES offers(id) ON DELETE SET NULL
 );
+
 
 -- جدول طلبات تغيير الدور
 CREATE TABLE IF NOT EXISTS role_change_requests (
@@ -81,6 +83,64 @@ CREATE TABLE IF NOT EXISTS rating (
     CONSTRAINT fk_rating_car FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE CASCADE,
     CONSTRAINT fk_rating_rental FOREIGN KEY (rental_id) REFERENCES rental_requests(id) ON DELETE CASCADE
 );
+
+-- جدول الرسائل
+CREATE TABLE IF NOT EXISTS contact_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    phone VARCHAR(20),
+    message TEXT,
+    status ENUM('unread', 'read') DEFAULT 'unread',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Trigger to calculate total_price before inserting a new row
+DELIMITER $$
+
+CREATE TRIGGER calculate_total_price BEFORE INSERT ON rental_requests
+FOR EACH ROW
+BEGIN
+    DECLARE daily_rate DECIMAL(10, 2);
+    DECLARE total_days INT;
+
+    -- Get the car's daily rate
+    SELECT price_per_day INTO daily_rate FROM cars WHERE id = NEW.car_id;
+
+    -- Calculate the total number of days
+    SET total_days = DATEDIFF(NEW.end_date, NEW.start_date) + 1;
+
+    -- Calculate the base price
+    SET NEW.total_price = total_days * daily_rate;
+
+    -- Add driver cost if applicable
+    IF NEW.with_driver = 'yes' THEN
+        SET NEW.total_price = NEW.total_price + (total_days * 1000); -- 1000 per day
+    END IF;
+END$$
+
+-- Trigger to calculate total_price before updating a row
+CREATE TRIGGER update_total_price BEFORE UPDATE ON rental_requests
+FOR EACH ROW
+BEGIN
+    DECLARE daily_rate DECIMAL(10, 2);
+    DECLARE total_days INT;
+
+    -- Get the car's daily rate
+    SELECT price_per_day INTO daily_rate FROM cars WHERE id = NEW.car_id;
+
+    -- Calculate the total number of days
+    SET total_days = DATEDIFF(NEW.end_date, NEW.start_date) + 1;
+
+    -- Calculate the base price
+    SET NEW.total_price = total_days * daily_rate;
+
+    -- Add driver cost if applicable
+    IF NEW.with_driver = 'yes' THEN
+        SET NEW.total_price = NEW.total_price + (total_days * 1000); -- 1000 per day
+    END IF;
+END$$
+
+DELIMITER ;
 
 INSERT INTO users (username, email, password, role)
 VALUES (

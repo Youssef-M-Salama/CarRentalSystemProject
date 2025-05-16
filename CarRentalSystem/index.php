@@ -183,6 +183,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                     <?php endif; ?>
                     
                     <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Call_Us.php">Contact Us</a></li>
+
                     
                     <li class="nav-item">
                         <a href="profile.php" class="nav-link profile-link">
@@ -305,7 +307,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
         <div class="footer-container">
             <!-- Contact Information -->
             <div class="footer-section">
-                <h3>Contact Us</h3>
+                <a href="Call_Us.php"> <h3>Contact Us</h3> </a>
                 <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
                 <a href="01234567890" >Phone: 01234567890</a>
             </div>
