@@ -5,11 +5,20 @@
     background-color: #fff;
     border-radius: 40px;
     box-shadow: 0 0 13px rgba(0, 0, 0, 0.1);
-}
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+            &:hover {
+            border-top: 3px solid #006A71;
+            border-bottom: 3px solid #006A71;
+            border-radius: 40px;
+            transition: all 0.3s ease-in-out;
+           }
+        }
+
 
 .rental-form h2 {
     margin-top: 0;
-    color: #9ACBD0;
+    color:#006A71;
 }
 
 .rental-form .car-details {
@@ -24,10 +33,9 @@
 
 .car-info {
     display: flex;
-    background: #f8f9fa;
     padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #e9ecef;
+    border-radius: 40px;
+    border: 3px solid #006A71;
     width: 50%;
     height: 100%;
     flex-direction: column;
@@ -77,7 +85,7 @@
     width: 90%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #006A71;
     border-radius: 4px;
 }
 
@@ -104,4 +112,10 @@
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 20px;
+}
+.driver-option{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
 }

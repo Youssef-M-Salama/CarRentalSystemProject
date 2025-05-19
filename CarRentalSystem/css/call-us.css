@@ -1,0 +1,122 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "League Spartan", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+    color: #006A71;
+    line-height: 1.6;
+    text-transform: capitalize;
+}
+select , input , textarea {
+    text-transform: capitalize;
+}
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+.line-messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    p{
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .error-msg{
+
+        color: red;
+    }
+}
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    box-shadow: 0 2px 13px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #fff;
+    box-shadow: 0 3px 13px rgba(0,0,0,0.3);
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    ul{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        li{
+            display: inline;
+            p{
+                font-size: 20px;
+                
+            }
+        }
+    }
+}
+.contact-info:hover {
+    border-bottom: 2px solid #006A71;
+    border-top: 2px solid #006A71;
+    border-radius: 40px;
+    transition: all 200ms ease-in-out;
+}
+.call-container{
+    display: flex;
+    margin-bottom: 20px;
+    gap: 30px;
+
+}
+.contact-info-cont{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contact-form{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    form{
+        color: #006A71;
+        width: 100%;
+    input,textarea{
+        padding: 10px;
+        border: 1px solid #006A71;
+        margin: 5px;
+        width: 80%;
+        &:focus{
+            border:2px solid #006A71 ;
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .btn{
+        background-color: #006A71;
+        color: #fff;
+        padding: 10px 20px;
+        transition: all 0.5ms ease;
+        &:hover{
+            background-color: #48A6A7;
+        }
+    }
+    }
+    div{
+        width: 100%;
+    }
+}

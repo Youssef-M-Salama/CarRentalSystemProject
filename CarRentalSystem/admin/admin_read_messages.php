@@ -43,187 +43,39 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unread Messages</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2d6efd;
-            --success: #198754;
-            --danger: #dc3545;
-            --warning: #ffc107;
-            --gray-100: #f8f9fa;
-            --gray-300: #dee2e6;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: #2c3e50;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-        }
-
-        .btn-success {
-            background-color: var(--success);
-            color: white;
-            border: none;
-        }
-
-        .table-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            vertical-align: middle;
-        }
-
-        th {
-            background-color: var(--gray-100);
-            color: #495057;
-            font-weight: 600;
-            border-bottom: 2px solid var(--gray-300);
-        }
-
-        td {
-            border-bottom: 1px solid var(--gray-300);
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .notification {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-
-        .notification.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .notification.danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .notification .close {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-weight: bold;
-            color: inherit;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-10px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            table, th, td {
-                display: block;
-            }
-            
-            th {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            
-            tr {
-                margin-bottom: 15px;
-                padding: 10px;
-                border: 1px solid var(--gray-300);
-            }
-            
-            td {
-                border: none;
-                position: relative;
-                padding-left: 50%;
-                text-align: right;
-            }
-            
-            td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                width: 45%;
-                padding-right: 10px;
-                font-weight: 600;
-                text-align: left;
-            }
-        }
-    </style>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Include CSS stylesheets -->
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/main-content.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/messages.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
+    <!-- Website Header Section -->
+  <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+    <nav class="container-fluid d-flex justify-content-center align-items-center">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <h1 class="navbar-brand">Car Rental Service</h1>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
+            <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+              <li class="nav-item"><a class="nav-link" href="../admin/DashboardAdmin.php">Admin Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
+          <?php endif; ?>
+        </ul>
+      </div>
+    </nav>
+  </header>
     <div class="admin-container">
 
         
@@ -263,7 +115,7 @@ $result = $stmt->get_result();
                                     <form method="POST" style="display: inline">
                                         <input type="hidden" name="message_id" value="<?= $row['id'] ?>">
                                         <button type="submit" class="btn btn-success" onclick="return confirm('Mark this message as read?')">
-                                            <i class="fas fa-check"></i> Done
+                                            <i class="fas fa-check"></i>  Done
                                         </button>
                                     </form>
                                 </td>
@@ -277,10 +129,43 @@ $result = $stmt->get_result();
                 </div>
             <?php endif; ?>
         </div>
-                <br><br>
-        <a href= DashboardAdmin.php > Home </a>
-
     </div>
+ <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <a href="Call_Us.php"> <h3>Contact Us</h3> </a>
+                <a href="mailto:info@carrentalservice.com" >Email: info@carrentalservice.com</a>
+                <a href="01234567890" >Phone: 01234567890</a>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Youssef-M-Salama/CarRentalSystemProject"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Subscription -->
+            <div class="footer-section">
+                <h3>Subscribe</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2025 Car Rental Service. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         // Notification close functionality
@@ -292,5 +177,7 @@ $result = $stmt->get_result();
             });
         });
     </script>
+            <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

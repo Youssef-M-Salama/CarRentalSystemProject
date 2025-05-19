@@ -1,0 +1,87 @@
+        body {
+            font-family: "League Spartan", sans-serif !important;
+            background-color:#f6f6f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #006A71;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .car-details {
+            display: flex;
+            flex-direction: row;
+            background-color: #ffffff;
+            border-radius: 40px;
+            box-shadow: 0 3px 13px rgba(0,0,0,0.3);
+            overflow: hidden;
+            width: 900px;
+            margin: 0 auto;
+            height: 450px;
+            padding: 0;
+            border-right: 3px solid transparent;
+            &:hover {
+            border-right: 3px solid #006A71;
+            border-radius: 40px;
+            transition: all 0.3s ease-in-out;
+           }
+        }
+        
+        .car-details img {
+            border-radius: 40px;
+            width: 560px;
+            object-fit: cover;
+            /* height: 100%; */
+        }
+        .car-info {
+            padding: 30px;
+            flex-grow: 1;
+            width: 40%;   
+            text-align: center;            
+        }
+        .car-info p {
+            margin: 10px 0;
+            color: #006A71;
+            font-size: 25px;
+        }
+        .car-info strong {
+            color: #006A71;
+            font-size: 30px;
+        }
+        hr{
+            margin: 0;
+        }
+
+        /* Ratings Section */
+        .rating-section {
+            margin: 10px;
+        }
+        .rating-section h3 {
+            color: #006A71;
+            margin-bottom: 10px;
+        }
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin: 10px 0;
+        }
+        .rating-stars i {
+            color: gold;
+            font-size: 1.4rem;       
+        }
+        .rating-stars span {
+            margin-left: 8px;
+            font-size: 1rem;
+            color: #333;
+        }
+

@@ -153,8 +153,9 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/sort-filter.css">
+    <link rel="stylesheet" href="css/offers.css">
+    <link rel="stylesheet" href="css/call-us.css">
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="offers.css">
 </head>
 
 <body>
@@ -200,8 +201,8 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
     <!-- Main Content Section -->
     <main>
-        <div class="sort-filter">
-            <form method="GET">
+        <!-- <div class="sort-filter">
+            <form method="GET" class="d-flex flex-row justify-content-center align-items-center flex-wrap ">
                 <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
                 <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
                 <label>Sort By:</label>
@@ -215,7 +216,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 </select>
                 <button type="submit" class="apply-button">Apply</button>
             </form>
-        </div>
+        </div> -->
         <div class="reset-filter">
         <form method="GET" action="index.php">
             <a href="index.php" class="reset-button">Reset</a>
@@ -423,7 +424,7 @@ function renderCarCard($car) {
         <img src="<?= $image ?>" class="card-img-top alt="<?= $name ?>">
         <!-- Car Details -->
         <div class="car-details">
-        <h3 class="card-title"><?= "$name ($model)" ?></h3>
+        <h3 class="card-title"><?= "$name $model" ?></h3>
         <!-- Rating Stars -->
         <div class="rating-stars">
             <?php for ($i = 0; $i < $fullStars; $i++): ?>
@@ -440,8 +441,8 @@ function renderCarCard($car) {
             </span>
             </div>
         <div class=" card-text">
-            <p><strong>Type:</strong> <?= $type ?></p>
-            <p><strong>Price:</strong> <?= $price ?>/day</p>
+            <!-- <p><strong>Type:</strong> <?= $type ?></p>
+            <p><strong>Price:</strong> <?= $price ?>/day</p> -->
             <p><strong>Status:</strong> 
                 <span class="<?= $availabilityClass ?>">
                     <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>
@@ -455,15 +456,15 @@ function renderCarCard($car) {
             </p>
         </div>
         <!-- Rental Button -->
+        <a href="car_details.php?car_id=<?= $car['id'] ?>" class="btn-details">View Details</a>
         <?php if ($status === 'available'): ?>
             <form method="GET" action="rent_request.php">
                 <input type="hidden" name="car_id" value="<?= $carId ?>">
                 <button type="submit" class="btn-rent">Rent Now</button>
             </form>
-        <?php else: ?>
-            <button class="btn-disabled" disabled>Not Available</button>
-        <?php endif; ?>
-            <a href="car_details.php?car_id=<?= $car['id'] ?>" class="btn-details">View Details</a>
+            <?php else: ?>
+                <button class="btn-disabled" disabled>Not Available</button>
+                <?php endif; ?>
         </div>
         </div>
     </div>
