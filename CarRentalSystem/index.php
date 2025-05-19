@@ -201,7 +201,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
 
     <!-- Main Content Section -->
     <main>
-        <div class="sort-filter">
+        <!-- <div class="sort-filter">
             <form method="GET" class="d-flex flex-row justify-content-center align-items-center flex-wrap ">
                 <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
                 <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
@@ -216,7 +216,7 @@ if (!$regularResult || ($premiumQuery && !$premiumResult)) {
                 </select>
                 <button type="submit" class="apply-button">Apply</button>
             </form>
-        </div>
+        </div> -->
         <div class="reset-filter">
         <form method="GET" action="index.php">
             <a href="index.php" class="reset-button">Reset</a>
