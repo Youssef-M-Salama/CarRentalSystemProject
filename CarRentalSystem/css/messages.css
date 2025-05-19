@@ -26,6 +26,54 @@ main {
 footer {
     margin-top: auto;
 }
+.table-container{
+            border-radius: 40px;
+            overflow: hidden;
+        /* Table Styles */
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            border-radius: 40px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: "League Spartan", sans-serif;
+            font-size: 0.95rem;
+            width: 100%;
+            min-width: 800px;
+        }
+   
+        th,
+        td {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #006A71;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #006A71;
+            padding: 15px;
+            vertical-align: middle;
+        }
+        td img {
+            width: 50%;
+        }
+        th {
+            background-color: #006A71;
+            color: white !important;
+            color: #495057;
+            font-weight: 600;
+        }
+    form .btn.btn-success{
+        background-color: #006A71;
+        color: #fff;
+        padding: 10px 20px;
+        transition: all 0.5ms ease;
+        &:hover{
+            background-color: #48A6A7;
+        }
+    }
+}
+
  .admin-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -33,7 +81,7 @@ footer {
 
         .btn {
             padding: 10px 20px;
-            border-radius: 6px;
+            border-radius: 40px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -50,50 +98,15 @@ footer {
             color: white;
             border: none;
         }
-
-        .table-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            vertical-align: middle;
-        }
-
-        th {
-            background-color: var(--gray-100);
-            color: #495057;
-            font-weight: 600;
-            border-bottom: 2px solid var(--gray-300);
-        }
-
-        td {
-            border-bottom: 1px solid var(--gray-300);
-        }
-
-        tr:hover {
-            background-color: #f6f6f6;
-        }
-
         .actions {
             display: flex;
-            gap: 10px;
+            justify-content: center;
         }
 
         .notification {
             padding: 15px;
             margin-bottom: 20px;
-            border-radius: 6px;
+            border-radius: 40px;
             position: relative;
             animation: slideIn 0.3s ease;
         }
@@ -102,12 +115,14 @@ footer {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
+            width: 70%;
         }
-
+        
         .notification.danger {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
+            width: 70%;
         }
 
         .notification .close {

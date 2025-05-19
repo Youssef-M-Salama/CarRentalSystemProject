@@ -59,61 +59,26 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/messages.css">
     <link rel="stylesheet" href="../css/index.css">
-
-    <!-- Internal Table Styles -->
-    <style>
-        /* Table Styles */
-        table {
-            margin: 0 auto;
-            width: 70%;
-            border-collapse: collapse;
-            border-radius: 40px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-family: "League Spartan", sans-serif;
-            font-size: 0.95rem;
-        }
-
-        th,
-        td {
-            font-size: 16px;
-            text-transform: capitalize;
-            color: #006A71;
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        td img {
-            width: 50%;
-        }
-        th {
-            background-color: #006A71;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #F2F8FA;
-        }
-    </style>
 </head>
 <body>
     <!-- Website Header Section -->
-    <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
-      <nav class="container-fluid d-flex justify-content-center align-items-center">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <h1 class="navbar-brand">Car Rental Service</h1>
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
+  <header class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center align-items-center">
+    <nav class="container-fluid d-flex justify-content-center align-items-center">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <h1 class="navbar-brand">Car Rental Service</h1>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="../index.php">Home</a></li>
             <?php if ($_SESSION['user']['role'] === 'admin'): ?>
               <li class="nav-item"><a class="nav-link" href="../admin/DashboardAdmin.php">Admin Dashboard</a></li>
-              <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
-            <?php endif; ?>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    
+            <li class="nav-item"><a class="nav-link" href="../Login-Signup-Logout/logout.php">Logout</a></li>
+          <?php endif; ?>
+        </ul>
+      </div>
+    </nav>
+  </header>
     <div class="admin-container">
+
+        
         <!-- Status Message Display -->
         <?php if (isset($_SESSION['message'])): ?>
             <div class="notification <?= $_SESSION['msg_type'] ?>">
@@ -136,21 +101,21 @@ $result = $stmt->get_result();
                             <th>Phone</th>
                             <th>Message</th>
                             <th>Date</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <tr>
-                                <td><?= htmlspecialchars($row['name']) ?></td>
-                                <td><?= htmlspecialchars($row['phone']) ?></td>
-                                <td><?= nl2br(htmlspecialchars($row['message'])) ?></td>
-                                <td><?= date('M j, Y H:i', strtotime($row['created_at'])) ?></td>
-                                <td>
+                                <td data-label="Name"><?= htmlspecialchars($row['name']) ?></td>
+                                <td data-label="Email"><?= htmlspecialchars($row['phone']) ?></td>
+                                <td data-label="Message"><?= nl2br(htmlspecialchars($row['message'])) ?></td>
+                                <td data-label="Date"><?= date('M j, Y H:i', strtotime($row['created_at'])) ?></td>
+                                <td data-label="Actions" class="actions">
                                     <form method="POST" style="display: inline">
                                         <input type="hidden" name="message_id" value="<?= $row['id'] ?>">
                                         <button type="submit" class="btn btn-success" onclick="return confirm('Mark this message as read?')">
-                                            <i class="fas fa-check"></i> Done
+                                            <i class="fas fa-check"></i>  Done
                                         </button>
                                     </form>
                                 </td>
@@ -212,7 +177,7 @@ $result = $stmt->get_result();
             });
         });
     </script>
-    <!-- bootstrap js -->
+            <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>
