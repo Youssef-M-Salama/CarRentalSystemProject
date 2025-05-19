@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="index.php" class="nav-link active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
                     <!-- Admin-only dashboard link -->
                     <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
                         <li class="nav-item"><a class="nav-link" href="admin/DashboardAdmin.php">Admin Dashboard</a></li>
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php endif; ?>
                     
                     <li class="nav-item"><a class="nav-link" href="about us.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Call_Us.php">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="Call_Us.php" aria-current="page">Contact Us</a></li>
 
                     
                     <li class="nav-item">

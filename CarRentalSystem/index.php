@@ -441,8 +441,8 @@ function renderCarCard($car) {
             </span>
             </div>
         <div class=" card-text">
-            <p><strong>Type:</strong> <?= $type ?></p>
-            <p><strong>Price:</strong> <?= $price ?>/day</p>
+            <!-- <p><strong>Type:</strong> <?= $type ?></p>
+            <p><strong>Price:</strong> <?= $price ?>/day</p> -->
             <p><strong>Status:</strong> 
                 <span class="<?= $availabilityClass ?>">
                     <i class="fas fa-<?= $status === 'available' ? 'check-circle' : 'times-circle' ?>"></i>

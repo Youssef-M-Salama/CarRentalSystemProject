@@ -168,14 +168,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="driver-option">
           <label class="title">Driver Option:</label>
-          <div class="option">
             <input type="radio" id="with_driver" name="with_driver" value="yes" required>
             <label for="with_driver">With Driver</label>
-          </div>
-          <div class="option">
             <input type="radio" id="without_driver" name="with_driver" value="no" required>
             <label for="without_driver">Without Driver</label>
-          </div>
         </div>
 
         <div

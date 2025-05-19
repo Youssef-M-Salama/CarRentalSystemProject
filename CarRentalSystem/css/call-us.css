@@ -100,6 +100,11 @@ footer {
         border: 1px solid #006A71;
         margin: 5px;
         width: 80%;
+        &:focus{
+            border:2px solid #006A71 ;
+            outline: none;
+            box-shadow: none;
+        }
     }
     .btn{
         background-color: #006A71;
