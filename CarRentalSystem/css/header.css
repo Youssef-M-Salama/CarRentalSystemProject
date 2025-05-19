@@ -85,7 +85,7 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 7px;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {

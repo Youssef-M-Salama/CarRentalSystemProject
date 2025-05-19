@@ -11,8 +11,8 @@ body {
     font-family: "League Spartan", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #9ACBD0;
+    background-color: #f6f6f6;
+    color: #006A71;
     line-height: 1.6;
     text-transform: capitalize;
 }
@@ -53,7 +53,14 @@ h2 {
     margin-bottom: 20px;
     text-align: center;
 }
-
+.admin-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
 ::-webkit-scrollbar {
     height: 4px;
     width: 8px;
